@@ -1,0 +1,23 @@
+2025-11-15 20:42:39,599 - INFO - ======================================================================
+2025-11-15 20:42:39,599 - INFO - BẮT ĐẦU QUÁ TRÌNH EMBEDDING VÀ UPLOAD LÊN QDRANT
+2025-11-15 20:42:39,599 - INFO - ======================================================================
+2025-11-15 20:42:39,599 - INFO - 📂 Đọc câu hỏi từ: database/data_sinh.json
+2025-11-15 20:42:39,599 - INFO - 📊 Tổng số câu hỏi trong JSON: 3
+2025-11-15 20:42:39,599 - INFO - 🔍 Kiểm tra duplicate IDs...
+2025-11-15 20:42:39,599 - INFO - ✓ Không có duplicate IDs
+2025-11-15 20:42:39,599 - INFO - 🔌 Khởi tạo OpenAI và Qdrant clients...
+2025-11-15 20:42:40,107 - INFO - ✓ Qdrant client đã kết nối tới: database/qdrant_storage
+2025-11-15 20:42:40,107 - INFO - ✓ Collection KHTN_QA đã tồn tại
+2025-11-15 20:42:40,107 - INFO -    Số vectors hiện có: 1560
+2025-11-15 20:42:40,107 - INFO - 📋 Đã embed trước đó: 780 câu hỏi
+2025-11-15 20:42:40,107 - INFO - 🆕 Cần embed: 3 câu hỏi mới
+2025-11-15 20:42:40,107 - ERROR - 
+❌ Lỗi nghiêm trọng: 'correct_answer_text'
+Traceback (most recent call last):
+  File "/home/tdung787/Desktop/pdf_parser/build_vector_db.py", line 285, in <module>
+    main()
+  File "/home/tdung787/Desktop/pdf_parser/build_vector_db.py", line 177, in main
+    total_chars = sum(
+  File "/home/tdung787/Desktop/pdf_parser/build_vector_db.py", line 179, in <genexpr>
+    len(q["correct_answer_text"]) +
+KeyError: 'correct_answer_text'

@@ -1,0 +1,33 @@
+2025-11-15 20:42:55,652 - INFO - ======================================================================
+2025-11-15 20:42:55,652 - INFO - BẮT ĐẦU QUÁ TRÌNH EMBEDDING VÀ UPLOAD LÊN QDRANT
+2025-11-15 20:42:55,652 - INFO - ======================================================================
+2025-11-15 20:42:55,652 - INFO - 📂 Đọc câu hỏi từ: database/data_sinh.json
+2025-11-15 20:42:55,652 - INFO - 📊 Tổng số câu hỏi trong JSON: 3
+2025-11-15 20:42:55,652 - INFO - 🔍 Kiểm tra duplicate IDs...
+2025-11-15 20:42:55,652 - INFO - ✓ Không có duplicate IDs
+2025-11-15 20:42:55,653 - INFO - 🔌 Khởi tạo OpenAI và Qdrant clients...
+2025-11-15 20:42:56,149 - INFO - ✓ Qdrant client đã kết nối tới: database/qdrant_storage
+2025-11-15 20:42:56,150 - INFO - ✓ Collection KHTN_QA đã tồn tại
+2025-11-15 20:42:56,150 - INFO -    Số vectors hiện có: 1560
+2025-11-15 20:42:56,150 - INFO - 📋 Đã embed trước đó: 780 câu hỏi
+2025-11-15 20:42:56,150 - INFO - 🆕 Cần embed: 3 câu hỏi mới
+2025-11-15 20:42:56,150 - INFO - 💰 Ước tính:
+2025-11-15 20:42:56,150 - INFO -    - Tổng ký tự: 2,692
+2025-11-15 20:42:56,150 - INFO -    - Tổng tokens (ước): ~2,019
+2025-11-15 20:42:56,150 - INFO -    - Chi phí: ~$0.0003 (¢0.03)
+2025-11-15 20:42:56,150 - INFO - 
+⏸️  Nhấn Ctrl+C để dừng, hoặc chờ 3 giây để tiếp tục...
+2025-11-15 20:42:59,153 - INFO - 
+🚀 Bắt đầu embedding với batch size = 100
+2025-11-15 20:42:59,154 - INFO - 📝 Embedding text format: question + correct_answer_text + explanation
+2025-11-15 20:43:00,927 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-11-15 20:43:01,032 - ERROR - ❌ Lỗi khi xử lý batch 1: 'question_number'
+2025-11-15 20:43:01,032 - ERROR - 🛑 DỪNG TOÀN BỘ QUÁ TRÌNH DO LỖI EMBEDDING
+2025-11-15 20:43:01,032 - ERROR - 
+❌ Lỗi nghiêm trọng: 'question_number'
+Traceback (most recent call last):
+  File "/home/tdung787/Desktop/pdf_parser/build_vector_db.py", line 285, in <module>
+    main()
+  File "/home/tdung787/Desktop/pdf_parser/build_vector_db.py", line 232, in main
+    "question_number": question["question_number"],
+KeyError: 'question_number'
