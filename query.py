@@ -350,8 +350,9 @@ VAI TRÒ:
 - Giải thích kiến thức và hướng dẫn tư duy cho 4 môn tự nhiên.
 
 NGỮ CẢNH:
-- Nếu học sinh hỏi "hình ảnh vừa nãy", "câu hỏi vừa rồi", "bài trước" → Tìm trong lịch sử trò chuyện message có prefix [📸 Từ ảnh]
-- Trả về NỘI DUNG của message đó (phần sau prefix)
+- Nếu học sinh hỏi "hình ảnh vừa nãy", "câu hỏi vừa rồi", "bài trước":
+    + Hoặc các đoạn được đặt trong <!-- EXTRACTED_TEXT ... -->
+- Trả về nội dung phía sau các marker đó.
 
 PHONG CÁCH:
 - Thân thiện, dễ hiểu.
@@ -367,7 +368,6 @@ KHI NHẬN CÂU HỎI NGOÀI PHẠM VI:
 
 MỤC TIÊU:
 Hỗ trợ học sinh phát triển tư duy khoa học và kỹ năng tự học bền vững.
-
 """
         print(f"   📝 System prompt (general): {len(prompt)} chars")
         return prompt
@@ -722,6 +722,28 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
         except Exception as e:
             print(f"   ⚠️ Error extracting answers: {e}")
             return None
+        
+    def _extract_hidden_text(self, content: str) -> str:
+        """Extract text from HTML comment and remove image markdown"""
+        import re
+        
+        # Remove image markdown: ![...](...) 
+        content = re.sub(r'!\[.*?\]\(.*?\)\s*', '', content)
+        
+        # Extract from comment
+        pattern = r'<!-- EXTRACTED_TEXT\s+(.*?)\s+-->'
+        match = re.search(pattern, content, re.DOTALL)
+        
+        if match:
+            extracted = match.group(1).strip()
+            user_text = content.split('<!-- EXTRACTED_TEXT')[0].strip()
+            
+            if user_text:
+                return f"{user_text}\n\n{extracted}"
+            else:
+                return extracted
+        
+        return content 
     
     def query(
         self, 
@@ -745,7 +767,7 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
         """
         
         messages = []
-        final_query = user_query  # ← THÊM DÒNG NÀY
+        final_query = user_query 
         
         try:
             print(f"\n{'='*70}")
@@ -766,8 +788,9 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                 
                 if extracted_text:
                     print(f"   📝 Extracted {len(extracted_text)} chars from image")
-                    user_query = extracted_text
-                    final_query = extracted_text  # ← CẬP NHẬT final_query
+                    user_query = f"{user_query}\n\n{extracted_text}"  # ← KẾT HỢP cả 2
+                    final_query = extracted_text  # ← Lưu extracted text
+                    print(f"   📝 Combined query: {len(user_query)} chars")
                 else:
                     print("   ⚠️  Could not extract text from image")
             
@@ -1175,8 +1198,20 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     
                     if conversation_history:
                         recent_history = conversation_history[-10:]
-                        messages.extend(recent_history)
-                        print(f"   📜 Added {len(recent_history)} history messages")
+                        
+                        # Extract hidden text from comments
+                        cleaned_history = []
+                        for msg in recent_history:
+                            if msg["role"] == "user":
+                                cleaned_history.append({
+                                    "role": "user",
+                                    "content": self._extract_hidden_text(msg["content"])
+                                })
+                            else:
+                                cleaned_history.append(msg)
+                        
+                        messages.extend(cleaned_history)
+                        print(f"   📜 Added {len(cleaned_history)} history messages (cleaned)")
                         
                     messages.append({
                         "role": "user",
@@ -1228,8 +1263,20 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                 
                 if conversation_history:
                     recent_history = conversation_history[-10:]
-                    messages.extend(recent_history)
-                    print(f"   📜 Added {len(recent_history)} history messages")
+                    
+                    # Extract hidden text from comments
+                    cleaned_history = []
+                    for msg in recent_history:
+                        if msg["role"] == "user":
+                            cleaned_history.append({
+                                "role": "user",
+                                "content": self._extract_hidden_text(msg["content"])
+                            })
+                        else:
+                            cleaned_history.append(msg)
+                    
+                    messages.extend(cleaned_history)
+                    print(f"   📜 Added {len(cleaned_history)} history messages (cleaned)")
                 
                 user_content = f"""Học sinh hỏi: {user_query}
 
@@ -1261,10 +1308,23 @@ YÊU CẦU:
                     }
                 ]
                 
+                # Add conversation history
                 if conversation_history:
-                    recent_history = conversation_history[-10:]
-                    messages.extend(recent_history)
-                    print(f"   📜 Added {len(recent_history)} history messages")
+                    recent_history = conversation_history[-10:] if len(conversation_history) > 10 else conversation_history
+                    
+                    # Extract hidden text from comments
+                    cleaned_history = []
+                    for msg in recent_history:
+                        if msg["role"] == "user":
+                            cleaned_history.append({
+                                "role": "user",
+                                "content": self._extract_hidden_text(msg["content"])
+                            })
+                        else:
+                            cleaned_history.append(msg)
+                    
+                    messages.extend(cleaned_history)
+                    print(f"   📜 Added {len(cleaned_history)} history messages (cleaned)")
                 
                 messages.append({
                     "role": "user",

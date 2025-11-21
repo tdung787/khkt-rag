@@ -1414,13 +1414,20 @@ async def rag_query(
         print(f"   📝 Final query: {final_query[:50]}...")  # ← DEBUG
         
         # ========== SAVE TO SESSION ==========
+                # ========== SAVE TO SESSION ==========
         try:
-            # ========== SAVE USER MESSAGE - EXTRACTED TEXT ==========
-            user_content = final_query  # ← ĐỔI user_input THÀNH final_query
-            
             if image_context:
-                user_content = f"[📸 Từ ảnh]\n{final_query}"  # ← ĐỔI user_input THÀNH final_query
-                print(f"   💾 Saving extracted text: {len(final_query)} chars")
+                user_content = f"""![Uploaded image]({image_context['url']})
+
+{user_input}
+
+<!-- EXTRACTED_TEXT
+{final_query}
+-->"""
+                print(f"   💾 Saving with hidden extracted text ({len(final_query)} chars)")
+            else:
+                user_content = final_query
+                print(f"   💾 Saving text input: {len(final_query)} chars")
             
             chat_history_manager.save_message(
                 session_id=session_id,
