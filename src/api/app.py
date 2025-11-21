@@ -1401,30 +1401,34 @@ async def rag_query(
         print(f"   📜 Loaded {len(conversation_history)} messages from history")
         
         # ========== PROCESS QUERY WITH IMAGE ==========
-        response = agent.query(
+        result = agent.query(  # ← ĐỔI response THÀNH result
             user_input, 
             conversation_history,
             image_context=image_context
         )
         
+        response = result["response"]  # ← THÊM DÒNG NÀY
+        final_query = result["final_query"]  # ← THÊM DÒNG NÀY
+        
+        print(f"   📝 User input: {user_input[:50]}...")
+        print(f"   📝 Final query: {final_query[:50]}...")  # ← DEBUG
+        
         # ========== SAVE TO SESSION ==========
         try:
-            # ========== SAVE USER MESSAGE WITH IMAGE MARKDOWN ==========
-            user_content = user_input
-
+            # ========== SAVE USER MESSAGE - EXTRACTED TEXT ==========
+            user_content = final_query  # ← ĐỔI user_input THÀNH final_query
+            
             if image_context:
-                # Prepend markdown image syntax
-                image_markdown = f"![Uploaded image]({image_context['url']})"
-                user_content = f"{image_markdown}\n\n{user_input}"
-                print(f"   📝 Added image markdown to message")
-
+                user_content = f"[📸 Từ ảnh]\n{final_query}"  # ← ĐỔI user_input THÀNH final_query
+                print(f"   💾 Saving extracted text: {len(final_query)} chars")
+            
             chat_history_manager.save_message(
                 session_id=session_id,
                 role="user",
                 content=user_content
             )
             # ===========================================================
-                        
+            
             # Save assistant response
             chat_history_manager.save_message(
                 session_id=session_id,

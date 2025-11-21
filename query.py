@@ -31,7 +31,7 @@ from src.tools.submission_manager import SubmissionManager
 load_dotenv()
 
 # ================== CONFIG ==================
-OPENAI_MODEL = "gpt-4o-mini"
+OPENAI_MODEL = "gpt-4o"
 EMBEDDING_MODEL = "text-embedding-3-large"
 QDRANT_PATH = "database/qdrant_storage"
 COLLECTION_NAME = "KHTN_QA"
@@ -327,8 +327,6 @@ class SimpleAgent:
 
 NHIỆM VỤ:
 - Trả lời câu hỏi dựa trên ĐÁP ÁN và GIẢI THÍCH được cung cấp
-- Nếu có GIẢI THÍCH GỐC → Diễn giải lại tự nhiên
-- Nếu KHÔNG có → Viết giải thích ngắn gọn (2-4 câu)
 
 QUY TẮC:
 - Giữ nguyên: con số, công thức, ký hiệu
@@ -336,33 +334,31 @@ QUY TẮC:
 - Ngắn gọn, dễ hiểu
 
 ⚠️ ĐỊNH DẠNG BẮT BUỘC (KHÔNG SAI):
-**Đáp án [Chữ]: [Copy chính xác nội dung đáp án từ "ĐÁP ÁN:" ở dưới]**
+**Đáp án [Copy chính xác nội dung đáp án từ "ĐÁP ÁN:" ở dưới]**
 
 **Giải thích:**
-[Phân tích 2-4 câu]
+Trích nguyên văn, không thêm bớt.
 
-❌ SAI: **Đáp án: C**
-✅ ĐÚNG: **Đáp án C: Có lực đẩy riêng, có lực chuyển động**
 """
             print(f"   📝 System prompt (search): {len(prompt)} chars")
             return prompt
         
         # Default: general mode
-        prompt = f"""Bạn là trợ lý học tập AI dành cho học sinh THPT Việt Nam, chỉ hỗ trợ các môn khoa học tự nhiên (Toán, Lý, Hóa, Sinh).
+        prompt = f"""Bạn là trợ lý học tập AI dành cho học sinh THPT Việt Nam, hỗ trợ các môn khoa học tự nhiên (Toán, Lý, Hóa, Sinh).
 
 VAI TRÒ:
 - Giải thích kiến thức và hướng dẫn tư duy cho 4 môn tự nhiên.
-- Khuyến khích học sinh tự suy luận, không làm hộ hoàn toàn.
+
+NGỮ CẢNH:
+- Nếu học sinh hỏi "hình ảnh vừa nãy", "câu hỏi vừa rồi", "bài trước" → Tìm trong lịch sử trò chuyện message có prefix [📸 Từ ảnh]
+- Trả về NỘI DUNG của message đó (phần sau prefix)
 
 PHONG CÁCH:
-- Thân thiện, ngắn gọn, dễ hiểu.
+- Thân thiện, dễ hiểu.
 - Có ví dụ khi cần; luôn tích cực.
 
 PHẠM VI (BẮT BUỘC):
-✔ Chỉ hỗ trợ nội dung THPT thuộc Toán – Lý – Hóa – Sinh.
-✘ Không trả lời môn khác (Văn, Sử, Địa, Anh, Tin, GDCD, Công nghệ, Thể dục…).
 ✘ Không hỗ trợ gian lận hoặc giải bài kiểm tra đang làm.
-✘ Không trả lời nội dung ngoài khoa học tự nhiên.
 
 KHI NHẬN CÂU HỎI NGOÀI PHẠM VI:
 - Lịch sự từ chối.
@@ -495,7 +491,7 @@ Hỗ trợ học sinh phát triển tư duy khoa học và kỹ năng tự học
         # Simple, fast, covers 95% of cases
         quiz_keywords = [
             # Core keywords
-            "tạo đề", "ra đề", "đề kiểm tra", "đề thi", "bài kiểm tra",
+            "tạo đề", "ra đề", "đề thi", "bài kiểm tra",
             
             # English
             "quiz", "test",
@@ -732,71 +728,69 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
         user_query: str, 
         conversation_history: List[Dict] = None,
         image_context: Optional[Dict] = None
-    ) -> str:
+    ) -> Dict:  # ← ĐỔI RETURN TYPE
         """
         Process user query with optional conversation history
         
         Args:
             user_query: Current user query
             conversation_history: Optional list of previous messages
-                                Format: [
-                                    {"role": "user", "content": "..."},
-                                    {"role": "assistant", "content": "..."},
-                                    ...
-                                ]
             image_context: Optional dict with base64 image data
         
         Returns:
-            Response string
+            {
+                "response": str,
+                "final_query": str
+            }
         """
         
         messages = []
+        final_query = user_query  # ← THÊM DÒNG NÀY
         
         try:
             print(f"\n{'='*70}")
             print(f"USER QUERY: {user_query}")
             print(f"{'='*70}")
             
-            # Get student ID from instance (passed from API)
             student_id = self.student_id if self.student_id else "unknown"
 
-            # Also try to get from profile as fallback
             if student_id == "unknown" and self.quiz_generator.student_profile:
                 student_id = self.quiz_generator.student_profile.get("_id", "unknown")
 
             print(f"   🆔 Student ID: {student_id}")
             
-            # ========== THÊM ĐOẠN NÀY NGAY SAU ==========
-            # Extract text from image if present
+            # ========== EXTRACT TEXT FROM IMAGE ==========
             if image_context:
                 print("   🖼️  Detected image input")
                 extracted_text = self._extract_text_from_image(image_context)
                 
                 if extracted_text:
                     print(f"   📝 Extracted {len(extracted_text)} chars from image")
-                    # Override user_query with extracted text
                     user_query = extracted_text
+                    final_query = extracted_text  # ← CẬP NHẬT final_query
                 else:
                     print("   ⚠️  Could not extract text from image")
-            # ============================================
             
-            # ========== CHECK SUBMISSION FIRST (HIGHEST PRIORITY) ==========
+            # ========== CHECK SUBMISSION FIRST ==========
             if self._should_submit_quiz(user_query):
                 print("   📝 Phát hiện ý định nộp bài!")
                 
                 pending_quiz = self.quiz_storage.get_latest_pending_quiz(student_id)
                 
                 if not pending_quiz:
-                    return """❌ Chưa có bài kiểm tra nào được tạo!
+                    return {
+                        "response": """❌ Chưa có bài kiểm tra nào được tạo!
 
 💡 Bạn có thể tạo đề mới bằng cách nói: "Tạo đề Toán về..."
-"""
+""",
+                        "final_query": final_query
+                    }
                 
-                # Extract answers
                 answers = self._extract_answers(user_query)
                 
                 if not answers:
-                    return f"""❌ Không thể đọc được đáp án!
+                    return {
+                        "response": f"""❌ Không thể đọc được đáp án!
 
 📋 **Quiz đang làm:** `{pending_quiz['id']}`
 
@@ -805,30 +799,37 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 - "1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B"
 - "1-A 2-B 3-C 4-D 5-A 6-B 7-C 8-D 9-A 10-B"
 
-⚠️ **Lưu ý:** Cần đủ 10 câu, format: số-chữ cái (VD: 1-A, 2-B)"""
+⚠️ **Lưu ý:** Cần đủ 10 câu, format: số-chữ cái (VD: 1-A, 2-B)""",
+                        "final_query": final_query
+                    }
                 
-                # Submit via submission manager
                 try:
                     quiz = self.quiz_storage.get_quiz(pending_quiz['id'])
                     
                     if not quiz:
-                        return f"❌ Lỗi: Không tìm thấy quiz {pending_quiz['id']}"
+                        return {
+                            "response": f"❌ Lỗi: Không tìm thấy quiz {pending_quiz['id']}",
+                            "final_query": final_query
+                        }
                     
-                    # Check if already submitted
                     if self.submission_manager.check_quiz_submitted(pending_quiz['id'], student_id):
-                        return f"""❌ Bài này đã được nộp rồi!
+                        return {
+                            "response": f"""❌ Bài này đã được nộp rồi!
 
 📋 Quiz ID: `{pending_quiz['id']}`
 
 💡 Bạn có thể tạo đề mới bằng cách nói: "Tạo đề Toán về..."
-"""
+""",
+                            "final_query": final_query
+                        }
                     
-                    # Get answer key
                     answer_key = quiz.get("answer_key")
                     if not answer_key:
-                        return "❌ Lỗi: Đề thi thiếu đáp án. Vui lòng liên hệ admin."
+                        return {
+                            "response": "❌ Lỗi: Đề thi thiếu đáp án. Vui lòng liên hệ admin.",
+                            "final_query": final_query
+                        }
                     
-                    # Submit and grade
                     result = self.submission_manager.submit_quiz(
                         quiz_id=pending_quiz['id'],
                         student_id=student_id,
@@ -837,12 +838,13 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     )
                     
                     if not result["success"]:
-                        return f"❌ Lỗi nộp bài: {result.get('error', 'Unknown error')}"
+                        return {
+                            "response": f"❌ Lỗi nộp bài: {result.get('error', 'Unknown error')}",
+                            "final_query": final_query
+                        }
                     
-                    # Update quiz status to completed
                     self.quiz_storage.update_quiz_status(pending_quiz['id'], "completed")
                     
-                    # ========== TRIGGER DAILY EVALUATION ==========
                     def call_daily(student_id: str, date: str):
                         import requests
                         api_base_url = os.getenv('API_BASE_URL', 'http://localhost:8110')
@@ -856,23 +858,18 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                         except Exception as e:
                             print(f"⚠️ Failed to call daily evaluation: {e}")
 
-                    # Run in background thread
                     today = datetime.now().strftime("%Y-%m-%d")
                     threading.Thread(target=call_daily, args=(student_id, today), daemon=True).start()
-                    # ==============================================
                     
-                    # Get detailed result
                     detailed = self.submission_manager.get_submission_with_details(
                         result["submission_id"],
                         answer_key
                     )
 
-                    # Format result message
                     score = result["score"]
                     total = result["total"]
                     percentage = result["percentage"]
 
-                    # ========== BUILD DETAILS ==========
                     details_list = []
                     for detail in detailed["details"]:
                         num = detail["question_number"]
@@ -888,10 +885,10 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                         
                         details_list.append(line)
 
-                    # Join all lines
                     details_text = "\n".join(details_list)
 
-                    return f"""🎉 **ĐÃ NỘP BÀI THÀNH CÔNG!**
+                    return {
+                        "response": f"""🎉 **ĐÃ NỘP BÀI THÀNH CÔNG!**
 
 📊 **KẾT QUẢ:**
 - Điểm: **{score}/{total}** ({percentage:.1f}%)
@@ -907,29 +904,36 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 
 🎯 **Bạn có thể:**
 - Tạo đề mới: "Tạo đề Toán về Hàm số"
-"""
+""",
+                        "final_query": final_query
+                    }
 
                 except Exception as e:
                     print(f"⚠️ Submission error: {e}")
-                    return f"❌ Lỗi khi nộp bài: {str(e)}"
+                    return {
+                        "response": f"❌ Lỗi khi nộp bài: {str(e)}",
+                        "final_query": final_query
+                    }
 
-            # ========== CHECK PENDING QUIZ FOR OTHER ACTIONS ==========
+            # ========== CHECK PENDING QUIZ ==========
             pending_quiz = self.quiz_storage.get_latest_pending_quiz(student_id)
 
             if pending_quiz:
                 print(f"\n⚠️  Student có quiz đang làm: {pending_quiz['id']}")
                 print(f"   Input: {user_query}")
                 
-                # ========== PRIORITY 1: CHECK VIEW QUIZ INTENT ==========
                 if self._should_view_quiz(user_query):
                     print("   📋 Phát hiện ý định xem lại đề!")
-                    return self._show_quiz_content(pending_quiz)
+                    return {
+                        "response": self._show_quiz_content(pending_quiz),
+                        "final_query": final_query
+                    }
                 
-                # ========== PRIORITY 2: Block new quiz creation ==========
                 if self._should_create_quiz(user_query):
                     print("   🚫 BLOCKED: Cannot create new quiz")
                     
-                    return f"""❌ Bạn không thể tạo đề mới khi đang có bài chưa nộp!
+                    return {
+                        "response": f"""❌ Bạn không thể tạo đề mới khi đang có bài chưa nộp!
 
 📋 **Bài kiểm tra chưa hoàn thành:**
 - Môn: {pending_quiz.get('subject', 'N/A')}
@@ -942,15 +946,17 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 ```
 
-Sau khi nộp xong, bạn có thể tạo đề mới! 📝"""
+Sau khi nộp xong, bạn có thể tạo đề mới! 📝""",
+                        "final_query": final_query
+                    }
                 
-                # ========== PRIORITY 3: Check if cheating ==========
                 guard_result = self.quiz_guard.is_cheating(user_query, pending_quiz)
                 
                 if guard_result["is_blocked"]:
                     print(f"   🚫 BLOCKED: {guard_result['reason']} (method: {guard_result['method']})")
                     
-                    return f"""🚫 **Không thể trả lời câu hỏi này!**
+                    return {
+                        "response": f"""🚫 **Không thể trả lời câu hỏi này!**
 
 **Lý do:** {guard_result['reason']}
 
@@ -960,86 +966,87 @@ Bạn đang làm bài kiểm tra về **{pending_quiz.get('topic', 'N/A')}**.
 ```
 Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 ```
-"""
+""",
+                        "final_query": final_query
+                    }
                 else:
                     print(f"   ✓ ALLOWED: {guard_result['reason']} (method: {guard_result['method']})")
-            
-            # ========== DEBUG: Check all conditions ==========
-            print(f"\n🔍 Debug:")
-            print(f"   - Should create quiz: {self._should_create_quiz(user_query)}")
-            print(f"   - Should draw graph: {self._should_draw_graph(user_query)}")
-            print(f"   - Should submit quiz: {self._should_submit_quiz(user_query)}")
             
             # ========== CHECK IF QUIZ REQUEST ==========
             if self._should_create_quiz(user_query):
                 print("\n📝 Phát hiện yêu cầu tạo đề kiểm tra!")
                 
-                # Extract subject and topic
                 quiz_info = extract_topic_from_query(user_query, self.client)
                 
-                # ========== CHECK 1: Tool failure ==========
                 if not quiz_info:
-                    return """⚠️ Không thể hiểu yêu cầu của bạn.
+                    return {
+                        "response": """⚠️ Không thể hiểu yêu cầu của bạn.
 
-                💡 Vui lòng thử lại với format rõ ràng hơn:
-                - "Tạo đề [Môn] về [Chủ đề]"
-                - "Ra đề kiểm tra [Môn] về [Chủ đề]"
+💡 Vui lòng thử lại với format rõ ràng hơn:
+- "Tạo đề [Môn] về [Chủ đề]"
+- "Ra đề kiểm tra [Môn] về [Chủ đề]"
 
-                📚 **Các môn hỗ trợ:** Toán, Vật lý, Hóa học, Sinh học"""
+📚 **Các môn hỗ trợ:** Toán, Vật lý, Hóa học, Sinh học""",
+                        "final_query": final_query
+                    }
 
-                # ========== CHECK 2: No subject detected ==========
                 if not quiz_info.get("subject"):
-                    return """⚠️ Không xác định được môn học.
+                    return {
+                        "response": """⚠️ Không xác định được môn học.
 
-                💡 **Các môn hỗ trợ:** Toán, Vật lý, Hóa học, Sinh học
+💡 **Các môn hỗ trợ:** Toán, Vật lý, Hóa học, Sinh học
 
-                **Ví dụ câu hỏi đúng:**
-                - "Tạo đề Toán về Hàm số bậc hai"
-                - "Đề kiểm tra Vật lý về Dao động điều hòa"
-                - "Ra 10 câu Hóa về Axit - Bazơ - Muối"
-                """
+**Ví dụ câu hỏi đúng:**
+- "Tạo đề Toán về Hàm số bậc hai"
+- "Đề kiểm tra Vật lý về Dao động điều hòa"
+- "Ra 10 câu Hóa về Axit - Bazơ - Muối"
+""",
+                        "final_query": final_query
+                    }
 
-                # ========== CHECK 3: Subject not in allowed list ==========
                 detected_subject = quiz_info.get("subject")
                 if detected_subject not in ALLOWED_QUIZ_SUBJECTS:
-                    return f"""⚠️ Xin lỗi, hiện tại hệ thống chỉ hỗ trợ **4 môn tự nhiên**.
+                    return {
+                        "response": f"""⚠️ Xin lỗi, hiện tại hệ thống chỉ hỗ trợ **4 môn tự nhiên**.
 
-                🔍 **Bạn yêu cầu:** {detected_subject}
+🔍 **Bạn yêu cầu:** {detected_subject}
 
-                📚 **Các môn được hỗ trợ:**
-                ✅ Toán
-                ✅ Vật lý
-                ✅ Hóa học
-                ✅ Sinh học
+📚 **Các môn được hỗ trợ:**
+✅ Toán
+✅ Vật lý
+✅ Hóa học
+✅ Sinh học
 
-                ❌ **Không hỗ trợ:** Văn, Sử, Địa, Anh, Tin, v.v.
+❌ **Không hỗ trợ:** Văn, Sử, Địa, Anh, Tin, v.v.
 
-                💡 **Bạn có thể thử:**
-                - "Tạo đề Toán về Hệ bất phương trình"
-                - "Tạo đề Vật lý về Động lực học"
-                - "Tạo đề Hóa học về Bảng tuần hoàn"
-                - "Tạo đề Sinh học về Quang hợp"
-                """
+💡 **Bạn có thể thử:**
+- "Tạo đề Toán về Hệ bất phương trình"
+- "Tạo đề Vật lý về Động lực học"
+- "Tạo đề Hóa học về Bảng tuần hoàn"
+- "Tạo đề Sinh học về Quang hợp"
+""",
+                        "final_query": final_query
+                    }
                 
-                # ========== CHECK 4: No topic detected ==========
                 if not quiz_info.get("topic") or len(quiz_info.get("topic", "").strip()) < 3:
-                    return f"""⚠️ Vui lòng chỉ rõ chủ đề cần tạo đề.
+                    return {
+                        "response": f"""⚠️ Vui lòng chỉ rõ chủ đề cần tạo đề.
 
-                📚 **Môn:** {detected_subject}
+📚 **Môn:** {detected_subject}
 
-                💡 **Ví dụ:**
-                - "Tạo đề {detected_subject} về [Chủ đề cụ thể]"
+💡 **Ví dụ:**
+- "Tạo đề {detected_subject} về [Chủ đề cụ thể]"
 
-                **Gợi ý chủ đề:**
-                - Tạo đề Toán về Hàm số bậc hai
-                - Tạo đề Vật lý về Dao động điều hòa
-                - Tạo đề Hóa học về Axit-Bazơ"""
+**Gợi ý chủ đề:**
+- Tạo đề Toán về Hàm số bậc hai
+- Tạo đề Vật lý về Dao động điều hòa
+- Tạo đề Hóa học về Axit-Bazơ""",
+                        "final_query": final_query
+                    }
 
-                # ========== VALID REQUEST - Proceed ==========
                 print(f"   📚 Môn: {quiz_info['subject']}")
                 print(f"   📖 Chủ đề: {quiz_info['topic']}")
                 
-                # Check if user specified difficulty in query
                 user_difficulty = quiz_info.get("user_difficulty")
                 
                 if user_difficulty:
@@ -1049,7 +1056,6 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     print(f"   🎯 Sử dụng độ khó từ profile")
                     use_student_difficulty = True
                 
-                # Generate quiz
                 result = self.quiz_generator.generate_quiz(
                     subject=quiz_info["subject"],
                     topic=quiz_info["topic"],
@@ -1058,14 +1064,14 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                 )
                 
                 if result["success"]:
-                    # Save to storage
                     try:
-                        # Check if has answer_key
                         if not result.get("answer_key"):
                             print("   ⚠️ Thiếu answer_key!")
-                            return "❌ Lỗi: Không thể tạo đề vì thiếu đáp án. Vui lòng thử lại."
+                            return {
+                                "response": "❌ Lỗi: Không thể tạo đề vì thiếu đáp án. Vui lòng thử lại.",
+                                "final_query": final_query
+                            }
                         
-                        # Save to storage WITH answer_key
                         quiz_id = self.quiz_storage.save_quiz(
                             student_id=student_id,
                             content=result['quiz_markdown'],
@@ -1079,8 +1085,8 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     except Exception as e:
                         print(f"⚠️ Không thể lưu quiz: {e}")
                     
-                    # Return markdown directly
-                    return f"""✅ Đã tạo xong đề kiểm tra!
+                    return {
+                        "response": f"""✅ Đã tạo xong đề kiểm tra!
 
 {result['quiz_markdown']}
 
@@ -1088,33 +1094,39 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 ```
 Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 ```
-"""
+""",
+                        "final_query": final_query
+                    }
                 else:
-                    return f"""❌ Không thể tạo đề kiểm tra: {result['error']}
+                    return {
+                        "response": f"""❌ Không thể tạo đề kiểm tra: {result['error']}
 
-💡 Vui lòng thử lại hoặc cung cấp thông tin rõ ràng hơn."""
+💡 Vui lòng thử lại hoặc cung cấp thông tin rõ ràng hơn.""",
+                        "final_query": final_query
+                    }
             
             # ========== CHECK IF GRAPH REQUEST ==========
             if self._should_draw_graph(user_query):
                 print("\n📊 Phát hiện yêu cầu vẽ đồ thị!")
                 
-                # Extract equation
                 equation = self._extract_equation(user_query)
                 
                 if not equation:
-                    return "⚠️ Không thể xác định hàm số cần vẽ. Vui lòng nhập rõ hơn (VD: 'vẽ đồ thị y = x**2')"
+                    return {
+                        "response": "⚠️ Không thể xác định hàm số cần vẽ. Vui lòng nhập rõ hơn (VD: 'vẽ đồ thị y = x**2')",
+                        "final_query": final_query
+                    }
                 
                 print(f"   📝 Equation: y = {equation}")
                 
-                # Extract range
                 x_min, x_max = extract_range_from_query(user_query)
                 print(f"   📏 Range: [{x_min}, {x_max}]")
                 
-                # Generate graph
                 result = self.graph_generator.generate_graph(equation, x_min, x_max)
                 
                 if result["success"]:
-                    return f"""✅ Đã vẽ xong đồ thị!
+                    return {
+                        "response": f"""✅ Đã vẽ xong đồ thị!
 
 📊 Thông tin:
 - Hàm số: y = {equation}
@@ -1124,14 +1136,19 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 
 [IMAGE:{result['file_path']}]
 
-💡 Bạn có muốn tôi giải thích gì về đồ thị này không?"""
+💡 Bạn có muốn tôi giải thích gì về đồ thị này không?""",
+                        "final_query": final_query
+                    }
                 else:
-                    return f"""❌ Không thể vẽ đồ thị: {result['error']}
+                    return {
+                        "response": f"""❌ Không thể vẽ đồ thị: {result['error']}
 
 💡 Gợi ý:
 - Kiểm tra cú pháp hàm số (VD: x**2, sin(x), 2*x + 3)
 - Đảm bảo hàm số hợp lệ trong khoảng [{x_min}, {x_max}]
-- Thử lại với hàm số đơn giản hơn"""
+- Thử lại với hàm số đơn giản hơn""",
+                        "final_query": final_query
+                    }
             
             # ========== DECIDE IF SHOULD USE SEARCH TOOL ==========
             should_search = self._should_use_tool(user_query)
@@ -1145,22 +1162,26 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     top_k=3
                 )
                 
-                # ... existing log ...
-                
-                # ========== THÊM ĐOẠN NÀY NGAY SAU LOG ==========
+                # ========== FALLBACK IF SCORE TOO LOW ==========
                 if not results or results[0]['score'] < 0.8:
                     print(f"   ✗ Score too low → FALLBACK TO CHAT")
                     
                     messages = [
                         {
                             "role": "system",
-                            "content": self._get_system_prompt(mode="general")  # ← Giờ OK rồi!
-                        },
-                        {
-                            "role": "user",
-                            "content": user_query
+                            "content": self._get_system_prompt(mode="general")
                         }
                     ]
+                    
+                    if conversation_history:
+                        recent_history = conversation_history[-10:]
+                        messages.extend(recent_history)
+                        print(f"   📜 Added {len(recent_history)} history messages")
+                        
+                    messages.append({
+                        "role": "user",
+                        "content": user_query
+                    })
                     
                     response = self.client.chat.completions.create(
                         model=OPENAI_MODEL,
@@ -1169,53 +1190,35 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                         max_tokens=2000
                     )
                     
-                    return response.choices[0].message.content
-    
+                    return {
+                        "response": response.choices[0].message.content,
+                        "final_query": final_query
+                    }
                 
-                best_explanation = ""
-                best_answer = ""
-                best_answer_text = ""
-                best_id = ""
+                # ========== EXTRACT BEST RESULT ==========
+                best_result = results[0]
+                best_id = best_result['question_id']
+                best_answer = best_result['correct_answer']
+                best_answer_text = best_result['correct_answer_text']
+                best_explanation = best_result.get('explanation', '')
                 
-                if results and results[0]['score'] > 0.7:
-                    best_result = results[0]
-                    best_id = best_result['question_id']
-                    best_answer = best_result['correct_answer']
-                    best_answer_text = best_result['correct_answer_text']
-                    best_explanation = best_result.get('explanation', '')
+                print(f"   ✓ Best match: {best_id} (score: {best_result['score']:.2f})")
+                print(f"   ✓ Answer: {best_answer}")
+                print(f"   ✓ Explanation length: {len(best_explanation)} chars")
+                
+                # ========== IF HAS EXPLANATION → RETURN DIRECTLY ==========
+                if best_explanation:
+                    formatted_response = f"""**Đáp án {best_answer}: {best_answer_text}**
+
+**Giải thích:**
+{best_explanation}"""
                     
-                    
-                    print(f"   ✓ Best match: {best_id} (score: {best_result['score']:.2f})")
-                    print(f"   ✓ Answer: {best_answer}")
-                    print(f"   ✓ Explanation length: {len(best_explanation)} chars")
-                    print("   ✓ Explanation content:")
-                    print(best_explanation)
+                    return {
+                        "response": formatted_response,
+                        "final_query": final_query
+                    }
                 
-                # Format tool result manually
-                tool_result = ""
-                if results:
-                    tool_result = f"Tìm thấy {len(results)} câu hỏi liên quan:\n\n"
-                    
-                    for i, result in enumerate(results, 1):
-                        tool_result += f"--- Câu hỏi {i} (Độ tương đồng: {result['score']:.2f}) ---\n"
-                        tool_result += f"ID: {result['question_id']}\n"
-                        tool_result += f"Môn: {result['subject']}\n"
-                        tool_result += f"Câu hỏi: {result['question']}\n"
-                        tool_result += f"Các lựa chọn:\n"
-                        
-                        for key, value in result['options'].items():
-                            marker = "✓" if key == result['correct_answer'] else " "
-                            tool_result += f"  [{marker}] {key}. {value}\n"
-                        
-                        tool_result += f"Đáp án đúng: {result['correct_answer']} - {result['correct_answer_text']}\n"
-                        
-                        if result.get('explanation'):
-                            tool_result += f"Giải thích: {result['explanation']}\n"
-                        
-                        tool_result += "\n"
-                # ======================================
-                
-                # Generate final response with tool result
+                # ========== NO EXPLANATION → USE LLM ==========
                 messages = [
                     {
                         "role": "system",
@@ -1223,71 +1226,30 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     }
                 ]
                 
-                # Add conversation history
                 if conversation_history:
-                    recent_history = conversation_history[-10:] if len(conversation_history) > 10 else conversation_history
+                    recent_history = conversation_history[-10:]
                     messages.extend(recent_history)
                     print(f"   📜 Added {len(recent_history)} history messages")
                 
-                # Inject prompt
-                if best_explanation:
-                    user_content = f"""Học sinh hỏi: {user_query}
-
-                ĐÁP ÁN: {best_answer}. {best_answer_text}
-
-                GIẢI THÍCH (trích nguyên văn, KHÔNG ĐƯỢC THAY ĐỔI):
-                ```text
-                {best_explanation}"""
-                else:
-                    # ========== TRƯỜNG HỢP KHÔNG CÓ EXPLANATION ==========
-                    user_content = f"""Học sinh hỏi: {user_query}
-KẾT QUẢ TÌM KIẾM:
-{tool_result}
+                user_content = f"""Học sinh hỏi: {user_query}
 
 ĐÁP ÁN ĐÚNG: {best_answer}: {best_answer_text}
 
-YÊU CẦU GIẢI THÍCH:
-1. **Tập trung vào:** CÂU HỎI và ĐÁP ÁN ĐÚNG
-2. **Giải thích tại sao đáp án {best_answer}: {best_answer_text} đúng** (3-4 câu)
-3. **Nếu cần:** Giải thích ngắn gọn tại sao các đáp án khác sai
-4. **KHÔNG:** Thêm kiến thức mở rộng ngoài phạm vi câu hỏi
-5. **KHÔNG:** Diễn giải lại toàn bộ câu hỏi
-
-Độ dài: 5-7 câu, tập trung vào logic trả lời.
+YÊU CẦU:
+- Giải thích TẠI SAO đáp án này đúng (3-5 câu)
+- Tập trung vào logic của câu hỏi
+- Ngắn gọn, dễ hiểu
 
 ĐỊNH DẠNG:
-**Đáp án {best_answer} {best_answer_text}:***
+**Đáp án {best_answer}: {best_answer_text}**
 
 **Giải thích:**
-[4-5 câu giải thích tại sao đáp án này đúng dựa trên nội dung câu hỏi và đáp án]
-                [2-3 câu ngắn về các đáp án khác nếu cần thiết]"""
-    # =====================================================
+[3-5 câu giải thích]"""
 
                 messages.append({
                     "role": "user",
                     "content": user_content
                 })
-                
-                # Add image if available
-                if image_context:
-                    last_content = messages[-1]["content"]
-                    messages[-1] = {
-                        "role": "user",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": last_content
-                            },
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/jpeg;base64,{image_context['base64']}",
-                                    "detail": "high"
-                                }
-                            }
-                        ]
-                    }
-                    print(f"   🖼️  Added image to query: {image_context['size']}")
 
             else:
                 print("\n💬 Quyết định: Trả lời trực tiếp (không cần search)")
@@ -1299,49 +1261,34 @@ YÊU CẦU GIẢI THÍCH:
                     }
                 ]
                 
-                # Add conversation history
                 if conversation_history:
-                    recent_history = conversation_history[-10:] if len(conversation_history) > 10 else conversation_history
+                    recent_history = conversation_history[-10:]
                     messages.extend(recent_history)
                     print(f"   📜 Added {len(recent_history)} history messages")
                 
-                # Add current query
-                if image_context:
-                    messages.append({
-                        "role": "user",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": user_query
-                            },
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/jpeg;base64,{image_context['base64']}",
-                                    "detail": "high"
-                                }
-                            }
-                        ]
-                    })
-                    print(f"   🖼️  Added image to query: {image_context['size']}")
-                else:
-                    messages.append({
-                        "role": "user",
-                        "content": user_query
-                    })
+                messages.append({
+                    "role": "user",
+                    "content": user_query
+                })
 
             # ========== GET LLM RESPONSE ==========
             response = self.client.chat.completions.create(
                 model=OPENAI_MODEL,
                 messages=messages,
-                temperature=0.7,
+                temperature=0.5,
                 max_tokens=2000
             )
 
-            return response.choices[0].message.content
+            return {
+                "response": response.choices[0].message.content,
+                "final_query": final_query
+            }
             
         except Exception as e:
-            return f"⚠️ Lỗi xử lý câu hỏi: {str(e)}"
+            return {
+                "response": f"⚠️ Lỗi xử lý câu hỏi: {str(e)}",
+                "final_query": final_query
+            }
 
 # ================== RAG SYSTEM ==================
 class ScienceQASystem:
@@ -1356,7 +1303,7 @@ class ScienceQASystem:
         user_query: str, 
         conversation_history: List[Dict] = None,
         image_context: Optional[Dict] = None
-    ) -> str:
+    ) -> Dict:
         """
         Process user query through RAG system with optional conversation history
         
