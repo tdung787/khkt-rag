@@ -1,0 +1,16 @@
+2025-11-23 11:05:09,195 - INFO - ======================================================================
+2025-11-23 11:05:09,195 - INFO - BẮT ĐẦU QUÁ TRÌNH EMBEDDING VÀ UPLOAD LÊN QDRANT
+2025-11-23 11:05:09,195 - INFO - ======================================================================
+2025-11-23 11:05:09,195 - INFO - 📂 Đọc câu hỏi từ: data/input/json/nhiet_hoc_VL-lop10-E.json
+2025-11-23 11:05:09,197 - INFO - 📊 Tổng số câu hỏi trong JSON: 1
+2025-11-23 11:05:09,197 - INFO - 🔍 Kiểm tra duplicate IDs...
+2025-11-23 11:05:09,197 - ERROR - 
+❌ Lỗi nghiêm trọng: list indices must be integers or slices, not str
+Traceback (most recent call last):
+  File "/home/tdung787/Desktop/pdf_parser/6.build_vector_db.py", line 272, in <module>
+    main()
+  File "/home/tdung787/Desktop/pdf_parser/6.build_vector_db.py", line 106, in main
+    ids = [q["id"] for q in all_questions]
+  File "/home/tdung787/Desktop/pdf_parser/6.build_vector_db.py", line 106, in <listcomp>
+    ids = [q["id"] for q in all_questions]
+TypeError: list indices must be integers or slices, not str

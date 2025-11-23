@@ -273,7 +273,7 @@ def process_exam_with_openai(folder_path, detail="low", model="gpt-4o", delay=0.
     return save_data
 
 if __name__ == "__main__":
-    FOLDER_PATH = "data/input/img/hoa_test"
+    FOLDER_PATH = "data/input/img/ester-lipid_hoa12"
     results = process_exam_with_openai(
         folder_path=FOLDER_PATH,
         detail="high",
