@@ -24,6 +24,8 @@ def clean_text(raw):
         if line_strip.startswith("CHƯƠNG"): continue
         if line_strip.startswith("CÂU HỎI"): continue
         if line_strip.startswith("Author:"): continue
+        if line_strip.startswith("Tác giả:"): continue
+        if line_strip.startswith("Xử lý"): continue
         # Bỏ dòng rỗng thừa
         cleaned.append(line_strip)
     
@@ -32,10 +34,11 @@ def clean_text(raw):
     return text
 
 # =============================================
-#  TÁCH CÁC KHỐI CÂU "Câu 1." → "Câu 2." ...
+#  TÁCH CÁC KHỐI CÂU "Câu 1." hoặc "Câu 1:" → "Câu 2." ...
 # =============================================
 def split_questions(text):
-    pattern = r"(Câu\s+\d+\..*?)(?=Câu\s+\d+\.|$)"
+    # Hỗ trợ cả dấu chấm (.) và dấu hai chấm (:)
+    pattern = r"(Câu\s+\d+[\.:].*?)(?=Câu\s+\d+[\.:]|$)"
     blocks = re.findall(pattern, text, flags=re.S)
     return blocks
 
@@ -43,7 +46,8 @@ def split_questions(text):
 #  TÁCH NỘI DUNG CÂU HỎI + 4 ĐÁP ÁN A/B/C/D
 # ============================================================
 def parse_question_block(block, subject="Vật lý"):
-    m = re.match(r"Câu\s+(\d+)\.\s*(.+)", block, flags=re.S)
+    # Hỗ trợ cả "Câu 1." và "Câu 1:"
+    m = re.match(r"Câu\s+(\d+)[\.:]?\s*(.+)", block, flags=re.S)
     if not m:
         return None
     
@@ -91,6 +95,8 @@ def parse_question_block(block, subject="Vật lý"):
     subject_code = subject.lower().replace(" ", "_").replace("ý", "y").replace("á", "a").replace("ế", "e")
     if subject == "Vật lý":
         subject_code = "vat_ly"
+    elif subject == "Hóa học":
+        subject_code = "hoa_hoc"
     
     return {
         "id": f"cau_{q_number}_{subject_code}",
@@ -109,6 +115,8 @@ def parse_txt_to_json(input_path, output_path, subject="Vật lý"):
     raw = load_txt(input_path)
     cleaned = clean_text(raw)
     blocks = split_questions(cleaned)
+    
+    print(f"🔍 Tìm thấy {len(blocks)} khối câu hỏi")
     
     results = []
     missing = []

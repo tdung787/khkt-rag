@@ -1,0 +1,39 @@
+2025-11-23 11:06:00,355 - INFO - ======================================================================
+2025-11-23 11:06:00,355 - INFO - BẮT ĐẦU QUÁ TRÌNH EMBEDDING VÀ UPLOAD LÊN QDRANT
+2025-11-23 11:06:00,355 - INFO - ======================================================================
+2025-11-23 11:06:00,355 - INFO - 📂 Đọc câu hỏi từ: data/input/json/nhiet_hoc_VL-lop10-E.json
+2025-11-23 11:06:00,356 - INFO - 📊 Tổng số câu hỏi trong JSON: 282
+2025-11-23 11:06:00,357 - INFO - 🔍 Kiểm tra duplicate IDs...
+2025-11-23 11:06:00,357 - INFO - ✓ Không có duplicate IDs
+2025-11-23 11:06:00,357 - INFO - 🔌 Khởi tạo OpenAI và Qdrant clients...
+2025-11-23 11:06:00,493 - INFO - ✓ Qdrant client đã kết nối tới: database/qdrant_storage
+2025-11-23 11:06:00,494 - INFO - ✓ Collection KHTN_QA đã tồn tại
+2025-11-23 11:06:00,494 - INFO -    Số vectors hiện có: 279
+2025-11-23 11:06:00,494 - INFO - 📋 Đã embed trước đó: 0 câu hỏi
+2025-11-23 11:06:00,494 - INFO - 🆕 Cần embed: 282 câu hỏi mới
+2025-11-23 11:06:00,494 - INFO - 💰 Ước tính:
+2025-11-23 11:06:00,494 - INFO -    - Tổng ký tự: 51,312
+2025-11-23 11:06:00,494 - INFO -    - Tổng tokens (ước): ~38,484
+2025-11-23 11:06:00,494 - INFO -    - Chi phí: ~$0.0050 (¢0.50)
+2025-11-23 11:06:00,494 - INFO - 
+⏸️  Nhấn Ctrl+C để dừng, hoặc chờ 3 giây để tiếp tục...
+2025-11-23 11:06:03,509 - INFO - 
+🚀 Bắt đầu embedding với batch size = 100
+2025-11-23 11:06:03,509 - INFO - 📝 Embedding text format: question + correct_answer_text + explanation
+2025-11-23 11:06:06,992 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-11-23 11:06:15,784 - INFO - ✓ Batch 1/3: Đã embed và upload 100 câu hỏi
+2025-11-23 11:06:16,807 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-11-23 11:06:33,448 - INFO - ✓ Batch 2/3: Đã embed và upload 100 câu hỏi
+2025-11-23 11:06:35,685 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-11-23 11:07:07,972 - INFO - ✓ Batch 3/3: Đã embed và upload 82 câu hỏi
+2025-11-23 11:07:07,972 - INFO - ======================================================================
+2025-11-23 11:07:07,973 - INFO - KẾT QUẢ
+2025-11-23 11:07:07,973 - INFO - ======================================================================
+2025-11-23 11:07:07,973 - INFO - ✓ Tổng số câu hỏi đã embed: 282
+2025-11-23 11:07:07,973 - INFO - ✓ Câu hỏi mới embed trong lần này: 282
+2025-11-23 11:07:07,973 - INFO - ✓ Collection: KHTN_QA
+2025-11-23 11:07:07,973 - INFO - ✓ Số vectors trong Qdrant: 561
+2025-11-23 11:07:07,973 - INFO - ✓ Qdrant storage: database/qdrant_storage
+2025-11-23 11:07:07,973 - INFO - ✓ Checkpoint: database/embedding_checkpoint.json
+2025-11-23 11:07:07,973 - INFO - ======================================================================
+2025-11-23 11:07:07,973 - INFO - ✅ HOÀN TẤT!

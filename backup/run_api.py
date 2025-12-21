@@ -3,7 +3,6 @@ Script to run the Quiz Management API with Gunicorn workers
 Usage:
     python run_api.py           # Production mode (uses gunicorn_config.py)
     python run_api.py dev       # Development mode (auto-reload, 1 worker)
-    python run_api.py uvicorn   # Uvicorn only (no workers, pure single process)
 """
 import subprocess
 import sys
@@ -60,25 +59,7 @@ if __name__ == "__main__":
     # Check mode
     mode = sys.argv[1] if len(sys.argv) > 1 else "production"
     
-    if mode == "uvicorn":
-        print("⚡ Running in UVICORN mode (pure single process)")
-        print("   • No workers, no Gunicorn")
-        print("   • Auto-reload: ON")
-        print("   • Best for debugging Qdrant lock issues")
-        print()
-        print("⌨️  Press Ctrl+C to stop")
-        print("=" * 70)
-        print()
-        # Pure Uvicorn - no workers at all
-        subprocess.run([
-            "uvicorn",
-            "src.api.app:app",
-            "--host", "0.0.0.0",
-            "--port", "8110",
-            "--reload"
-        ])
-    
-    elif mode == "dev":
+    if mode == "dev":
         print("🔧 Running in DEVELOPMENT mode")
         print("   • Auto-reload: ON")
         print("   • Workers: 1 (for debugging)")
@@ -87,20 +68,19 @@ if __name__ == "__main__":
         print("⌨️  Press Ctrl+C to stop")
         print("=" * 70)
         print()
+        
         # Development: single worker with reload
         subprocess.run([
             "gunicorn",
             "src.api.app:app",
             "--bind", "0.0.0.0:8110",
             "--workers", "1",
-            "--worker-class", "uvicorn.workers.UvicornWorker",
             "--reload",
             "--log-level", "debug",
             "--timeout", "120",
             "--access-logfile", "-",
             "--error-logfile", "-"
         ])
-    
     else:
         print("🚀 Running in PRODUCTION mode")
         print("   • Config: gunicorn_config.py")
@@ -111,6 +91,7 @@ if __name__ == "__main__":
         print("⌨️  Press Ctrl+C to stop")
         print("=" * 70)
         print()
+        
         # Production: use gunicorn_config.py
         subprocess.run([
             "gunicorn",

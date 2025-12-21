@@ -1113,7 +1113,7 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 
 {result['quiz_markdown']}
 
-💡 **Để nộp bài:**
+💡 **Để nộp bài hãy trả lời theo mẫu sau:**
 ```
 Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
 ```

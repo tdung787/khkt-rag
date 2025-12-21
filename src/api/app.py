@@ -4,14 +4,20 @@ FastAPI application for Quiz Management System
 Provides simple REST API for accessing quiz history
 """
 
-from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form
+from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, Dict, List
 import sys
 import os
 import io
+import json
 import sqlite3
 import requests
+import tempfile
+import shutil
+import traceback
+import threading
+import queue
 from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -158,11 +164,12 @@ print("✅ Session managers initialized")
 # ========== INIT RAG COMPONENTS (SINGLETON) ==========
 try:
     intent_classifier = IntentClassifier(openai_client)
-    retriever = QuestionRetriever(
-        openai_client, 
-        "database/qdrant_storage", 
-        "KHTN_QA"
-    )
+    # retriever = QuestionRetriever(
+    #     openai_client, 
+    #     "database/qdrant_storage", 
+    #     "KHTN_QA"
+    # )
+    retriever = None
     print("✅ Shared RAG components initialized")
 except Exception as e:
     print(f"⚠️ Failed to init RAG components: {e}")
@@ -1377,12 +1384,25 @@ async def rag_query(
                 detail="RAG components not initialized"
             )
 
-        # Create lightweight agent instance (no Qdrant init)
+        # Create lightweight agent instance with fresh retriever
+        agent = None
+        qdrant_client = None
         try:
+            # Create fresh Qdrant client for this request
+            from qdrant_client import QdrantClient
+            qdrant_client = QdrantClient(path="database/qdrant_storage")
+            
+            # Create fresh retriever
+            fresh_retriever = QuestionRetriever(
+                openai_client,
+                qdrant_client,  # Pass client directly
+                "KHTN_QA"
+            )
+            
             agent = SimpleAgent(
-                openai_client, 
-                intent_classifier, 
-                retriever, 
+                openai_client,
+                intent_classifier,
+                fresh_retriever,  # Use fresh retriever
                 session_student_id
             )
             print(f"   ✅ Agent initialized for student: {session_student_id}")
@@ -1503,6 +1523,17 @@ async def rag_query(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"RAG query error: {str(e)}")
+    finally:  # ← THÊM DÒNG NÀY
+        # Close Qdrant connection
+        if qdrant_client is not None:
+            try:
+                qdrant_client.close()
+                print("🔒 Closed Qdrant connection")
+            except:
+                pass
+        
+        import gc
+        gc.collect()
     
 # ==================== STUDENT EVALUATION ENDPOINT ====================
 
@@ -1807,7 +1838,204 @@ def submit_teacher_comment(
         response["teacher_rating"] = teacher_rating
     
     return response
+
+# ==================== SIMPLE PIPELINE API - GIỐNG MASTER_PIPELINE ====================
+# Paste vào cuối app.py
+
+import tempfile
+import shutil
+import sys
+from pathlib import Path
+from datetime import datetime
+from typing import Dict
+from fastapi import BackgroundTasks, UploadFile, File, HTTPException
+
+# Import pipeline modules (giống master_pipeline.py)
+pipeline_dir = Path(__file__).parent.parent / "pipeline"
+sys.path.insert(0, str(pipeline_dir))
+
+from extract_images_from_docx import extract_images_in_order
+from extract_text_from_images import process_exam_with_openai
+from convert_txt_to_Q import parse_txt_to_json
+from convert_Q_to_A import load_json, load_answer_key, map_answers, save_json
+from convert_A_to_E import parse_explanations, map_explanations
+from build_vector_db import main as build_vector_db_main
+
+# Task tracking
+pipeline_tasks = {}
+
+# Fixed config (giống master_pipeline.py)
+FIXED_BASE_NAME = "ester-lipid_hoa12"
+FIXED_SUBJECT = "Hóa học"
+
+@app.post("/api/pipeline/process-docx")
+async def process_docx_to_vectordb(
+    background_tasks: BackgroundTasks,
+    docx_file: UploadFile = File(...)
+) -> Dict:
+    """
+    Upload DOCX and run pipeline (exact copy of master_pipeline.py logic)
+    """
+    try:
+        if not docx_file.filename.endswith('.docx'):
+            raise HTTPException(status_code=400, detail="File must be .docx")
+        
+        task_id = f"pipeline_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        
+        # Save to temp
+        temp_dir = Path(tempfile.mkdtemp())
+        docx_path = temp_dir / docx_file.filename
+        with open(docx_path, 'wb') as f:
+            f.write(await docx_file.read())
+        
+        pipeline_tasks[task_id] = {
+            "status": "queued",
+            "progress": 0,
+            "created_at": datetime.now().isoformat(),
+            "filename": docx_file.filename
+        }
+        
+        # Run in background
+        background_tasks.add_task(_run_master_pipeline, task_id, str(docx_path))
+        
+        return {
+            "success": True,
+            "task_id": task_id,
+            "status_url": f"/api/pipeline/status/{task_id}"
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+def _run_master_pipeline(task_id: str, docx_path: str):
+    """
+    EXACT COPY of master_pipeline.py logic
+    """
+    try:
+        # Use uploaded filename
+        base_name = Path(docx_path).stem
+        subject = FIXED_SUBJECT
+        
+        # Setup paths (giống master_pipeline)
+        img_folder = f"data/input/img/{base_name}"
+        Path(img_folder).mkdir(parents=True, exist_ok=True)
+        
+        ocr_output_name = f"ocr_{base_name}"
+        json_folder = "data/input/json"
+        Path(json_folder).mkdir(parents=True, exist_ok=True)
+        
+        ocr_txt = f"{img_folder}/{ocr_output_name}.txt"
+        json_q = f"{json_folder}/{base_name}_Q.json"
+        json_a = f"{json_folder}/{base_name}_A.json"
+        json_e = f"{json_folder}/{base_name}_E.json"
+        
+        # Copy DOCX
+        docx_dest = f"data/input/docx/{base_name}.docx"
+        Path("data/input/docx").mkdir(parents=True, exist_ok=True)
+        shutil.copy(docx_path, docx_dest)
+        
+        # ========== STEP 1: Extract (GIỐNG MASTER_PIPELINE) ==========
+        pipeline_tasks[task_id].update({"status": "running", "progress": 16, "step": "extract"})
+        extract_images_in_order(docx_dest, img_folder)
+        print(f"✅ Step 1: Extract images")
+        
+        # ========== STEP 2: OCR (GIỐNG MASTER_PIPELINE) ==========
+        pipeline_tasks[task_id].update({"progress": 33, "step": "ocr"})
+        result = process_exam_with_openai(
+            folder_path=img_folder,
+            detail="high",
+            model="gpt-4o-mini",
+            delay=0.5,
+            output_name=ocr_output_name
+        )
+        print(f"✅ Step 2: OCR")
+        
+        # ========== STEP 3: Parse (GIỐNG MASTER_PIPELINE) ==========
+        pipeline_tasks[task_id].update({"progress": 50, "step": "parse"})
+        parse_txt_to_json(ocr_txt, json_q, subject)
+        print(f"✅ Step 3: Parse")
+        
+        # ========== STEP 4: Map Answers (GIỐNG MASTER_PIPELINE) ==========
+        pipeline_tasks[task_id].update({"progress": 66, "step": "map_answers"})
+        answer_key_txt = f"data/input/txt/{FIXED_BASE_NAME}-A.txt"
+        
+        if Path(answer_key_txt).exists():
+            data = load_json(json_q)
+            answer_key = load_answer_key(answer_key_txt)
+            mapped_data, missing = map_answers(data, answer_key)
+            save_json(mapped_data, json_a)
+            print(f"✅ Step 4: Map answers")
+        else:
+            shutil.copy(json_q, json_a)
+            print(f"⏭️  Step 4: Skip (no answer file)")
+        
+        # ========== STEP 5: Map Explanations (GIỐNG MASTER_PIPELINE) ==========
+        pipeline_tasks[task_id].update({"progress": 83, "step": "map_explanations"})
+        explanation_txt = f"data/input/txt/{FIXED_BASE_NAME}-E.txt"
+        
+        if Path(explanation_txt).exists():
+            data = load_json(json_a)
+            explanation_map = parse_explanations(explanation_txt)
+            new_data, mapped, missing = map_explanations(data, explanation_map)
+            save_json(new_data, json_e)
+            print(f"✅ Step 5: Map explanations")
+        else:
+            shutil.copy(json_a, json_e)
+            print(f"⏭️  Step 5: Skip (no explanation file)")
+        
+        # ========== STEP 6: Vector DB (GIỐNG MASTER_PIPELINE) ==========
+        pipeline_tasks[task_id].update({"progress": 90, "step": "vectordb"})
+        
+        import build_vector_db
+        original_input = build_vector_db.INPUT_JSON
+        build_vector_db.INPUT_JSON = json_e
+        
+        build_vector_db_main()
+        
+        build_vector_db.INPUT_JSON = original_input
+        
+        print(f"✅ Step 6: Build vector DB")
+        
+        # ========== DONE ==========
+        pipeline_tasks[task_id].update({
+            "status": "completed",
+            "progress": 100,
+            "step": "done",
+            "completed_at": datetime.now().isoformat(),
+            "output_files": {
+                "questions": json_q,
+                "final": json_e
+            }
+        })
+        
+        print(f"🎉 Pipeline completed: {task_id}")
+        
+    except Exception as e:
+        pipeline_tasks[task_id].update({
+            "status": "failed",
+            "error": str(e)
+        })
+        print(f"❌ Pipeline failed: {e}")
+
+
+@app.get("/api/pipeline/status/{task_id}")
+def get_pipeline_status(task_id: str) -> Dict:
+    """Get status"""
+    if task_id not in pipeline_tasks:
+        raise HTTPException(status_code=404, detail="Task not found")
     
+    return {"success": True, "task_id": task_id, **pipeline_tasks[task_id]}
+
+
+@app.get("/api/pipeline/tasks")
+def list_pipeline_tasks() -> Dict:
+    """List tasks"""
+    tasks = [{"task_id": tid, **data} for tid, data in pipeline_tasks.items()]
+    return {"success": True, "tasks": tasks}
+
+# ==================== END ====================
+
 # ==================== RUN INFO ====================
 if __name__ == "__main__":
     import uvicorn
