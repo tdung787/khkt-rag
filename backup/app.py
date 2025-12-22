@@ -41,6 +41,89 @@ evaluation_storage = EvaluationStorage()
 EXTERNAL_API_BASE_URL = os.getenv("EXTERNAL_API_BASE_URL", "https://v5bfv7qs-3001.asse.devtunnels.ms")
 
 # ==================== HELPER FUNCTIONS ====================
+def validate_student_id(student_id: str) -> Dict:
+    """
+    Validate student_id against external API
+    
+    Args:
+        student_id: User ID (from user_id._id field)
+        
+    Returns:
+        {
+            "is_valid": bool,
+            "student_info": dict or None,
+            "error": str or None
+        }
+    """
+    try:
+        # Call external API
+        url = f"{EXTERNAL_API_BASE_URL}/api/public/rag/students"
+        
+        print(f"   🔍 Validating student_id (user_id): {student_id}")
+        print(f"   🌐 Calling: {url}")
+        
+        response = requests.get(url, timeout=30)
+        
+        if response.status_code != 200:
+            return {
+                "is_valid": False,
+                "student_info": None,
+                "error": f"API returned status {response.status_code}"
+            }
+        
+        data = response.json()
+        
+        if not data.get("success"):
+            return {
+                "is_valid": False,
+                "student_info": None,
+                "error": "API returned success=false"
+            }
+        
+        # Find student in list BY USER_ID._ID
+        students = data.get("data", {}).get("students", [])
+        
+        student = next(
+            (s for s in students if s.get("user_id", {}).get("_id") == student_id),
+            None
+        )
+        
+        if student:
+            print(f"   ✅ Student found: {student['user_id']['full_name']}")
+            return {
+                "is_valid": True,
+                "student_info": student,
+                "error": None
+            }
+        else:
+            print(f"   ❌ Student not found in list")
+            return {
+                "is_valid": False,
+                "student_info": None,
+                "error": f"User ID {student_id} not found"
+            }
+        
+    except requests.exceptions.Timeout:
+        print(f"   ⚠️ API timeout")
+        return {
+            "is_valid": False,
+            "student_info": None,
+            "error": "External API timeout"
+        }
+    except requests.exceptions.RequestException as e:
+        print(f"   ⚠️ API error: {e}")
+        return {
+            "is_valid": False,
+            "student_info": None,
+            "error": f"External API error: {str(e)}"
+        }
+    except Exception as e:
+        print(f"   ⚠️ Validation error: {e}")
+        return {
+            "is_valid": False,
+            "student_info": None,
+            "error": f"Validation error: {str(e)}"
+        }
 
 # ==================== FASTAPI APP ====================
 app = FastAPI(
@@ -408,6 +491,19 @@ def create_session(
     - If no first_message: Create/reuse empty session with default name
     """
     try:
+        # ========== VALIDATE STUDENT ID ==========
+        validation = validate_student_id(student_id)
+        
+        if not validation["is_valid"]:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Student not found: {validation['error']}"
+            )
+        
+        student_info = validation["student_info"]
+        print(f"   ✅ Student validated: {student_info['user_id']['full_name']}")
+        # =========================================
+        
         # ========== CHECK FOR EMPTY SESSION ==========
         latest_session = session_manager.get_latest_session(student_id)
         
@@ -514,6 +610,12 @@ def create_session(
             return {
                 "success": True,
                 "session": session,
+                "student_info": {
+                    "id": student_info["_id"],
+                    "name": student_info["user_id"]["full_name"],
+                    "grade": student_info["grade_level"],
+                    "class": student_info["current_class"]
+                },
                 "response": response,
                 "has_first_message": True,
                 "reused_session": existing_session_id is not None
@@ -529,6 +631,12 @@ def create_session(
                 return {
                     "success": True,
                     "session": session,
+                    "student_info": {
+                        "id": student_info["_id"],
+                        "name": student_info["user_id"]["full_name"],
+                        "grade": student_info["grade_level"],
+                        "class": student_info["current_class"]
+                    },
                     "response": None,
                     "has_first_message": False,
                     "reused_session": True
@@ -573,6 +681,12 @@ def create_session(
                         "created_at": now.isoformat(),
                         "updated_at": now.isoformat(),
                         "message_count": 0
+                    },
+                    "student_info": {
+                        "id": student_info["_id"],
+                        "name": student_info["user_id"]["full_name"],
+                        "grade": student_info["grade_level"],
+                        "class": student_info["current_class"]
                     },
                     "response": None,
                     "has_first_message": False,
@@ -1267,7 +1381,7 @@ async def rag_query(
         session_student_id = session.get('student_id')
         
         # Check if shared components available
-        if not openai_client or not intent_classifier:
+        if not openai_client or not intent_classifier or not retriever:
             raise HTTPException(
                 status_code=503,
                 detail="RAG components not initialized"
@@ -1411,6 +1525,13 @@ async def rag_query(
         raise HTTPException(status_code=500, detail=f"RAG query error: {str(e)}")
     finally:  # ← THÊM DÒNG NÀY
         # Close Qdrant connection
+        if qdrant_client is not None:
+            try:
+                qdrant_client.close()
+                print("🔒 Closed Qdrant connection")
+            except:
+                pass
+        
         import gc
         gc.collect()
     

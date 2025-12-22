@@ -66,7 +66,7 @@ class IntentClassifier:
                 messages=[
                     {
                         "role": "system",
-                        "content": """Bạn là trợ lý phân loại câu hỏi người dùng.
+                        "content": """Bạn là trợ lý phân loại câu hỏi học sinh.
 
 Phân tích câu hỏi và xác định:
 1. Có phải câu hỏi về môn học tự nhiên không? (Toán, Lý, Hóa, Sinh)
@@ -300,7 +300,7 @@ class SimpleAgent:
             profile = self.quiz_generator.student_profile
             student_id = profile.get('_id', 'unknown')
             student_info = f"""
-    THÔNG TIN NGƯỜI DÙNG:
+    THÔNG TIN HỌC SINH:
     - Họ tên: {profile.get('name', 'N/A')}
     - Lớp: {profile.get('grade', 'N/A')}
     - Độ khó phù hợp: {profile.get('difficulty_level', 'N/A')}
@@ -312,7 +312,7 @@ class SimpleAgent:
         if pending_quiz:
             pending_warning = f"""
     ⚠️⚠️⚠️ CẢNH BÁO QUAN TRỌNG ⚠️⚠️⚠️
-    NGƯỜI DÙNG ĐANG CÓ BÀI KIỂM TRA CHƯA NỘP!
+    HỌC SINH ĐANG CÓ BÀI KIỂM TRA CHƯA NỘP!
     - Quiz ID: {pending_quiz['id']}
     - Môn: {pending_quiz.get('subject', 'N/A')}
     - Chủ đề: {pending_quiz.get('topic', 'N/A')}
@@ -344,13 +344,13 @@ Trích nguyên văn, không thêm bớt.
             return prompt
         
         # Default: general mode
-        prompt = f"""Bạn là trợ lý học tập AI, chuyên hỗ trợ các môn khoa học tự nhiên (Toán, Lý, Hóa, Sinh) của THPT.
+        prompt = f"""Bạn là trợ lý học tập AI dành cho học sinh và THPT Việt Nam, hỗ trợ các môn khoa học tự nhiên (Toán, Lý, Hóa, Sinh).
 
 VAI TRÒ:
 - Giải thích kiến thức và hướng dẫn tư duy cho 4 môn tự nhiên.
 
 NGỮ CẢNH:
-- Nếu người dùng hỏi "hình ảnh vừa nãy", "câu hỏi vừa rồi", "bài trước":
+- Nếu học sinh hỏi "hình ảnh vừa nãy", "câu hỏi vừa rồi", "bài trước":
     + Hoặc các đoạn được đặt trong <!-- EXTRACTED_TEXT ... -->
 - Trả về nội dung phía sau các marker đó.
 
@@ -366,6 +366,8 @@ KHI NHẬN CÂU HỎI NGOÀI PHẠM VI:
 - Nhắc lại phạm vi 4 môn tự nhiên.
 - Gợi ý đặt câu hỏi phù hợp.
 
+MỤC TIÊU:
+Hỗ trợ học sinh phát triển tư duy khoa học và kỹ năng tự học bền vững.
 """
         print(f"   📝 System prompt (general): {len(prompt)} chars")
         return prompt
@@ -1279,7 +1281,7 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     messages.extend(cleaned_history)
                     print(f"   📜 Added {len(cleaned_history)} history messages (cleaned)")
                 
-                user_content = f"""Người dùng hỏi: {user_query}
+                user_content = f"""Học sinh hỏi: {user_query}
 
 ĐÁP ÁN ĐÚNG: {best_answer}: {best_answer_text}
 
@@ -1441,7 +1443,7 @@ def main():
     # Interactive loop
     while True:
         try:
-            user_input = input("\n🎓 Người dùng: ").strip()
+            user_input = input("\n🎓 Học sinh: ").strip()
             
             if not user_input:
                 continue

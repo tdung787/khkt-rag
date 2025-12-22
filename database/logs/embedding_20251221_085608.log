@@ -1,0 +1,51 @@
+2025-12-21 08:56:35,997 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 08:56:36,095 - INFO - ======================================================================
+2025-12-21 08:56:36,095 - INFO - BẮT ĐẦU QUÁ TRÌNH EMBEDDING VÀ UPLOAD LÊN QDRANT
+2025-12-21 08:56:36,096 - INFO - ======================================================================
+2025-12-21 08:56:36,096 - INFO - 📂 Đọc câu hỏi từ: data/input/json/ester-lipid_hoa12-347-348_E.json
+2025-12-21 08:56:36,096 - INFO - 📊 Tổng số câu hỏi trong JSON: 6
+2025-12-21 08:56:36,096 - INFO - 🔍 Kiểm tra duplicate IDs...
+2025-12-21 08:56:36,096 - INFO - ✓ Không có duplicate IDs
+2025-12-21 08:56:36,096 - INFO - 🔌 Khởi tạo OpenAI và Qdrant clients...
+2025-12-21 08:56:36,270 - INFO - ✓ Qdrant client đã kết nối tới: database/qdrant_storage
+2025-12-21 08:56:36,270 - INFO - ✓ Collection KHTN_QA đã tồn tại
+2025-12-21 08:56:36,271 - INFO -    Số vectors hiện có: 561
+2025-12-21 08:56:36,271 - INFO - 📋 Đã embed trước đó: 282 câu hỏi
+2025-12-21 08:56:36,271 - INFO - 🆕 Cần embed: 5 câu hỏi mới
+2025-12-21 08:56:36,271 - INFO - 💰 Ước tính:
+2025-12-21 08:56:36,271 - INFO -    - Tổng ký tự: 1,530
+2025-12-21 08:56:36,271 - INFO -    - Tổng tokens (ước): ~1,148
+2025-12-21 08:56:36,271 - INFO -    - Chi phí: ~$0.0001 (¢0.01)
+2025-12-21 08:56:36,271 - INFO - 
+⏸️  Nhấn Ctrl+C để dừng, hoặc chờ 3 giây để tiếp tục...
+2025-12-21 08:56:39,285 - INFO - 
+🚀 Bắt đầu embedding với batch size = 100
+2025-12-21 08:56:39,285 - INFO - 📝 Embedding text format: question + correct_answer_text + explanation
+2025-12-21 08:56:39,923 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-21 08:56:40,169 - INFO - ✓ Batch 1/1: Đã embed và upload 5 câu hỏi
+2025-12-21 08:56:40,169 - INFO - ======================================================================
+2025-12-21 08:56:40,169 - INFO - KẾT QUẢ
+2025-12-21 08:56:40,169 - INFO - ======================================================================
+2025-12-21 08:56:40,169 - INFO - ✓ Tổng số câu hỏi đã embed: 287
+2025-12-21 08:56:40,169 - INFO - ✓ Câu hỏi mới embed trong lần này: 5
+2025-12-21 08:56:40,169 - INFO - ✓ Collection: KHTN_QA
+2025-12-21 08:56:40,169 - INFO - ✓ Số vectors trong Qdrant: 566
+2025-12-21 08:56:40,169 - INFO - ✓ Qdrant storage: database/qdrant_storage
+2025-12-21 08:56:40,169 - INFO - ✓ Checkpoint: database/embedding_checkpoint.json
+2025-12-21 08:56:40,169 - INFO - ======================================================================
+2025-12-21 08:56:40,169 - INFO - ✅ HOÀN TẤT!
+2025-12-21 08:58:43,226 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 08:58:43,275 - INFO - ======================================================================
+2025-12-21 08:58:43,275 - INFO - BẮT ĐẦU QUÁ TRÌNH EMBEDDING VÀ UPLOAD LÊN QDRANT
+2025-12-21 08:58:43,275 - INFO - ======================================================================
+2025-12-21 08:58:43,275 - INFO - 📂 Đọc câu hỏi từ: data/input/json/ester-lipid_hoa12-347-348_E.json
+2025-12-21 08:58:43,275 - INFO - 📊 Tổng số câu hỏi trong JSON: 6
+2025-12-21 08:58:43,275 - INFO - 🔍 Kiểm tra duplicate IDs...
+2025-12-21 08:58:43,276 - INFO - ✓ Không có duplicate IDs
+2025-12-21 08:58:43,276 - INFO - 🔌 Khởi tạo OpenAI và Qdrant clients...
+2025-12-21 08:58:43,444 - INFO - ✓ Qdrant client đã kết nối tới: database/qdrant_storage
+2025-12-21 08:58:43,444 - INFO - ✓ Collection KHTN_QA đã tồn tại
+2025-12-21 08:58:43,445 - INFO -    Số vectors hiện có: 566
+2025-12-21 08:58:43,445 - INFO - 📋 Đã embed trước đó: 287 câu hỏi
+2025-12-21 08:58:43,445 - INFO - 🆕 Cần embed: 0 câu hỏi mới
+2025-12-21 08:58:43,445 - INFO - ✅ Tất cả câu hỏi đã được embed rồi!
