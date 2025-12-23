@@ -1194,15 +1194,22 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     except Exception as e:
                         print(f"⚠️ Không thể lưu quiz: {e}")
                     
-                    return {
-                        "response": f"""✅ Đã tạo xong đề kiểm tra!
+                    # Check if teacher
+                    user_role = get_user_role(student_id)
+                    is_teacher = (user_role == "teacher")
 
-{result['quiz_markdown']}
+                    # Build submission instructions (only for students)
+                    submission_note = "" if is_teacher else """
 
 💡 **Để nộp bài hãy trả lời theo mẫu sau:**
 ```
 Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
-```
+```"""
+                    
+                    return {
+                        "response": f"""✅ Đã tạo xong đề kiểm tra!
+
+{result['quiz_markdown']}{submission_note}
 """,
                         "final_query": final_query
                     }

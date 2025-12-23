@@ -90,6 +90,25 @@ PDF_STORAGE = {}
 PDF_STORAGE_DIR = Path("temp_pdfs")
 PDF_STORAGE_DIR.mkdir(exist_ok=True)
 
+def fix_markdown_spacing(content: str) -> str:
+    """Fix spacing issues in markdown"""
+    
+    # Remove extra blank lines before headers
+    content = re.sub(r'\n{3,}##', r'\n\n##', content)
+    
+    # Ensure blank line after options before next question
+    content = re.sub(
+        r'(\*\*[A-D]\.\*\*.*?)\n(##\s+\*\*Câu)',
+        r'\1\n\n\2',
+        content,
+        flags=re.DOTALL
+    )
+    
+    # Remove spaces after ## 
+    content = re.sub(r'##\s+\*\*Câu', r'## **Câu', content)
+    
+    return content
+
 # ========== CLEANUP OLD FILES ==========
 def cleanup_old_pdfs():
     """Delete PDFs older than 1 hour"""
@@ -120,110 +139,19 @@ def cleanup_temp_dir(temp_dir: str):
         print(f"⚠️  Cleanup error: {e}")
 
 def preprocess_markdown(content: str) -> str:
-    """Fix [ ] and ( ) to $ $ and $$ $$"""
+    """Fix LaTeX math: \\[\\], \\(\\), [], () → $$, $"""
     
-    # Replace standalone [ ... ] with $$ ... $$
-    content = re.sub(
-        r'\[\s*\n((?:[^\]]|\n)+?)\n\s*\]',
-        r'$$\1$$',
-        content,
-        flags=re.DOTALL
-    )
+    patterns = [
+        (r'\\\[\s*(.*?)\s*\\\]', r'$$\1$$', re.DOTALL),  # \[ \] → $$ $$
+        (r'\\\(\s*(.*?)\s*\\\)', r'$\1$', re.DOTALL),    # \( \) → $ $
+        (r'\[\s*\n((?:[^\]]|\n)+?)\n\s*\]', r'$$\1$$', re.DOTALL),  # [...] → $$ $$
+        (r'\(\s*([^)]*\\[^)]*?)\s*\)', r'$\1$', 0),      # (...) → $ $
+    ]
     
-    # Replace inline ( ... ) with $ ... $
-    content = re.sub(
-        r'\(\s*([^)]*\\[^)]*?)\s*\)',
-        r'$\1$',
-        content
-    )
+    for pattern, replacement, flags in patterns:
+        content = re.sub(pattern, replacement, content, flags=flags)
     
     return content
-
-
-def markdown_text_to_pdf(
-    markdown_content: str,
-    output_filename: str = "output.pdf",
-    toc: bool = False,
-    number_sections: bool = False,
-    clean_markdown: bool = True
-) -> str:
-    """
-    Convert markdown text to PDF
-    
-    Args:
-        markdown_content: Markdown string
-        output_filename: Output PDF filename
-        toc: Include table of contents
-        number_sections: Auto-number sections
-        clean_markdown: Preprocess markdown to fix LaTeX
-    
-    Returns:
-        Path to generated PDF
-    """
-    
-    # Check dependencies
-    if not shutil.which('pandoc'):
-        raise RuntimeError("Pandoc not installed")
-    
-    if not shutil.which('xelatex'):
-        raise RuntimeError("XeLaTeX not installed")
-    
-    # Preprocess if enabled
-    if clean_markdown:
-        markdown_content = preprocess_markdown(markdown_content)
-    
-    # Create temp directory
-    temp_dir = tempfile.mkdtemp()
-    
-    try:
-        # Write markdown to temp file
-        temp_md = os.path.join(temp_dir, "input.md")
-        with open(temp_md, 'w', encoding='utf-8') as f:
-            f.write(markdown_content)
-        
-        # Output path
-        output_pdf = os.path.join(temp_dir, output_filename)
-        
-        # Build pandoc command
-        cmd = [
-            'pandoc',
-            temp_md,
-            '-o', output_pdf,
-            '--pdf-engine=xelatex',
-            '-V', 'geometry:margin=1in',
-            '-V', 'fontsize=12pt',
-            '-V', 'documentclass=article',
-            '-V', 'colorlinks=true',
-            '-V', 'linkcolor=blue',
-            '-V', 'urlcolor=blue',
-            '--highlight-style=tango',
-            '--standalone'
-        ]
-        
-        if toc:
-            cmd.extend(['--toc', '--toc-depth=3'])
-        
-        if number_sections:
-            cmd.append('--number-sections')
-        
-        # Execute
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            check=True
-        )
-        
-        # Check if PDF was created
-        if not os.path.exists(output_pdf):
-            raise RuntimeError("PDF was not created")
-        
-        return output_pdf
-        
-    except subprocess.CalledProcessError as e:
-        raise RuntimeError(f"Pandoc error: {e.stderr}")
-    except Exception as e:
-        raise RuntimeError(f"Error: {str(e)}")
 
 # ========== INIT RAG COMPONENTS (SINGLETON) ==========
 try:
@@ -2072,47 +2000,79 @@ class MarkdownToPDFRequest(BaseModel):
 
 # ========== CONVERT ENDPOINT ==========
 @app.post("/api/markdown/to-pdf")
-async def convert_markdown_to_pdf(request: MarkdownToPDFRequest):
-    """
-    Convert Markdown to PDF
+async def convert_markdown_to_pdf(
+    request: MarkdownToPDFRequest,
+    background_tasks: BackgroundTasks
+):
+    temp_dir = None
     
-    **Returns:** JSON with download link
-```json
-    {
-        "success": true,
-        "file_id": "abc123",
-        "download_url": "http://localhost:8110/api/download-pdf/abc123",
-        "filename": "output.pdf",
-        "expires_in": 3600
-    }
-```
-    """
     try:
         print(f"📝 Converting markdown to PDF...")
         
-        # Cleanup old files
         cleanup_old_pdfs()
         
-        # Validate filename
+        # ========== CLEAN MARKDOWN ==========
+        markdown_content = request.markdown_content
+        
+        # Remove chatbot intro
+        markdown_content = re.sub(r'^✅.*?\n', '', markdown_content, flags=re.MULTILINE)
+        
+        # Remove answer key comment
+        markdown_content = re.sub(r'<!--.*?ANSWER_KEY.*?-->', '', markdown_content, flags=re.DOTALL)
+        
+        # Remove submission instructions
+        markdown_content = re.sub(r'💡\s*\*\*Để nộp bài.*', '', markdown_content, flags=re.DOTALL)
+        
+        # Trim
+        markdown_content = markdown_content.strip()
+        
+        # Fix spacing between options and questions
+        markdown_content = re.sub(
+            r'(\*\*[A-D]\.\*\*[^\n]+)\n(##\s+\*\*Câu)',
+            r'\1\n\n\2',
+            markdown_content
+        )
+
+        # Fix spacing after horizontal rule
+        markdown_content = re.sub(
+            r'(---)\n(##\s+\*\*Câu)',
+            r'\1\n\n\2',
+            markdown_content
+        )
+        markdown_content = re.sub(
+            r'(\*\*D\.\*\*[^\n]+)\n(---\s*\n_Hết_)',
+            r'\1\n\n\2',
+            markdown_content
+        )
+        markdown_content = markdown_content.replace(
+            '_Hết_',
+            r'\begin{center}\textit{Hết}\end{center}'
+        )
+        # ====================================
+        
         filename = request.filename
         if not filename.endswith('.pdf'):
             filename += '.pdf'
         
-        # Generate unique file ID
         file_id = str(uuid.uuid4())
-        
-        # Output to storage directory
         output_path = PDF_STORAGE_DIR / f"{file_id}.pdf"
         
-        # Preprocess markdown
-        markdown_content = request.markdown_content
-        if True:  # clean_markdown
-            markdown_content = preprocess_markdown(markdown_content)
+        # ========== PREPROCESS LATEX ==========
+        markdown_content = preprocess_markdown(markdown_content)
+        markdown_content = fix_markdown_spacing(markdown_content)
+        # ======================================
         
-        # Create temp markdown file
+        # Write temp markdown (NO YAML)
         temp_md = PDF_STORAGE_DIR / f"{file_id}.md"
         with open(temp_md, 'w', encoding='utf-8') as f:
             f.write(markdown_content)
+        
+        # Create LaTeX header file
+        header_file = PDF_STORAGE_DIR / f"{file_id}_header.tex"
+        with open(header_file, 'w', encoding='utf-8') as f:
+            f.write(r"""\usepackage{amsmath}
+\usepackage{amssymb}
+""")
         
         # Build pandoc command
         cmd = [
@@ -2120,6 +2080,7 @@ async def convert_markdown_to_pdf(request: MarkdownToPDFRequest):
             str(temp_md),
             '-o', str(output_path),
             '--pdf-engine=xelatex',
+            '-H', str(header_file),  # ← THÊM DÒNG NÀY
             '-V', 'geometry:margin=1in',
             '-V', 'fontsize=12pt',
             '-V', 'documentclass=article',
@@ -2144,19 +2105,19 @@ async def convert_markdown_to_pdf(request: MarkdownToPDFRequest):
             check=True
         )
         
-        # Clean up temp markdown
+        # Cleanup temp files
         temp_md.unlink()
+        header_file.unlink()  # ← THÊM DÒNG NÀY
         
-        # Check if PDF was created
         if not output_path.exists():
             raise RuntimeError("PDF was not created")
         
-        # Store in memory
+        # Store
         PDF_STORAGE[file_id] = (str(output_path), time.time())
         
         print(f"✅ PDF created: {output_path}")
         
-        # Build download URL
+        # Build URL
         base_url = os.getenv("API_BASE_URL", "http://14.225.211.7:8110")
         download_url = f"{base_url}/api/download-pdf/{file_id}"
         
@@ -2165,8 +2126,8 @@ async def convert_markdown_to_pdf(request: MarkdownToPDFRequest):
             "file_id": file_id,
             "download_url": download_url,
             "filename": filename,
-            "expires_in": 3600,  # 1 hour
-            "message": "PDF created successfully. Download link expires in 1 hour."
+            "expires_in": 3600,
+            "message": "PDF created successfully"
         }
         
     except subprocess.CalledProcessError as e:
