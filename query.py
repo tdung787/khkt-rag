@@ -51,6 +51,64 @@ SUBJECTS = {
 # Allowed subjects for quiz generation
 ALLOWED_QUIZ_SUBJECTS = ["Toán", "Vật lý", "Hóa học", "Sinh học"]
 
+def get_user_role(user_id: str) -> Optional[str]:
+    """
+    Check if user is student or teacher
+    
+    Args:
+        user_id: User ID to check
+        
+    Returns:
+        "student" | "teacher" | None
+    """
+    try:
+        api_base = os.getenv('EXTERNAL_API_BASE_URL', 'http://localhost:8222')
+        
+        # Check students first
+        try:
+            response = requests.get(
+                f"{api_base}/api/public/rag/students",
+                timeout=5
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                students = data.get("data", {}).get("students", [])
+                
+                # Check if user_id matches any student's user_id._id
+                for student in students:
+                    if student.get("user_id", {}).get("_id") == user_id:
+                        print(f"   ✓ User {user_id} is STUDENT")
+                        return "student"
+        except:
+            pass
+        
+        # Check teachers
+        try:
+            response = requests.get(
+                f"{api_base}/api/public/rag/teachers",
+                timeout=5
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                teachers = data.get("data", [])
+                
+                # Check if user_id matches any teacher's _id
+                for teacher in teachers:
+                    if teacher.get("_id") == user_id:
+                        print(f"   ✓ User {user_id} is TEACHER")
+                        return "teacher"
+        except:
+            pass
+        
+        print(f"   ⚠️ User {user_id} not found in API")
+        return None
+        
+    except Exception as e:
+        print(f"   ⚠️ Error checking role: {e}")
+        return None
+
 # ================== INTENT CLASSIFIER ==================
 class IntentClassifier:
     """Classify user query intent using LLM"""
@@ -943,7 +1001,8 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
             pending_quiz = self.quiz_storage.get_latest_pending_quiz(student_id)
 
             if pending_quiz:
-                print(f"\n⚠️  Student có quiz đang làm: {pending_quiz['id']}")
+                print(f"\n⚠️  Có quiz đang làm: {pending_quiz['id']}")
+                print(f"   User ID: {student_id}")
                 print(f"   Input: {user_query}")
                 
                 if self._should_view_quiz(user_query):
@@ -954,27 +1013,53 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     }
                 
                 if self._should_create_quiz(user_query):
-                    print("   🚫 BLOCKED: Cannot create new quiz")
+                    # ========== CHECK ROLE BEFORE BLOCKING ==========
+                    print("   🔍 Checking user role...")
+                    user_role = get_user_role(student_id)
                     
-                    return {
-                        "response": f"""❌ Bạn không thể tạo đề mới khi đang có bài chưa nộp!
+                    if user_role == "teacher":
+                        print("   ✅ TEACHER: Allowed to create new quiz")
+                        # Don't block - continue to quiz creation below
+                        
+                    elif user_role == "student":
+                        print("   🚫 STUDENT: Blocked from creating new quiz")
+                        
+                        return {
+                            "response": f"""❌ Bạn không thể tạo đề mới khi đang có bài chưa nộp!
 
-📋 **Bài kiểm tra chưa hoàn thành:**
-- Môn: {pending_quiz.get('subject', 'N/A')}
-- Chủ đề: {pending_quiz.get('topic', 'N/A')}
+            📋 **Bài kiểm tra chưa hoàn thành:**
+            - Môn: {pending_quiz.get('subject', 'N/A')}
+            - Chủ đề: {pending_quiz.get('topic', 'N/A')}
 
-💡 **Bạn có thể:**
-1. **Xem lại đề:** Gõ "Xem lại đề" hoặc "Nhắc lại đề"
-2. **Nộp bài:** 
-```
-Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
-```
+            💡 **Bạn có thể:**
+            1. **Xem lại đề:** Gõ "Xem lại đề" hoặc "Nhắc lại đề"
+            2. **Nộp bài:** 
+            ```
+            Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
+            ```
 
-Sau khi nộp xong, bạn có thể tạo đề mới! 📝""",
-                        "final_query": final_query
-                    }
-                
-                guard_result = self.quiz_guard.is_cheating(user_query, pending_quiz)
+            Sau khi nộp xong, bạn có thể tạo đề mới! 📝""",
+                            "final_query": final_query
+                        }
+                        
+                    else:
+                        # Unknown role - block by default (safe)
+                        print("   ⚠️ UNKNOWN role: Block by default")
+                        
+                        return {
+                            "response": f"""❌ Bạn không thể tạo đề mới khi đang có bài chưa nộp!
+
+            📋 **Bài kiểm tra chưa hoàn thành:**
+            - Môn: {pending_quiz.get('subject', 'N/A')}
+            - Chủ đề: {pending_quiz.get('topic', 'N/A')}
+
+            💡 Hãy nộp bài trước khi tạo đề mới.""",
+                            "final_query": final_query
+                        }
+                    # ===============================================
+                    
+                user_role = get_user_role(student_id)            
+                guard_result = self.quiz_guard.is_cheating(user_query, pending_quiz, user_role)
                 
                 if guard_result["is_blocked"]:
                     print(f"   🚫 BLOCKED: {guard_result['reason']} (method: {guard_result['method']})")

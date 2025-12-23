@@ -4,13 +4,19 @@ FastAPI application for Quiz Management System
 Provides simple REST API for accessing quiz history
 """
 
-from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form, BackgroundTasks
+from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form, BackgroundTasks, Body
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from pydantic import BaseModel, Field
 from typing import Optional, Dict, List
 import sys
 import os
+import time
+import uuid
 import io
 import json
+import subprocess
+import re
 import sqlite3
 import requests
 import tempfile
@@ -77,6 +83,147 @@ openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 session_manager = SessionManager(openai_client=openai_client)
 chat_history_manager = ChatHistoryManager()
 print("✅ Session managers initialized")
+
+# ========== GLOBAL STORAGE ==========
+# Store temp files: {file_id: (pdf_path, created_time)}
+PDF_STORAGE = {}
+PDF_STORAGE_DIR = Path("temp_pdfs")
+PDF_STORAGE_DIR.mkdir(exist_ok=True)
+
+# ========== CLEANUP OLD FILES ==========
+def cleanup_old_pdfs():
+    """Delete PDFs older than 1 hour"""
+    current_time = time.time()
+    to_delete = []
+    
+    for file_id, (pdf_path, created_time) in PDF_STORAGE.items():
+        if current_time - created_time > 3600:  # 1 hour
+            try:
+                if os.path.exists(pdf_path):
+                    os.remove(pdf_path)
+                to_delete.append(file_id)
+            except Exception as e:
+                print(f"⚠️  Cleanup error: {e}")
+    
+    for file_id in to_delete:
+        del PDF_STORAGE[file_id]
+
+# ========== CLEANUP FUNCTION ==========
+
+def cleanup_temp_dir(temp_dir: str):
+    """Delete temp directory after response is sent"""
+    try:
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir)
+            print(f"🗑️  Cleaned up: {temp_dir}")
+    except Exception as e:
+        print(f"⚠️  Cleanup error: {e}")
+
+def preprocess_markdown(content: str) -> str:
+    """Fix [ ] and ( ) to $ $ and $$ $$"""
+    
+    # Replace standalone [ ... ] with $$ ... $$
+    content = re.sub(
+        r'\[\s*\n((?:[^\]]|\n)+?)\n\s*\]',
+        r'$$\1$$',
+        content,
+        flags=re.DOTALL
+    )
+    
+    # Replace inline ( ... ) with $ ... $
+    content = re.sub(
+        r'\(\s*([^)]*\\[^)]*?)\s*\)',
+        r'$\1$',
+        content
+    )
+    
+    return content
+
+
+def markdown_text_to_pdf(
+    markdown_content: str,
+    output_filename: str = "output.pdf",
+    toc: bool = False,
+    number_sections: bool = False,
+    clean_markdown: bool = True
+) -> str:
+    """
+    Convert markdown text to PDF
+    
+    Args:
+        markdown_content: Markdown string
+        output_filename: Output PDF filename
+        toc: Include table of contents
+        number_sections: Auto-number sections
+        clean_markdown: Preprocess markdown to fix LaTeX
+    
+    Returns:
+        Path to generated PDF
+    """
+    
+    # Check dependencies
+    if not shutil.which('pandoc'):
+        raise RuntimeError("Pandoc not installed")
+    
+    if not shutil.which('xelatex'):
+        raise RuntimeError("XeLaTeX not installed")
+    
+    # Preprocess if enabled
+    if clean_markdown:
+        markdown_content = preprocess_markdown(markdown_content)
+    
+    # Create temp directory
+    temp_dir = tempfile.mkdtemp()
+    
+    try:
+        # Write markdown to temp file
+        temp_md = os.path.join(temp_dir, "input.md")
+        with open(temp_md, 'w', encoding='utf-8') as f:
+            f.write(markdown_content)
+        
+        # Output path
+        output_pdf = os.path.join(temp_dir, output_filename)
+        
+        # Build pandoc command
+        cmd = [
+            'pandoc',
+            temp_md,
+            '-o', output_pdf,
+            '--pdf-engine=xelatex',
+            '-V', 'geometry:margin=1in',
+            '-V', 'fontsize=12pt',
+            '-V', 'documentclass=article',
+            '-V', 'colorlinks=true',
+            '-V', 'linkcolor=blue',
+            '-V', 'urlcolor=blue',
+            '--highlight-style=tango',
+            '--standalone'
+        ]
+        
+        if toc:
+            cmd.extend(['--toc', '--toc-depth=3'])
+        
+        if number_sections:
+            cmd.append('--number-sections')
+        
+        # Execute
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        
+        # Check if PDF was created
+        if not os.path.exists(output_pdf):
+            raise RuntimeError("PDF was not created")
+        
+        return output_pdf
+        
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(f"Pandoc error: {e.stderr}")
+    except Exception as e:
+        raise RuntimeError(f"Error: {str(e)}")
 
 # ========== INIT RAG COMPONENTS (SINGLETON) ==========
 try:
@@ -1913,6 +2060,170 @@ def list_pipeline_tasks() -> Dict:
     tasks = [{"task_id": tid, **data} for tid, data in pipeline_tasks.items()]
     return {"success": True, "tasks": tasks}
 
+
+# ========== ENDPOINT ==========
+
+class MarkdownToPDFRequest(BaseModel):
+    markdown_content: str = Field(..., description="Markdown content")
+    filename: Optional[str] = Field("output.pdf", description="Output filename")
+    toc: Optional[bool] = Field(False, description="Include table of contents")
+    number_sections: Optional[bool] = Field(False, description="Number sections")
+
+
+# ========== CONVERT ENDPOINT ==========
+@app.post("/api/markdown/to-pdf")
+async def convert_markdown_to_pdf(request: MarkdownToPDFRequest):
+    """
+    Convert Markdown to PDF
+    
+    **Returns:** JSON with download link
+```json
+    {
+        "success": true,
+        "file_id": "abc123",
+        "download_url": "http://localhost:8110/api/download-pdf/abc123",
+        "filename": "output.pdf",
+        "expires_in": 3600
+    }
+```
+    """
+    try:
+        print(f"📝 Converting markdown to PDF...")
+        
+        # Cleanup old files
+        cleanup_old_pdfs()
+        
+        # Validate filename
+        filename = request.filename
+        if not filename.endswith('.pdf'):
+            filename += '.pdf'
+        
+        # Generate unique file ID
+        file_id = str(uuid.uuid4())
+        
+        # Output to storage directory
+        output_path = PDF_STORAGE_DIR / f"{file_id}.pdf"
+        
+        # Preprocess markdown
+        markdown_content = request.markdown_content
+        if True:  # clean_markdown
+            markdown_content = preprocess_markdown(markdown_content)
+        
+        # Create temp markdown file
+        temp_md = PDF_STORAGE_DIR / f"{file_id}.md"
+        with open(temp_md, 'w', encoding='utf-8') as f:
+            f.write(markdown_content)
+        
+        # Build pandoc command
+        cmd = [
+            'pandoc',
+            str(temp_md),
+            '-o', str(output_path),
+            '--pdf-engine=xelatex',
+            '-V', 'geometry:margin=1in',
+            '-V', 'fontsize=12pt',
+            '-V', 'documentclass=article',
+            '-V', 'colorlinks=true',
+            '-V', 'linkcolor=blue',
+            '-V', 'urlcolor=blue',
+            '--highlight-style=tango',
+            '--standalone'
+        ]
+        
+        if request.toc:
+            cmd.extend(['--toc', '--toc-depth=3'])
+        
+        if request.number_sections:
+            cmd.append('--number-sections')
+        
+        # Execute
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        
+        # Clean up temp markdown
+        temp_md.unlink()
+        
+        # Check if PDF was created
+        if not output_path.exists():
+            raise RuntimeError("PDF was not created")
+        
+        # Store in memory
+        PDF_STORAGE[file_id] = (str(output_path), time.time())
+        
+        print(f"✅ PDF created: {output_path}")
+        
+        # Build download URL
+        base_url = os.getenv("API_BASE_URL", "http://14.225.211.7:8110")
+        download_url = f"{base_url}/api/download-pdf/{file_id}"
+        
+        return {
+            "success": True,
+            "file_id": file_id,
+            "download_url": download_url,
+            "filename": filename,
+            "expires_in": 3600,  # 1 hour
+            "message": "PDF created successfully. Download link expires in 1 hour."
+        }
+        
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Pandoc error: {e.stderr}")
+        raise HTTPException(status_code=500, detail=f"Pandoc error: {e.stderr}")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ========== DOWNLOAD ENDPOINT ==========
+@app.get("/api/download-pdf/{file_id}")
+async def download_pdf(file_id: str):
+    """
+    Download PDF by file ID
+    
+    **Returns:** PDF file
+    """
+    try:
+        # Check if file exists
+        if file_id not in PDF_STORAGE:
+            raise HTTPException(status_code=404, detail="File not found or expired")
+        
+        pdf_path, created_time = PDF_STORAGE[file_id]
+        
+        # Check if expired (1 hour)
+        if time.time() - created_time > 3600:
+            # Clean up
+            if os.path.exists(pdf_path):
+                os.remove(pdf_path)
+            del PDF_STORAGE[file_id]
+            raise HTTPException(status_code=410, detail="File has expired")
+        
+        # Check if file exists on disk
+        if not os.path.exists(pdf_path):
+            del PDF_STORAGE[file_id]
+            raise HTTPException(status_code=404, detail="File not found on disk")
+        
+        # Get original filename from request (default to file_id)
+        filename = f"{file_id}.pdf"
+        
+        print(f"📥 Downloading: {pdf_path}")
+        
+        return FileResponse(
+            path=pdf_path,
+            media_type='application/pdf',
+            filename=filename,
+            headers={
+                "Content-Disposition": f"attachment; filename={filename}"
+            }
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ Download error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 # ==================== END ====================
 
 # ==================== RUN INFO ====================

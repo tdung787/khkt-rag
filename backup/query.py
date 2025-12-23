@@ -51,6 +51,64 @@ SUBJECTS = {
 # Allowed subjects for quiz generation
 ALLOWED_QUIZ_SUBJECTS = ["Toán", "Vật lý", "Hóa học", "Sinh học"]
 
+def get_user_role(user_id: str) -> Optional[str]:
+    """
+    Check if user is student or teacher
+    
+    Args:
+        user_id: User ID to check
+        
+    Returns:
+        "student" | "teacher" | None
+    """
+    try:
+        api_base = os.getenv('EXTERNAL_API_BASE_URL', 'http://localhost:8222')
+        
+        # Check students first
+        try:
+            response = requests.get(
+                f"{api_base}/api/public/rag/students",
+                timeout=5
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                students = data.get("data", {}).get("students", [])
+                
+                # Check if user_id matches any student's user_id._id
+                for student in students:
+                    if student.get("user_id", {}).get("_id") == user_id:
+                        print(f"   ✓ User {user_id} is STUDENT")
+                        return "student"
+        except:
+            pass
+        
+        # Check teachers
+        try:
+            response = requests.get(
+                f"{api_base}/api/public/rag/teachers",
+                timeout=5
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                teachers = data.get("data", [])
+                
+                # Check if user_id matches any teacher's _id
+                for teacher in teachers:
+                    if teacher.get("_id") == user_id:
+                        print(f"   ✓ User {user_id} is TEACHER")
+                        return "teacher"
+        except:
+            pass
+        
+        print(f"   ⚠️ User {user_id} not found in API")
+        return None
+        
+    except Exception as e:
+        print(f"   ⚠️ Error checking role: {e}")
+        return None
+
 # ================== INTENT CLASSIFIER ==================
 class IntentClassifier:
     """Classify user query intent using LLM"""
@@ -66,7 +124,7 @@ class IntentClassifier:
                 messages=[
                     {
                         "role": "system",
-                        "content": """Bạn là trợ lý phân loại câu hỏi học sinh.
+                        "content": """Bạn là trợ lý phân loại câu hỏi người dùng.
 
 Phân tích câu hỏi và xác định:
 1. Có phải câu hỏi về môn học tự nhiên không? (Toán, Lý, Hóa, Sinh)
@@ -300,7 +358,7 @@ class SimpleAgent:
             profile = self.quiz_generator.student_profile
             student_id = profile.get('_id', 'unknown')
             student_info = f"""
-    THÔNG TIN HỌC SINH:
+    THÔNG TIN NGƯỜI DÙNG:
     - Họ tên: {profile.get('name', 'N/A')}
     - Lớp: {profile.get('grade', 'N/A')}
     - Độ khó phù hợp: {profile.get('difficulty_level', 'N/A')}
@@ -312,7 +370,7 @@ class SimpleAgent:
         if pending_quiz:
             pending_warning = f"""
     ⚠️⚠️⚠️ CẢNH BÁO QUAN TRỌNG ⚠️⚠️⚠️
-    HỌC SINH ĐANG CÓ BÀI KIỂM TRA CHƯA NỘP!
+    NGƯỜI DÙNG ĐANG CÓ BÀI KIỂM TRA CHƯA NỘP!
     - Quiz ID: {pending_quiz['id']}
     - Môn: {pending_quiz.get('subject', 'N/A')}
     - Chủ đề: {pending_quiz.get('topic', 'N/A')}
@@ -344,13 +402,13 @@ Trích nguyên văn, không thêm bớt.
             return prompt
         
         # Default: general mode
-        prompt = f"""Bạn là trợ lý học tập AI dành cho học sinh và THPT Việt Nam, hỗ trợ các môn khoa học tự nhiên (Toán, Lý, Hóa, Sinh).
+        prompt = f"""Bạn là trợ lý học tập AI, chuyên hỗ trợ các môn khoa học tự nhiên (Toán, Lý, Hóa, Sinh) của THPT.
 
 VAI TRÒ:
 - Giải thích kiến thức và hướng dẫn tư duy cho 4 môn tự nhiên.
 
 NGỮ CẢNH:
-- Nếu học sinh hỏi "hình ảnh vừa nãy", "câu hỏi vừa rồi", "bài trước":
+- Nếu người dùng hỏi "hình ảnh vừa nãy", "câu hỏi vừa rồi", "bài trước":
     + Hoặc các đoạn được đặt trong <!-- EXTRACTED_TEXT ... -->
 - Trả về nội dung phía sau các marker đó.
 
@@ -366,8 +424,6 @@ KHI NHẬN CÂU HỎI NGOÀI PHẠM VI:
 - Nhắc lại phạm vi 4 môn tự nhiên.
 - Gợi ý đặt câu hỏi phù hợp.
 
-MỤC TIÊU:
-Hỗ trợ học sinh phát triển tư duy khoa học và kỹ năng tự học bền vững.
 """
         print(f"   📝 System prompt (general): {len(prompt)} chars")
         return prompt
@@ -1281,7 +1337,7 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                     messages.extend(cleaned_history)
                     print(f"   📜 Added {len(cleaned_history)} history messages (cleaned)")
                 
-                user_content = f"""Học sinh hỏi: {user_query}
+                user_content = f"""Người dùng hỏi: {user_query}
 
 ĐÁP ÁN ĐÚNG: {best_answer}: {best_answer_text}
 
@@ -1443,7 +1499,7 @@ def main():
     # Interactive loop
     while True:
         try:
-            user_input = input("\n🎓 Học sinh: ").strip()
+            user_input = input("\n🎓 Người dùng: ").strip()
             
             if not user_input:
                 continue

@@ -48,8 +48,18 @@ class QuizGuard:
             print(f"⚠️ Extract error: {e}")
             return []
 
-    def is_cheating(self, user_query: str, current_quiz: Dict) -> Dict:
+    def is_cheating(self, user_query: str, current_quiz: Dict, user_role: str = "student") -> Dict:
         """3-layer detection: explicit → similarity → LLM"""
+        
+        # ========== BYPASS FOR TEACHER ==========
+        if user_role == "teacher":
+            return {
+                "is_blocked": False,
+                "reason": "Giáo viên được phép hỏi mọi câu hỏi",
+                "confidence": 1.0,
+                "method": "teacher_bypass"
+            }
+        # =========================================
         
         # Layer 1: Explicit
         if self._has_explicit_cheating(user_query):
