@@ -1,0 +1,2662 @@
+[
+  {
+    "chunk_id": "chunk_s1.1_001",
+    "page": 5,
+    "section": "1.1",
+    "section_title": "Trading off simplicity and bandwidth",
+    "text": "1.1  Trading off simplicity and bandwidth\nThere is a fundamental tradeoff in communication\nsystems. Simple hardware can be used in transmitters\nand receivers to communicate information.\nHowever, this uses a lot of spectrum which limits\nthe number of users. Alternatively, more complex\ntransmitters and receivers can be used to transmit\nthe same information over less bandwidth. The\ntransition to more and more spectrally efficient\ntransmission techniques requires more and more\ncomplex hardware. Complex hardware is difficult\nto design, test, and build. This tradeoff exists\nwhether communication is over air or wire, analog\nor digital.",
+    "chapter": 1,
+    "chapter_title": "Why Digital Modulation?",
+    "primary_concepts": [
+      "spectral_efficiency",
+      "communication_systems"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "transmitters",
+      "receivers",
+      "bandwidth"
+    ],
+    "technical_terms": [
+      "spectrum",
+      "complex_hardware",
+      "simple_hardware"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how the tradeoff between simplicity and bandwidth affects communication systems. It discusses the balance between using simple hardware, which consumes more spectrum and limits user capacity, versus employing complex transmitters and receivers that enable more spectrally efficient transmission techniques. This tradeoff is crucial in understanding the evolution of digital modulation methods and their impact on overall system design and efficiency."
+  },
+  {
+    "chunk_id": "chunk_s1.2_001",
+    "page": 6,
+    "section": "1.2",
+    "section_title": "Industry trends",
+    "text": "1.2  Industry trends\nOver the past few years a major transition has\noccurred from simple analog Amplitude Modulation\n(AM) and Frequency/Phase Modulation\n(FM/PM) to new digital modulation techniques.\nExamples of digital modulation include\n• QPSK (Quadrature Phase Shift Keying)\n• FSK (Frequency Shift Keying)\n• MSK (Minimum Shift Keying)\n• QAM (Quadrature Amplitude Modulation)\nAnother layer of complexity in many new systems\nis multiplexing. Two principal types of multiplexing\n(or “multiple access”) are TDMA (Time Division\nMultiple Access) and CDMA (Code Division\nMultiple Access). These are two different ways to\nadd diversity to signals allowing different signals\nto be separated from one another.",
+    "chapter": 1,
+    "chapter_title": "Why Digital Modulation?",
+    "primary_concepts": [
+      "digital_modulation",
+      "multiplexing"
+    ],
+    "content_type": "background",
+    "secondary_concepts": [
+      "QPSK",
+      "FSK",
+      "TDMA",
+      "CDMA"
+    ],
+    "technical_terms": [
+      "QPSK",
+      "FSK",
+      "MSK",
+      "QAM",
+      "TDMA",
+      "CDMA",
+      "amplitude_modulation",
+      "frequency_modulation",
+      "phase_modulation"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS the recent INDUSTRY TRENDS in digital modulation, highlighting the transition from traditional analog Amplitude Modulation (AM) and Frequency/Phase Modulation (FM/PM) to advanced digital techniques such as QPSK (Quadrature Phase Shift Keying), FSK (Frequency Shift Keying), MSK (Minimum Shift Keying), and QAM (Quadrature Amplitude Modulation). It also discusses the role of multiplexing, specifically Time Division Multiple Access (TDMA) and Code Division Multiple Access (CDMA), in enhancing signal diversity and separation, which is crucial for accommodating the increasing demand for communication services."
+  },
+  {
+    "chunk_id": "chunk_s11_001",
+    "page": 46,
+    "section": "11",
+    "section_title": "Glossary of Terms",
+    "text": "11. Glossary of Terms\nACP Adjacent Channel Power\nADPCM Adaptive Digital Pulse Code Modulation\nAM Amplitude Modulation\nAMPS Advanced Mobile Phone System\nB-CDMA Broadband Code Division Multiple Access\nBER Bit Error Rate\nBFSK Binary Frequency Shift Keying\nBPSK Binary Phase Shift Keying\nBW Bandwidth\nCDMA Code Division Multiple Access\nCDPD Cellular Digital Packet Data\nCOFDM Coded Orthogonal Frequency Division Multiplexing\nCRC Cyclic Redundancy Check\nCT2 Cordless Telephone–2\nDAB Digital Audio Broadcast\nDCS 1800 Digital Communication System–1800 MHz\nDECT Digital Enhanced Cordless Telephone\nDMCA Digital MultiChannel Access, similar to iDEN\nDQPSK Differential Quadrature Phase Shift Keying\nDSP Digital Signal Processing\nDVB-C Digital Video Broadcast–Cable\nDVB-S Digital Video Broadcast–Satellite\nDVB-T Digital Video Broadcast–Terrestrial\nEGSM Extended Frequency GSM\nERMES European Radio Message System\nETSI European Telecommunications Standards Institute\nEVM Error Vector Magnitude\nFDD Frequency Division Duplex\nFDMA Frequency Division Multiple Access\nFER Frame Error Rate\nFFSK Fast Frequency Shift Keying\nFFT Fast Fourier Transform\nFLEX 4-level FSK-based paging standard developed by Motorola\nFM Frequency Modulation\nFSK Frequency Shift Keying\nGFSK Gaussian Frequency Shift Keying\nGlobalstar Satellite system using 48 low-earth orbiting satellites\nGMSK Gaussian Minimum Shift Keying\nGSM Global System for Mobile Communication\nHDTV High Definition Television",
+    "chapter": 11,
+    "chapter_title": "Glossary of Terms",
+    "primary_concepts": [
+      "adjacent_channel_power",
+      "bit_error_rate",
+      "frequency_shift_keying",
+      "digital_signal_processing"
+    ],
+    "content_type": "definition",
+    "secondary_concepts": [
+      "adaptive_digital_pulse_code_modulation",
+      "code_division_multiple_access",
+      "digital_audio_broadcast",
+      "global_system_for_mobile_communication",
+      "high_definition_television"
+    ],
+    "technical_terms": [
+      "ACP",
+      "ADPCM",
+      "AM",
+      "AMPS",
+      "B-CDMA",
+      "BER",
+      "BFSK",
+      "BPSK",
+      "BW",
+      "CDMA",
+      "CDPD",
+      "COFDM",
+      "CRC",
+      "CT2",
+      "DAB",
+      "DCS",
+      "DECT",
+      "DMCA",
+      "DQPSK",
+      "DSP",
+      "DVB-C",
+      "DVB-S",
+      "DVB-T",
+      "EGSM",
+      "ERMES",
+      "ETSI",
+      "EVM",
+      "FDD",
+      "FDMA",
+      "FER",
+      "FFSK",
+      "FFT",
+      "FLEX",
+      "FM",
+      "FSK",
+      "GFSK",
+      "Globalstar",
+      "GMSK",
+      "GSM",
+      "HDTV"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section DEFINES key terms related to digital modulation and communications, including ACP (Adjacent Channel Power), BER (Bit Error Rate), and DSP (Digital Signal Processing). Understanding these definitions is crucial for grasping concepts discussed throughout the document, such as frequency shift keying and modulation accuracy. What is BER? It is defined as the ratio of the number of erroneous bits to the total number of transmitted bits, highlighting the importance of error measurement in digital communications."
+  },
+  {
+    "chunk_id": "chunk_s11_002",
+    "page": 46,
+    "section": "11",
+    "section_title": "Glossary of Terms",
+    "text": "Globalstar Satellite system using 48 low-earth orbiting satellites\nGMSK Gaussian Minimum Shift Keying\nGSM Global System for Mobile Communication\nHDTV High Definition Television\niDEN integrated Dispatch Enhanced Network (Motorola designed system for dispatch, cellular, and conference calling)\nIF Intermediate Frequency\nI/Q In phase/Quadrature\nIridium Motorola voice/data 66-satellite system worldwide\nISI Intersymbol Interference\nIS-54 Interim Standard for US Digital Cellular (NADC)\nIS-95 Interim Standard for US Code Division Multiple Access\nIS-136 Interim Standard for NADC with Digital Control Channels\nLMDS Local Multipoint Distribution System\nMFSK Minimum Frequency Shift Keying\nMMDS Multichannel Multipoint Distribution System\nMPSK Minimum Phase Shift Keying\nMSK Minimum Shift Keying\nNADC North American Digital Cellular system\nOFDM Orthogonal Frequency Division Multiplexing\nOQPSK Offset Quadrature Phase Shift Keying\nPACS Personal Access Communications Service\nPCS Personal Communications System\nPCM Pulse Code Modulation\nPDC Pacific Digital Cellular System (formerly JDC)\nPHS Personal Handyphone System (formerly PHP)\nPRBS Pseudo-Random Bit Sequence\nPSD Power Spectral Density\nPSK Phase Shift Keying\nQAM Quadrature Amplitude Modulation\nQPSK Quadrature Phase Shift Keying\nRAM Wireless data network\nRF Radio Frequency\nRMS Root Mean Square\nSQRT Square Root\nTDD Time Division Duplex\nTDMA Time Division Multiple Access\nTETRA Trans European Trunked Radio\nTFTS Terrestrial Flight Telephone System",
+    "chapter": 11,
+    "chapter_title": "Glossary of Terms",
+    "primary_concepts": [
+      "low_earth_orbiting_satellites",
+      "phase_shift_keying",
+      "digital_cellular_system",
+      "frequency_division_multiplexing"
+    ],
+    "content_type": "definition",
+    "secondary_concepts": [
+      "Gaussian_minimum_shift_keying",
+      "time_division_multiple_access",
+      "personal_communications_system"
+    ],
+    "technical_terms": [
+      "GMSK",
+      "GSM",
+      "HDTV",
+      "iDEN",
+      "IF",
+      "I/Q",
+      "Iridium",
+      "ISI",
+      "IS-54",
+      "IS-95",
+      "IS-136",
+      "LMDS",
+      "MFSK",
+      "MMDS",
+      "MPSK",
+      "MSK",
+      "NADC",
+      "OFDM",
+      "OQPSK",
+      "PACS",
+      "PCS",
+      "PCM",
+      "PDC",
+      "PHS",
+      "PRBS",
+      "PSD",
+      "PSK",
+      "QAM",
+      "QPSK",
+      "RAM",
+      "RF",
+      "RMS",
+      "SQRT",
+      "TDD",
+      "TDMA",
+      "TETRA",
+      "TFTS"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section DEFINES various telecommunications terms, including Globalstar (a satellite system using 48 low-earth orbiting satellites), GMSK (Gaussian Minimum Shift Keying), and GSM (Global System for Mobile Communication). It also covers concepts such as iDEN (integrated Dispatch Enhanced Network), IS-54 (Interim Standard for US Digital Cellular), and OFDM (Orthogonal Frequency Division Multiplexing), providing a foundational understanding of digital modulation and communication systems discussed throughout the document."
+  },
+  {
+    "chunk_id": "chunk_s11_003",
+    "page": 46,
+    "section": "11",
+    "section_title": "Glossary of Terms",
+    "text": "RF Radio Frequency\nRMS Root Mean Square\nSQRT Square Root\nTDD Time Division Duplex\nTDMA Time Division Multiple Access\nTETRA Trans European Trunked Radio\nTFTS Terrestrial Flight Telephone System\nVSB Vestigal Side Band\nWLL Wireless Local Loop",
+    "chapter": 11,
+    "chapter_title": "Glossary of Terms",
+    "primary_concepts": [
+      "RF",
+      "RMS",
+      "TDD",
+      "TDMA"
+    ],
+    "content_type": "definition",
+    "secondary_concepts": [
+      "TETRA",
+      "TFTS",
+      "VSB",
+      "WLL"
+    ],
+    "technical_terms": [
+      "RF",
+      "RMS",
+      "SQRT",
+      "TDD",
+      "TDMA",
+      "TETRA",
+      "TFTS",
+      "VSB",
+      "WLL"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section DEFINES key terms related to digital communications, including RF (Radio Frequency), RMS (Root Mean Square), TDD (Time Division Duplex), and TDMA (Time Division Multiple Access). Understanding these terms is essential for grasping the concepts discussed throughout the document, such as modulation techniques and channel sharing methods. Additionally, terms like TETRA (Trans European Trunked Radio) and TFTS (Terrestrial Flight Telephone System) are relevant for exploring specific applications in wireless communication systems."
+  },
+  {
+    "chunk_id": "chunk_s1_001",
+    "page": 5,
+    "section": "1",
+    "section_title": "Why Digital Modulation?",
+    "text": "1. Why Digital Modulation?\nThe move to digital modulation provides more\ninformation capacity, compatibility with digital\ndata services, higher data security, better quality\ncommunications, and quicker system availability.\nDevelopers of communications systems face these\nconstraints:\n• available bandwidth\n• permissible power\n• inherent noise level of the system\nThe RF spectrum must be shared, yet every day\nthere are more users for that spectrum as demand\nfor communications services increases. Digital\nmodulation schemes have greater capacity to convey\nlarge amounts of information than analog modulation\nschemes.",
+    "chapter": 1,
+    "chapter_title": "Why Digital Modulation?",
+    "primary_concepts": [
+      "digital_modulation",
+      "information_capacity",
+      "data_security"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "RF_spectrum",
+      "bandwidth",
+      "system_noise"
+    ],
+    "technical_terms": [
+      "digital_modulation",
+      "analog_modulation",
+      "RF_spectrum",
+      "bandwidth",
+      "data_security"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how digital modulation works and its advantages over analog modulation, highlighting increased information capacity, compatibility with digital data services, enhanced data security, improved communication quality, and faster system availability. It addresses the constraints faced by developers, such as available bandwidth, permissible power, and inherent noise levels, while emphasizing the growing demand for communication services in the RF (Radio Frequency) spectrum. The discussion sets the stage for understanding the trade-offs in communication system design and the transition to more complex digital modulation techniques."
+  },
+  {
+    "chunk_id": "chunk_s2.1_001",
+    "page": 7,
+    "section": "2.1",
+    "section_title": "Transmitting information",
+    "text": "2.1  Transmitting information\nTo transmit a signal over the air, there are three\nmain steps:\n1. A pure carrier is generated at the transmitter.\n2. The carrier is modulated with the information\nto be transmitted. Any reliably detectable\nchange in signal characteristics can carry\ninformation.\n3. At the receiver the signal modifications or\nchanges are detected and demodulated.",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "carrier_generation",
+      "signal_modulation",
+      "signal_demodulation"
+    ],
+    "content_type": "procedure",
+    "secondary_concepts": [
+      "transmitter",
+      "receiver",
+      "signal_characteristics"
+    ],
+    "technical_terms": [
+      "carrier",
+      "modulation",
+      "demodulation",
+      "signal"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how to TRANSMIT a signal over the air, detailing the three main steps involved: generating a pure carrier at the transmitter, modulating the carrier with the information to be transmitted, and detecting and demodulating the signal modifications at the receiver. Understanding this process is crucial for grasping the concepts of signal modulation and demodulation discussed in Chapter 2, particularly in relation to I/Q (In-phase and Quadrature) modulation techniques."
+  },
+  {
+    "chunk_id": "chunk_s2.2_001",
+    "page": 7,
+    "section": "2.2",
+    "section_title": "Signal characteristics that can be modified",
+    "text": "2.2  Signal characteristics that can be modified\nThere are only three characteristics of a signal that\ncan be changed over time: amplitude, phase, or frequency.\nHowever, phase and frequency are just different\nways to view or measure the same signal\nchange.\nIn AM, the amplitude of a high-frequency carrier\nsignal is varied in proportion to the instantaneous\namplitude of the modulating message signal.\nFrequency Modulation (FM) is the most popular\nanalog modulation technique used in mobile communications\nsystems. In FM, the amplitude of the\nmodulating carrier is kept constant while its frequency\nis varied by the modulating message signal.\nAmplitude and phase can be modulated simultaneously\nand separately, but this is difficult to generate,\nand especially difficult to detect. Instead, in\npractical systems the signal is separated into\nanother set of independent components: I (Inphase)\nand Q (Quadrature). These components are\northogonal and do not interfere with each other.",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "amplitude_modulation",
+      "frequency_modulation",
+      "I_and_Q_components"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "modulating_message_signal",
+      "carrier_signal",
+      "orthogonal_signals"
+    ],
+    "technical_terms": [
+      "AM",
+      "FM",
+      "modulation",
+      "carrier",
+      "amplitude",
+      "phase",
+      "frequency",
+      "I",
+      "Q"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how signal characteristics can be modified in digital modulation, focusing on amplitude, phase, and frequency. It describes Amplitude Modulation (AM) and Frequency Modulation (FM), highlighting their roles in mobile communications systems. Additionally, it introduces the I (In-phase) and Q (Quadrature) components, which are orthogonal and facilitate simultaneous modulation of amplitude and phase, thereby enhancing signal integrity in digital communication systems."
+  },
+  {
+    "chunk_id": "chunk_s2.3_001",
+    "page": 8,
+    "section": "2.3",
+    "section_title": "Polar display—magnitude and phase represented",
+    "text": "2.3  Polar display—magnitude and phase represented\ntogether\nA simple way to view amplitude and phase is with\nthe polar diagram. The carrier becomes a frequency\nand phase reference and the signal is interpreted\nrelative to the carrier. The signal can be expressed\nin polar form as a magnitude and a phase. The\nphase is relative to a reference signal, the carrier\nin most communication systems. The magnitude is\neither an absolute or relative value. Both are used\nin digital communication systems. Polar diagrams\nare the basis of many displays used in digital communications,\nalthough it is common to describe the\nsignal vector by its rectangular coordinates of I\n(In-phase) and Q (Quadrature).",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "polar_diagram",
+      "magnitude_phase",
+      "carrier_reference"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "digital_communication_systems",
+      "signal_vector",
+      "rectangular_coordinates"
+    ],
+    "technical_terms": [
+      "polar_diagram",
+      "magnitude",
+      "phase",
+      "carrier",
+      "I",
+      "Q"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how polar diagrams represent magnitude and phase in relation to a carrier signal in digital communication systems. The phase is defined relative to the carrier, while the magnitude can be expressed as either an absolute or relative value. This concept is crucial for understanding signal characteristics and complements the discussions on I (In-phase) and Q (Quadrature) components in the modulation process."
+  },
+  {
+    "chunk_id": "chunk_s2.4_001",
+    "page": 8,
+    "section": "2.4",
+    "section_title": "Signal changes or modifications in",
+    "text": "2.4  Signal changes or modifications in\npolar form\nFigure 6 shows different forms of modulation in\npolar form. Magnitude is represented as the distance\nfrom the center and phase is represented as\nthe angle.\nAmplitude modulation (AM) changes only the\nmagnitude of the signal. Phase modulation (PM)\nchanges only the phase of the signal. Amplitude\nand phase modulation can be used together.\nFrequency modulation (FM) looks similar to phase\nmodulation, though frequency is the controlled\nparameter, rather than relative phase.\nOne example of the difficulties in RF design can\nbe illustrated with simple amplitude modulation.\nGenerating AM with no associated angular modulation\nshould result in a straight line on a polar\ndisplay. This line should run from the origin to\nsome peak radius or amplitude value. In practice,\nhowever, the line is not straight. The amplitude\nmodulation itself often can cause a small amount\nof unwanted phase modulation. The result is a\ncurved line. It could also be a loop if there is any\nhysteresis in the system transfer function. Some\namount of this distortion is inevitable in any system\nwhere modulation causes amplitude changes.\nTherefore, the degree of effective amplitude modulation\nin a system will affect some distortion\nparameters.",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "amplitude_modulation",
+      "phase_modulation",
+      "frequency_modulation"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "RF_design",
+      "hysteresis",
+      "distortion_parameters"
+    ],
+    "technical_terms": [
+      "AM",
+      "PM",
+      "FM",
+      "polar_form",
+      "signal"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how signal changes or modifications in polar form relate to different modulation techniques, including Amplitude Modulation (AM), Phase Modulation (PM), and Frequency Modulation (FM). It discusses the representation of magnitude and phase in polar coordinates and highlights the challenges in radio frequency design, particularly how amplitude modulation can inadvertently introduce phase distortion. Understanding these relationships is crucial for grasping the principles of I/Q modulation and its applications in digital communication systems."
+  },
+  {
+    "chunk_id": "chunk_s2.5_001",
+    "page": 9,
+    "section": "2.5",
+    "section_title": "I/Q formats",
+    "text": "2.5  I/Q formats\nIn digital communications, modulation is often\nexpressed in terms of I and Q. This is a rectangular\nrepresentation of the polar diagram. On a polar\ndiagram, the I axis lies on the zero degree phase\nreference, and the Q axis is rotated by 90 degrees.\nThe signal vector’s projection onto the I axis is its\n“I” component and the projection onto the Q axis\nis its “Q” component.",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "I_component",
+      "Q_component",
+      "polar_diagram"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "digital_communications",
+      "modulation",
+      "signal_vector"
+    ],
+    "technical_terms": [
+      "I",
+      "Q",
+      "phase_reference"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how I/Q formats are utilized in digital communications to represent modulation. The I (In-phase) component and Q (Quadrature) component are derived from a polar diagram, where the I axis aligns with the zero-degree phase reference and the Q axis is rotated by 90 degrees. Understanding I/Q formats is essential for grasping the concepts of signal characteristics and modulation techniques discussed in previous sections."
+  },
+  {
+    "chunk_id": "chunk_s2.6_001",
+    "page": 10,
+    "section": "2.6",
+    "section_title": "I and Q in a radio transmitter",
+    "text": "2.6  I and Q in a radio transmitter\nI/Q diagrams are particularly useful because they\nmirror the way most digital communications signals\nare created using an I/Q modulator. In the\ntransmitter, I and Q signals are mixed with the\nsame local oscillator (LO). A 90 degree phase\nshifter is placed in one of the LO paths. Signals\nthat are separated by 90 degrees are also known as\nbeing orthogonal to each other or in quadrature.\nSignals that are in quadrature do not interfere\nwith each other. They are two independent components\nof the signal. When recombined, they are\nsummed to a composite output signal. There are\ntwo independent signals in I and Q that can be\nsent and received with simple circuits. This simplifies\nthe design of digital radios. The main advantage\nof I/Q modulation is the symmetric ease of\ncombining independent signal components into a\nsingle composite signal and later splitting such a\ncomposite signal into its independent component\nparts.",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "I/Q_modulation",
+      "local_oscillator",
+      "quadrature_signals"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "phase_shifter",
+      "composite_signal",
+      "digital_radios"
+    ],
+    "technical_terms": [
+      "I",
+      "Q",
+      "LO",
+      "orthogonal",
+      "composite_output"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how I and Q signals function in a radio transmitter, detailing their relationship with the local oscillator and the concept of quadrature signals. I/Q modulation allows for the independent transmission of two orthogonal components, simplifying the design of digital radios by enabling the combination and separation of these signals. Understanding this process is crucial for grasping the broader applications of I/Q modulation discussed in previous sections."
+  },
+  {
+    "chunk_id": "chunk_s2.7_001",
+    "page": 10,
+    "section": "2.7",
+    "section_title": "I and Q in a radio receiver",
+    "text": "2.7  I and Q in a radio receiver\nThe composite signal with magnitude and phase\n(or I and Q) information arrives at the receiver\ninput. The input signal is mixed with the local\noscillator signal at the carrier frequency in two\nforms. One is at an arbitrary zero phase. The other\nhas a 90 degree phase shift. The composite input\nsignal (in terms of magnitude and phase) is thus\nbroken into an in-phase, I, and a quadrature, Q,\ncomponent. These two components of the signal\nare independent and orthogonal. One can be\nchanged without affecting the other. Normally,\ninformation cannot be plotted in a polar format\nand reinterpreted as rectangular values without\ndoing a polar-to-rectangular conversion. This conversion\nis exactly what is done by the in-phase and\nquadrature mixing processes in a digital radio. A\nlocal oscillator, phase shifter, and two mixers can\nperform the conversion accurately and efficiently.",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "I_component",
+      "Q_component",
+      "polar_to_rectangular_conversion"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "local_oscillator",
+      "phase_shifter",
+      "mixers"
+    ],
+    "technical_terms": [
+      "composite_signal",
+      "magnitude",
+      "phase",
+      "orthogonal"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how the in-phase (I) and quadrature (Q) components are processed in a radio receiver. The composite signal, which contains magnitude and phase information, is mixed with a local oscillator signal to separate it into I and Q components, allowing for independent manipulation of each. This process is essential for converting polar coordinates into rectangular values, linking it to the broader concepts of I/Q modulation and signal characteristics discussed in previous sections."
+  },
+  {
+    "chunk_id": "chunk_s2.8_001",
+    "page": 11,
+    "section": "2.8",
+    "section_title": "Why use I and Q?",
+    "text": "2.8  Why use I and Q?\nDigital modulation is easy to accomplish with I/Q\nmodulators. Most digital modulation maps the data\nto a number of discrete points on the I/Q plane.\nThese are known as constellation points. As the signal\nmoves from one point to another, simultaneous\namplitude and phase modulation usually results.\nTo accomplish this with an amplitude modulator\nand a phase modulator is difficult and complex. It\nis also impossible with a conventional phase modulator.\nThe signal may, in principle, circle the origin\nin one direction forever, necessitating infinite phase\nshifting capability. Alternatively, simultaneous AM\nand Phase Modulation is easy with an I/Q modulator.\nThe I and Q control signals are bounded, but infinite\nphase wrap is possible by properly phasing\nthe I and Q signals.",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "I/Q_modulation",
+      "constellation_points"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "amplitude_modulation",
+      "phase_modulation",
+      "infinite_phase_wrap"
+    ],
+    "technical_terms": [
+      "I",
+      "Q",
+      "I/Q_modulator",
+      "amplitude_modulator",
+      "phase_modulator"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how I/Q (In-phase and Quadrature) modulation works and why it is advantageous for digital modulation. It highlights that digital modulation maps data to discrete points on the I/Q plane, known as constellation points, allowing for simultaneous amplitude and phase modulation. This method simplifies the modulation process compared to using separate amplitude and phase modulators, which can be complex and impractical."
+  },
+  {
+    "chunk_id": "chunk_s2_001",
+    "page": 7,
+    "section": "2",
+    "section_title": "Using I/Q Modulation to Convey Information",
+    "text": "2. Using I/Q Modulation to Convey Information",
+    "chapter": 2,
+    "chapter_title": "Using I/Q Modulation to Convey Information",
+    "primary_concepts": [
+      "I/Q_modulation",
+      "information_conveyance"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "phase_shift_keying",
+      "quadrature_amplitude_modulation",
+      "signal_representation"
+    ],
+    "technical_terms": [
+      "I/Q",
+      "modulation",
+      "carrier",
+      "bandwidth",
+      "symbol_rate"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how I/Q (In-phase and Quadrature) modulation works to convey information in digital communication systems. It outlines the process of transmitting signals by modulating a carrier with information, detailing the signal characteristics that can be modified, such as amplitude and phase. Additionally, it relates I/Q modulation to other modulation techniques discussed in the document, emphasizing its role in efficiently transmitting data."
+  },
+  {
+    "chunk_id": "chunk_s3.1.1_001",
+    "page": 12,
+    "section": "3.1.1",
+    "section_title": "Bit rate and symbol rate",
+    "text": "3.1.1  Bit rate and symbol rate\nTo understand and compare different modulation\nformat efficiencies, it is important to first understand\nthe difference between bit rate and symbol\nrate. The signal bandwidth for the communications\nchannel needed depends on the symbol rate, not\non the bit rate.\nBit rate is the frequency of a system bit stream.\nTake, for example, a radio with an 8 bit sampler,\nsampling at 10 kHz for voice. The bit rate, the basic\nbit stream rate in the radio, would be eight bits\nmultiplied by 10K samples per second, or 80 Kbits\nper second. (For the moment we will ignore the\nextra bits required for synchronization, error\ncorrection, etc.)\nFigure 10 is an example of a state diagram of a\nQuadrature Phase Shift Keying (QPSK) signal. The\nstates can be mapped to zeros and ones. This is a\ncommon mapping, but it is not the only one. Any\nmapping can be used.\nThe symbol rate is the bit rate divided by the number\nof bits that can be transmitted with each symbol.\nIf one bit is transmitted per symbol, as with\nBPSK, then the symbol rate would be the same as\nthe bit rate of 80 Kbits per second. If two bits are\ntransmitted per symbol, as in QPSK, then the symbol\nrate would be half of the bit rate or 40 Kbits\nper second. Symbol rate is sometimes called baud\nrate. Note that baud rate is not the same as bit\nrate. These terms are often confused. If more bits\ncan be sent with each symbol, then the same\namount of data can be sent in a narrower spectrum.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "bit_rate",
+      "symbol_rate",
+      "QPSK",
+      "BPSK"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "baud_rate",
+      "signal_bandwidth",
+      "sampling_rate"
+    ],
+    "technical_terms": [
+      "bit_rate",
+      "symbol_rate",
+      "QPSK",
+      "BPSK",
+      "baud_rate",
+      "sampling",
+      "synchronization",
+      "error_correction"
+    ],
+    "has_formula": true,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how bit rate and symbol rate work in digital modulation formats. Bit rate is defined as the frequency of a system bit stream, while symbol rate refers to the number of bits transmitted per symbol. Understanding the difference between these two concepts is crucial for comparing modulation efficiencies, particularly in formats like Binary Phase Shift Keying (BPSK) and Quadrature Phase Shift Keying (QPSK), which are discussed in relation to their impact on signal bandwidth requirements."
+  },
+  {
+    "chunk_id": "chunk_s3.1.1_002",
+    "page": 12,
+    "section": "3.1.1",
+    "section_title": "Bit rate and symbol rate",
+    "text": "rate. Note that baud rate is not the same as bit\nrate. These terms are often confused. If more bits\ncan be sent with each symbol, then the same\namount of data can be sent in a narrower spectrum.\nThis is why modulation formats that are\nmore complex and use a higher number of states\ncan send the same information over a narrower\npiece of the RF spectrum.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "baud_rate",
+      "bit_rate"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "modulation_formats",
+      "RF_spectrum",
+      "symbols"
+    ],
+    "technical_terms": [
+      "baud_rate",
+      "bit_rate",
+      "modulation",
+      "RF_spectrum",
+      "symbols"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how bit rate and symbol rate differ in digital modulation, clarifying that bit rate refers to the frequency of a system bit stream, while symbol rate (also known as baud rate) is the rate at which symbols are transmitted. Understanding this distinction is crucial for evaluating modulation formats, as more complex formats can transmit more bits per symbol, allowing for efficient use of the radio frequency spectrum. This concept is further explored in relation to applications and spectral efficiency in Section 3.1."
+  },
+  {
+    "chunk_id": "chunk_s3.1.2_001",
+    "page": 13,
+    "section": "3.1.2",
+    "section_title": "Spectrum (bandwidth) requirements",
+    "text": "3.1.2  Spectrum (bandwidth) requirements\nAn example of how symbol rate influences spectrum\nrequirements can be seen in eight-state Phase\nShift Keying (8PSK). It is a variation of PSK. There\nare eight possible states that the signal can transition\nto at any time. The phase of the signal can\ntake any of eight values at any symbol time. Since\n2^3 = 8, there are three bits per symbol. This means\nthe symbol rate is one third of the bit rate. This is\nrelatively easy to decode.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "phase_shift_keying",
+      "symbol_rate",
+      "bit_rate"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "eight_state",
+      "PSK",
+      "signal_transition"
+    ],
+    "technical_terms": [
+      "8PSK",
+      "symbol_rate",
+      "bit_rate",
+      "phase"
+    ],
+    "has_formula": true,
+    "has_example": true,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how symbol rate influences spectrum (bandwidth) requirements in digital modulation, specifically through the example of eight-state Phase Shift Keying (8PSK). In 8PSK, the signal can transition to eight possible states, allowing three bits to be transmitted per symbol, which results in a symbol rate that is one third of the bit rate. This relationship highlights the efficiency of more complex modulation formats in utilizing the radio frequency spectrum, connecting to the broader discussion of digital modulation types and their applications in wireless communications."
+  },
+  {
+    "chunk_id": "chunk_s3.1.3_001",
+    "page": 14,
+    "section": "3.1.3",
+    "section_title": "Symbol Clock",
+    "text": "3.1.3 Symbol Clock\nThe symbol clock represents the frequency and\nexact timing of the transmission of the individual\nsymbols. At the symbol clock transitions, the transmitted\ncarrier is at the correct I/Q (or magnitude/\nphase) value to represent a specific symbol (a\nspecific point in the constellation).",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "symbol_clock",
+      "I/Q_value",
+      "constellation"
+    ],
+    "content_type": "definition",
+    "secondary_concepts": [
+      "transmission_frequency",
+      "timing",
+      "carrier"
+    ],
+    "technical_terms": [
+      "symbol_clock",
+      "I/Q",
+      "magnitude",
+      "phase",
+      "constellation"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section DEFINES the symbol clock, which represents the frequency and exact timing of the transmission of individual symbols in digital modulation. The symbol clock transitions ensure that the transmitted carrier is at the correct In-phase/Quadrature (I/Q) value to represent a specific symbol, corresponding to a specific point in the constellation diagram. Understanding the symbol clock is crucial for grasping how symbol rate influences bandwidth requirements and overall modulation efficiency in digital communication systems."
+  },
+  {
+    "chunk_id": "chunk_s3.10_001",
+    "page": 21,
+    "section": "3.10",
+    "section_title": "Constant amplitude modulation",
+    "text": "3.10  Constant amplitude modulation\nThe third variation is constant-envelope modulation.\nGSM uses a variation of constant amplitude\nmodulation format called 0.3 GMSK (Gaussian\nMinimum Shift Keying).\nIn constant-envelope modulation the amplitude of\nthe carrier is constant, regardless of the variation\nin the modulating signal. It is a power-efficient\nscheme that allows efficient class-C amplifiers to\nbe used without introducing degradation in the\nspectral occupancy of the transmitted signal.\nHowever, constant-envelope modulation techniques\noccupy a larger bandwidth than schemes which are\nlinear. In linear schemes, the amplitude of the\ntransmitted signal varies with the modulating digital\nsignal as in BPSK or QPSK. In systems where\nbandwidth efficiency is more important than\npower efficiency, constant envelope modulation\nis not as well suited.\nMSK (covered in section 3.4) is a special type of\nFSK where the peak-to-peak frequency deviation is\nequal to half the bit rate.\nGMSK is a derivative of MSK where the bandwidth\nrequired is further reduced by passing the modulating\nwaveform through a Gaussian filter. The\nGaussian filter minimizes the instantaneous frequency\nvariations over time. GMSK is a spectrally\nefficient modulation scheme and is particularly\nuseful in mobile radio systems. It has a constant\nenvelope, spectral efficiency, good BER performance,\nand is self-synchronizing.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "constant_amplitude_modulation",
+      "GMSK"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "class_C_amplifiers",
+      "bandwidth_efficiency",
+      "BER_performance"
+    ],
+    "technical_terms": [
+      "constant-envelope_modulation",
+      "spectral_efficiency",
+      "Gaussian_filter",
+      "MSK",
+      "FSK",
+      "BPSK",
+      "QPSK"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how constant amplitude modulation works, specifically focusing on the 0.3 Gaussian Minimum Shift Keying (GMSK) format used in Global System for Mobile Communications (GSM). Constant amplitude modulation maintains a constant carrier amplitude regardless of the modulating signal, making it power-efficient but requiring a larger bandwidth compared to linear modulation schemes like Binary Phase Shift Keying (BPSK) and Quadrature Phase Shift Keying (QPSK). The section also discusses the relationship between constant amplitude modulation and other modulation types, highlighting its advantages in mobile radio systems."
+  },
+  {
+    "chunk_id": "chunk_s3.1_001",
+    "page": 12,
+    "section": "3.1",
+    "section_title": "Applications",
+    "text": "3.1  Applications\nThe table below covers the applications for different\nmodulation formats in both wireless communications\nand video.\nAlthough this note focuses on wireless communications,\nvideo applications have also been included\nin the table for completeness and because of their\nsimilarity to other wireless communications.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "modulation_formats",
+      "wireless_communications",
+      "video_applications"
+    ],
+    "content_type": "example",
+    "secondary_concepts": [
+      "applications",
+      "communication_technologies",
+      "signal_processing"
+    ],
+    "technical_terms": [],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "beginner",
+    "contextualized_content": "This section PROVIDES EXAMPLES of applications for different modulation formats in both wireless communications and video applications. It highlights the similarities between these fields and emphasizes the relevance of modulation formats in optimizing communication efficiency. Understanding these applications is crucial for grasping the broader concepts of digital modulation types and their relative efficiencies discussed in this chapter."
+  },
+  {
+    "chunk_id": "chunk_s3.2_001",
+    "page": 14,
+    "section": "3.2",
+    "section_title": "Phase Shift Keying",
+    "text": "3.2  Phase Shift Keying\nOne of the simplest forms of digital modulation is\nbinary or Bi-Phase Shift Keying (BPSK). One application\nwhere this is used is for deep space telemetry.\nThe phase of a constant amplitude carrier signal\nmoves between zero and 180 degrees. On an I\nand Q diagram, the I state has two different values.\nThere are two possible locations in the state diagram,\nso a binary one or zero can be sent. The\nsymbol rate is one bit per symbol.\nA more common type of phase modulation is\nQuadrature Phase Shift Keying (QPSK). It is used\nextensively in applications including CDMA (Code\nDivision Multiple Access) cellular service, wireless\nlocal loop, Iridium (a voice/data satellite system)\nand DVB-S (Digital Video Broadcasting — Satellite).\nQuadrature means that the signal shifts between\nphase states which are separated by 90 degrees.\nThe signal shifts in increments of 90 degrees from\n45 to 135, –45, or –135 degrees. These points are\nchosen as they can be easily implemented using an\nI/Qmodulator. Only two I values and two Q values\nare needed and this gives two bits per symbol.\nThere are four states because 2^2 = 4. It is therefore\na more bandwidth-efficient type of modulation\nthan BPSK, potentially twice as efficient.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "phase_shift_keying",
+      "binary_phase_shift_keying",
+      "quadrature_phase_shift_keying"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "CDMA",
+      "I/Q_modulator",
+      "symbol_rate",
+      "bandwidth_efficiency"
+    ],
+    "technical_terms": [
+      "BPSK",
+      "QPSK",
+      "carrier",
+      "symbol_rate",
+      "bandwidth"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Phase Shift Keying (PSK) works, detailing its simplest form, Binary Phase Shift Keying (BPSK), and its more complex variant, Quadrature Phase Shift Keying (QPSK). BPSK transmits data by shifting the phase of a constant amplitude carrier signal between zero and 180 degrees, while QPSK enhances bandwidth efficiency by using four phase states separated by 90 degrees, allowing two bits per symbol. This modulation technique is related to the broader discussion of digital modulation types and their relative efficiencies in Chapter 3."
+  },
+  {
+    "chunk_id": "chunk_s3.3_001",
+    "page": 15,
+    "section": "3.3",
+    "section_title": "Frequency Shift Keying",
+    "text": "3.3  Frequency Shift Keying\nFrequency modulation and phase modulation are\nclosely related. A static frequency shift of +1 Hz\nmeans that the phase is constantly advancing at\nthe rate of 360 degrees per second (2 π rad/sec),\nrelative to the phase of the unshifted signal.\nFSK (Frequency Shift Keying) is used in many\napplications including cordless and paging systems.\nSome of the cordless systems include DECT\n(Digital Enhanced Cordless Telephone) and CT2\n(Cordless Telephone 2).\nIn FSK, the frequency of the carrier is changed as\na function of the modulating signal (data) being\ntransmitted. Amplitude remains unchanged. In\nbinary FSK (BFSK or 2FSK), a “1” is represented\nby one frequency and a “0” is represented by\nanother frequency.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "frequency_shift_keying",
+      "binary_FSK"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "DECT",
+      "CT2",
+      "cordless_systems"
+    ],
+    "technical_terms": [
+      "FSK",
+      "frequency_shift_keying",
+      "carrier"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how Frequency Shift Keying (FSK) works, detailing its application in systems such as Digital Enhanced Cordless Telephone (DECT) and Cordless Telephone 2 (CT2). FSK is characterized by the alteration of the carrier frequency in response to the modulating signal, with binary FSK (BFSK) representing a \"1\" and a \"0\" with two distinct frequencies. This modulation technique is closely related to other forms of digital modulation discussed in the document, such as Phase Shift Keying (PSK)."
+  },
+  {
+    "chunk_id": "chunk_s3.4_001",
+    "page": 15,
+    "section": "3.4",
+    "section_title": "Minimum Shift Keying",
+    "text": "3.4  Minimum Shift Keying\nSince a frequency shift produces an advancing or\nretarding phase, frequency shifts can be detected\nby sampling phase at each symbol period. Phase\nshifts of (2N + 1) π/2 radians are easily detected\nwith an I/Q demodulator. At even numbered symbols,\nthe polarity of the I channel conveys the\ntransmitted data, while at odd numbered symbols\nthe polarity of the Q channel conveys the data.\nThis orthogonality between I and Q simplifies\ndetection algorithms and hence reduces power consumption\nin a mobile receiver. The minimum frequency\nshift which yields orthogonality of I and Q\nis that which results in a phase shift of ± π/2 radians\nper symbol (90 degrees per symbol). FSK with\nthis deviation is called MSK (Minimum Shift\nKeying). The deviation must be accurate in order to\ngenerate repeatable 90 degree phase shifts. MSK is\nused in the GSM (Global System for Mobile\nCommunications) cellular standard. A phase shift\nof +90 degrees represents a data bit equal to “1,”\nwhile –90 degrees represents a “0.” The peak-topeak\nfrequency shift of an MSK signal is equal to\none-half of the bit rate.\nFSK and MSK produce constant envelope carrier\nsignals, which have no amplitude variations. This\nis a desirable characteristic for improving the\npower efficiency of transmitters. Amplitude variations\ncan exercise nonlinearities in an amplifier’s\namplitude-transfer function, generating spectral\nregrowth, a component of adjacent channel power.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "minimum_shift_keying",
+      "I/Q_demodulator"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "GSM",
+      "phase_shift",
+      "frequency_shift"
+    ],
+    "technical_terms": [
+      "MSK",
+      "FSK",
+      "phase_shift",
+      "bit_rate",
+      "constant_envelope"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Minimum Shift Keying (MSK) works, detailing its reliance on frequency shifts to produce phase shifts detectable by an I/Q (In-phase/Quadrature) demodulator. MSK is characterized by a phase shift of ± π/2 radians per symbol, which simplifies detection algorithms and enhances power efficiency in mobile receivers. Additionally, it highlights the relationship between MSK and Frequency Shift Keying (FSK), noting that MSK is utilized in the Global System for Mobile Communications (GSM) standard."
+  },
+  {
+    "chunk_id": "chunk_s3.4_002",
+    "page": 15,
+    "section": "3.4",
+    "section_title": "Minimum Shift Keying",
+    "text": "power efficiency of transmitters. Amplitude variations\ncan exercise nonlinearities in an amplifier’s\namplitude-transfer function, generating spectral\nregrowth, a component of adjacent channel power.\nTherefore, more efficient amplifiers (which tend to\nbe less linear) can be used with constant-envelope\nsignals, reducing power consumption.\nMSK has a narrower spectrum than wider deviation\nforms of FSK. The width of the spectrum is\nalso influenced by the waveforms causing the frequency\nshift. If those waveforms have fast transitions\nor a high slew rate, then the spectrum\nof the transmitter will be broad. In practice, the\nwaveforms are filtered with a Gaussian filter,\nresulting in a narrow spectrum. In addition, the\nGaussian filter has no time-domain overshoot,\nwhich would broaden the spectrum by increasing\nthe peak deviation. MSK with a Gaussian filter is\ntermed GMSK (Gaussian MSK).",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "minimum_shift_keying",
+      "gaussian_filter",
+      "spectral_regrowth"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "constant_envelope_signals",
+      "amplitude_transfer_function",
+      "adjacent_channel_power"
+    ],
+    "technical_terms": [
+      "MSK",
+      "GMSK",
+      "FSK",
+      "amplifier",
+      "power_efficiency",
+      "spectrum",
+      "waveform",
+      "slew_rate"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Minimum Shift Keying (MSK) works, highlighting its advantages in power efficiency and spectral characteristics. MSK is noted for having a narrower spectrum compared to wider deviation forms of Frequency Shift Keying (FSK), and its performance is enhanced when filtered with a Gaussian filter, resulting in Gaussian Minimum Shift Keying (GMSK). The relationship between MSK and spectral regrowth is also discussed, emphasizing the impact of amplitude variations on adjacent channel power."
+  },
+  {
+    "chunk_id": "chunk_s3.5_001",
+    "page": 16,
+    "section": "3.5",
+    "section_title": "Quadrature Amplitude Modulation",
+    "text": "3.5  Quadrature Amplitude Modulation\nAnother member of the digital modulation family\nis Quadrature Amplitude Modulation (QAM). QAM\nis used in applications including microwave digital\nradio, DVB-C (Digital Video Broadcasting—Cable),\nand modems.\nIn 16-state Quadrature Amplitude Modulation\n(16QAM), there are four I values and four Q values.\nThis results in a total of 16 possible states for the\nsignal. It can transition from any state to any other\nstate at every symbol time. Since 16 = 2⁴, four bits\nper symbol can be sent. This consists of two bits\nfor I and two bits for Q. The symbol rate is one\nfourth of the bit rate. So this modulation format\nproduces a more spectrally efficient transmission.\nIt is more efficient than BPSK, QPSK, or 8PSK.\nNote that QPSK is the same as 4QAM.\nAnother variation is 32QAM. In this case there are\nsix I values and six Q values resulting in a total of\n36 possible states (6x6=36). This  is too many states\nfor a power of two (the closest power of two is 32).\nSo the four corner symbol states, which take the\nmost power to transmit, are omitted. This reduces\nthe amount of peak power the transmitter has to\ngenerate. Since 2⁵ = 32, there are five bits per symbol\nand the symbol rate is one fifth of the bit rate.\nThe current practical limits are approximately\n256QAM, though work is underway to extend the\nlimits to 512 or 1024 QAM. A 256QAM system uses\n16 I-values and 16 Q-values, giving 256 possible\nstates. Since 2⁸ = 256, each symbol can represent",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "Quadrature_Amplitude_Modulation",
+      "16QAM",
+      "32QAM",
+      "256QAM"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "I_values",
+      "Q_values",
+      "symbol_rate",
+      "bit_rate",
+      "spectral_efficiency"
+    ],
+    "technical_terms": [
+      "QAM",
+      "DVB-C",
+      "symbol",
+      "states",
+      "bit",
+      "power"
+    ],
+    "has_formula": true,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Quadrature Amplitude Modulation (QAM) works, detailing its variations such as 16QAM, 32QAM, and 256QAM. QAM is utilized in applications like microwave digital radio and Digital Video Broadcasting—Cable (DVB-C), and it is more spectrally efficient than other modulation formats like Binary Phase Shift Keying (BPSK) and Quadrature Phase Shift Keying (QPSK). The working principle of QAM involves sending multiple bits per symbol, enhancing data transmission efficiency in digital communication systems."
+  },
+  {
+    "chunk_id": "chunk_s3.5_002",
+    "page": 16,
+    "section": "3.5",
+    "section_title": "Quadrature Amplitude Modulation",
+    "text": "256QAM, though work is underway to extend the\nlimits to 512 or 1024 QAM. A 256QAM system uses\n16 I-values and 16 Q-values, giving 256 possible\nstates. Since 2⁸ = 256, each symbol can represent\neight bits. A 256QAM signal that can send eight\nbits per symbol is very spectrally efficient.\nHowever, the symbols are very close together and\nare thus more subject to errors due to noise and\ndistortion. Such a signal may have to be transmitted\nwith extra power (to effectively spread the\nsymbols out more) and this reduces power efficiency\nas compared to simpler schemes.\nCompare the bandwidth efficiency when using\n256QAM versus BPSK modulation in the radio\nexample in section 3.1.1 (which uses an eight-bit\nsampler sampling at 10 kHz for voice). BPSK uses\n80 Ksymbols-per-second sending 1 bit per symbol.\nA system using 256QAM sends eight bits per symbol\nso the symbol rate would be 10 Ksymbols per\nsecond. A 256QAM system enables the same\namount of information to be sent as BPSK using\nonly one eighth of the bandwidth. It is eight times\nmore bandwidth efficient. However, there is a\ntradeoff. The radio becomes more complex and is\nmore susceptible to errors caused by noise and distortion.\nError rates of higher-order QAM systems\nsuch as this degrade more rapidly than QPSK as\nnoise or interference is introduced. A measure\nof this degradation would be a higher Bit Error\nRate (BER).\nIn any digital modulation system, if the input signal\nis distorted or severely attenuated  the receiver",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "256QAM",
+      "BPSK"
+    ],
+    "content_type": "comparison",
+    "secondary_concepts": [
+      "Bit_Error_Rate",
+      "bandwidth_efficiency",
+      "symbol_rate"
+    ],
+    "technical_terms": [
+      "256QAM",
+      "BPSK",
+      "symbols",
+      "spectral_efficiency",
+      "power_efficiency",
+      "noise",
+      "distortion",
+      "Bit_Error_Rate",
+      "QAM"
+    ],
+    "has_formula": true,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section COMPARES Quadrature Amplitude Modulation (QAM) with Binary Phase Shift Keying (BPSK) in terms of bandwidth efficiency. It highlights that a 256QAM system can transmit eight bits per symbol, making it eight times more bandwidth efficient than BPSK, which sends one bit per symbol. However, the increased complexity of 256QAM also leads to a higher susceptibility to errors due to noise and distortion, resulting in a greater Bit Error Rate (BER) compared to simpler modulation schemes discussed in Section 3.1.1."
+  },
+  {
+    "chunk_id": "chunk_s3.5_003",
+    "page": 16,
+    "section": "3.5",
+    "section_title": "Quadrature Amplitude Modulation",
+    "text": "of this degradation would be a higher Bit Error\nRate (BER).\nIn any digital modulation system, if the input signal\nis distorted or severely attenuated  the receiver\nwill eventually lose symbol lock completely. If the\nreceiver can no longer recover the symbol clock, it\ncannot demodulate the signal or recover any information.\nWith less degradation, the symbol clock\ncan be recovered, but it is noisy, and the symbol\nlocations themselves are noisy. In some cases, a\nsymbol will fall far enough away from its intended\nposition that it will cross over to an adjacent position.\nThe I and Q level detectors used in the\ndemodulator would misinterpret such a symbol as\nbeing in the wrong location, causing bit errors.\nQPSK is not as efficient, but the states are much\nfarther apart and the system can tolerate a lot\nmore noise before suffering symbol errors. QPSK\nhas no intermediate states between the four\ncorner-symbol locations, so there is less opportunity\nfor the demodulator to misinterpret symbols.\nQPSK requires less transmitter power than QAM\nto achieve the same bit error rate.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "Bit_Error_Rate",
+      "QPSK",
+      "symbol_lock"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "demodulator",
+      "symbol_clock",
+      "QAM"
+    ],
+    "technical_terms": [
+      "Bit_Error_Rate",
+      "QPSK",
+      "QAM",
+      "symbol_lock",
+      "I_and_Q_level_detectors"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Quadrature Amplitude Modulation (QAM) works, particularly in relation to its efficiency compared to Quadrature Phase Shift Keying (QPSK). It discusses the impact of signal degradation on Bit Error Rate (BER) and the importance of maintaining symbol lock for effective demodulation. QPSK is highlighted for its ability to tolerate noise better than QAM, requiring less transmitter power to achieve the same BER, thus illustrating the trade-offs between different digital modulation types discussed in Chapter 3."
+  },
+  {
+    "chunk_id": "chunk_s3.6_001",
+    "page": 17,
+    "section": "3.6",
+    "section_title": "Theoretical bandwidth efficiency limits",
+    "text": "3.6  Theoretical bandwidth efficiency limits\nBandwidth efficiency describes how efficiently the\nallocated bandwidth is utilized or the ability of a\nmodulation scheme to accommodate data, within\na limited bandwidth. The table below shows the\ntheoretical bandwidth efficiency limits for the\nmain modulation types. Note that these figures\ncannot actually be achieved in practical radios\nsince they require perfect modulators, demodulators,\nfilter, and transmission paths.\nIf the radio had a perfect (rectangular in the frequency\ndomain) filter, then the occupied bandwidth\ncould be made equal to the symbol rate.\nTechniques for maximizing spectral efficiency\ninclude the following:\n• Relate the data rate to the frequency shift\n(as in GSM).\n• Use premodulation filtering to reduce the\noccupied bandwidth. Raised cosine filters,\nas used in NADC, PDC, and PHS, give the\nbest spectral efficiency.\n• Restrict the types of transitions.\nEffects of going through the origin\nTake, for example, a QPSK signal where the normalized\nvalue changes from 1, 1 to –1, –1. When changing simultaneously\nfrom I and Q values of +1 to I and Q values of –1,\nthe signal trajectory goes through the origin (the I/Q value\nof 0,0). The origin represents 0 carrier magnitude. A value\nof 0 magnitude indicates that the carrier amplitude is 0 for\na moment.\nNot all transitions in QPSK result in a trajectory that goes\nthrough the origin. If I changes value but Q does not (or",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "bandwidth_efficiency",
+      "spectral_efficiency"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "QPSK",
+      "raised_cosine_filters",
+      "premodulation_filtering"
+    ],
+    "technical_terms": [
+      "bandwidth",
+      "symbol_rate",
+      "modulators",
+      "demodulators",
+      "filter",
+      "transmission_paths",
+      "carrier",
+      "magnitude"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how bandwidth efficiency works in digital modulation schemes, detailing the theoretical limits of spectral efficiency for various modulation types. It highlights that these theoretical limits cannot be achieved in practical applications due to the need for ideal modulators, demodulators, filters, and transmission paths. Additionally, it discusses techniques for maximizing spectral efficiency, such as premodulation filtering and the relationship between data rate and frequency shift, linking it to concepts introduced in earlier sections on digital modulation types and their applications."
+  },
+  {
+    "chunk_id": "chunk_s3.6_002",
+    "page": 17,
+    "section": "3.6",
+    "section_title": "Theoretical bandwidth efficiency limits",
+    "text": "of 0 magnitude indicates that the carrier amplitude is 0 for\na moment.\nNot all transitions in QPSK result in a trajectory that goes\nthrough the origin. If I changes value but Q does not (or\nvice-versa) the carrier amplitude changes a little, but it\ndoes not go through zero. Therefore some symbol transitions\nwill result in a small amplitude variation, while others\nwill result in a very large amplitude variation. The clockrecovery\ncircuit in the receiver must deal with this amplitude\nvariation uncertainty if it uses amplitude variations\nto align the receiver clock with the transmitter clock.\nSpectral regrowth does not automatically result from these\ntrajectories that pass through or near the origin. If the\namplifier and associated circuits are perfectly linear, the\nspectrum (spectral occupancy or occupied bandwidth) will\nbe unchanged. The problem lies in nonlinearities in the\ncircuits.\nA signal which changes amplitude over a very large range\nwill exercise these nonlinearities to the fullest extent.\nThese nonlinearities will cause distortion products. In continuously\nmodulated systems they will cause “spectral\nregrowth” or wider modulation sidebands (a phenomenon\nrelated to intermodulation distortion). Another term which\nis sometimes used in this context is “spectral splatter.”\nHowever this is a term that is more correctly used in association\nwith the increase in the bandwidth of a signal\ncaused by pulsing on and off.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "QPSK",
+      "spectral_regrowth"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "nonlinearities",
+      "amplitude_variation",
+      "intermodulation_distortion"
+    ],
+    "technical_terms": [
+      "carrier",
+      "amplitude",
+      "spectrum",
+      "bandwidth",
+      "distortion_products"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how theoretical bandwidth efficiency limits are influenced by Quadrature Phase Shift Keying (QPSK) and the concept of spectral regrowth. It discusses the impact of amplitude variations during symbol transitions on receiver clock alignment and highlights the relationship between circuit nonlinearity and spectral distortion. Understanding these principles is crucial for evaluating the efficiency of digital modulation types and their applications in wireless communications."
+  },
+  {
+    "chunk_id": "chunk_s3.7_001",
+    "page": 18,
+    "section": "3.7",
+    "section_title": "Spectral efficiency examples in",
+    "text": "3.7 Spectral efficiency examples in\npractical radios\nThe following examples indicate spectral efficiencies\nthat are achieved in some practical radio\nsystems.\nThe TDMA version of the North American Digital\nCellular (NADC) system, achieves a 48 Kbits-persecond\ndata rate over a 30 kHz bandwidth or 1.6 bits\nper second per Hz. It is a π/4 DQPSK based system\nand transmits two bits per symbol. The theoretical\nefficiency would be two bits per second per Hz and\nin practice it is 1.6 bits per second per Hz.\nAnother example is a microwave digital radio using\n16QAM. This kind of signal is more susceptible to\nnoise and distortion than something simpler such\nas QPSK. This type of signal is usually sent over a\ndirect line-of-sight microwave link or over a wire\nwhere there is very little noise and interference. In\nthis microwave-digital-radio example the bit rate is\n140 Mbits per second over a very wide bandwidth\nof 52.5 MHz. The spectral efficiency is 2.7 bits per\nsecond per Hz. To implement this, it takes a very\nclear line-of-sight transmission path and a precise\nand optimized high-power transceiver.\nDigital modulation types—variations\nThe modulation types outlined in sections 3.2 to\n3.4 form the building blocks for many systems.\nThere are three main variations on these basic\nbuilding blocks that are used in communications\nsystems: I/Q offset modulation, differential modulation,\nand constant envelope modulation.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "spectral_efficiency",
+      "TDMA",
+      "16QAM"
+    ],
+    "content_type": "example",
+    "secondary_concepts": [
+      "NADC",
+      "DQPSK",
+      "microwave_digital_radio"
+    ],
+    "technical_terms": [
+      "Kbits_per_second",
+      "bandwidth",
+      "line_of_sight",
+      "transceiver"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section PROVIDES EXAMPLES of spectral efficiency in practical radio systems, illustrating how different digital modulation techniques achieve varying efficiencies. For instance, the Time Division Multiple Access (TDMA) version of the North American Digital Cellular (NADC) system achieves a spectral efficiency of 1.6 bits per second per Hertz using π/4 Differential Quadrature Phase Shift Keying (DQPSK), while a microwave digital radio employing 16 Quadrature Amplitude Modulation (16QAM) achieves 2.7 bits per second per Hertz. These examples highlight the relationship between modulation types discussed in sections 3.2 to 3.4 and their practical applications in optimizing bandwidth usage."
+  },
+  {
+    "chunk_id": "chunk_s3.8_001",
+    "page": 19,
+    "section": "3.8",
+    "section_title": "I/Q offset modulation",
+    "text": "3.8  I/Q offset modulation\nThe first variation is offset modulation. One example\nof this is Offset QPSK (OQPSK). This is used in\nthe cellular CDMA (Code Division Multiple Access)\nsystem for the reverse (mobile to base) link.\nIn QPSK, the I and Q bit streams are switched at\nthe same time. The symbol clocks, or the I and Q\ndigital signal clocks, are synchronized. In Offset\nQPSK (OQPSK), the I and Q bit streams are offset\nin their relative alignment by one bit period (one\nhalf of a symbol period). This is shown in the diagram.\nSince the transitions of I and Q are offset, at\nany given time only one of the two bit streams can\nchange values. This creates a dramatically different\nconstellation, even though there are still just two\nI/Q values. This has power efficiency advantages.\nIn OQPSK the signal trajectories are modified by\nthe symbol clock offset so that the carrier amplitude\ndoes not go through or near zero (the center\nof the constellation). The spectral efficiency is the\nsame with two I states and two Q states. The\nreduced amplitude variations (perhaps 3 dB for\nOQPSK, versus 30 to 40 dB for QPSK) allow a more\npower-efficient, less linear RF power amplifier to\nbe used.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "offset_QPSK",
+      "I_Q_offset_modulation"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "CDMA",
+      "symbol_clock",
+      "constellation"
+    ],
+    "technical_terms": [
+      "OQPSK",
+      "QPSK",
+      "bit_streams",
+      "carrier_amplitude",
+      "spectral_efficiency",
+      "RF_power_amplifier"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how I/Q (In-phase and Quadrature) offset modulation works, specifically through the example of Offset QPSK (Quadrature Phase Shift Keying). It describes the technique where the I and Q bit streams are offset by one bit period, resulting in a modified constellation that enhances power efficiency while maintaining spectral efficiency. This concept is related to other modulation types discussed in the document, such as standard QPSK, highlighting the advantages of reduced amplitude variations in RF (Radio Frequency) power amplifiers."
+  },
+  {
+    "chunk_id": "chunk_s3.9_001",
+    "page": 20,
+    "section": "3.9",
+    "section_title": "Differential modulation",
+    "text": "3.9  Differential modulation\nThe second variation is differential modulation as\nused in differential QPSK (DQPSK) and differential\n16QAM (D16QAM). Differential means that the\ninformation is not carried by the absolute state, it\nis carried by the transition between states. In some\ncases there are also restrictions on allowable transitions.\nThis occurs in π/4 DQPSK where the carrier\ntrajectory does not go through the origin. A DQPSK\ntransmission system can transition from any symbol\nposition to any other symbol position. The π/4\nDQPSK modulation format is widely used in many\napplications including\n• cellular\n–NADC- IS-54 (North American digital cellular)\n–PDC (Pacific Digital Cellular)\n• cordless\n–PHS (personal handyphone system)\n• trunked radio\n–TETRA (Trans European Trunked Radio)\nThe π/4 DQPSK modulation format uses two QPSK\nconstellations offset by 45 degrees ( π/4 radians).\nTransitions must occur from one constellation to\nthe other. This guarantees that there is always a\nchange in phase at each symbol, making clock\nrecovery easier. The data is encoded in the magnitude\nand direction of the phase shift, not in the\nabsolute position on the constellation. One advantage\nof π/4 DQPSK is that the signal trajectory does\nnot pass through the origin, thus simplifying transmitter\ndesign. Another is that π/4 DQPSK, with root\nraised cosine filtering, has better spectral efficiency\nthan GMSK, the other common cellular modulation\ntype.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "differential_QPSK",
+      "differential_16QAM"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "π/4_DQPSK",
+      "cellular_communications",
+      "spectral_efficiency"
+    ],
+    "technical_terms": [
+      "DQPSK",
+      "D16QAM",
+      "phase_shift",
+      "constellation",
+      "clock_recovery",
+      "root_raised_cosine_filtering",
+      "GMSK"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how differential modulation works, specifically in the context of Differential Quadrature Phase Shift Keying (DQPSK) and Differential 16 Quadrature Amplitude Modulation (D16QAM). Differential modulation carries information through transitions between states rather than absolute states, which enhances clock recovery and simplifies transmitter design. It is related to other modulation types discussed in this chapter, such as Quadrature Phase Shift Keying (QPSK) and its variations, highlighting its applications in cellular and trunked radio systems."
+  },
+  {
+    "chunk_id": "chunk_s3_001",
+    "page": 12,
+    "section": "3",
+    "section_title": "Digital Modulation Types and Relative Efficiencies",
+    "text": "3. Digital Modulation Types and Relative Efficiencies\nThis section covers the main digital modulation\nformats, their main applications, relative spectral\nefficiencies, and some variations of the main\nmodulation types as used in practical systems.\nFortunately, there are a limited number of modulation\ntypes which form the building blocks of any\nsystem.",
+    "chapter": 3,
+    "chapter_title": "Digital Modulation Types and Relative Efficiencies",
+    "primary_concepts": [
+      "digital_modulation",
+      "spectral_efficiency"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "modulation_formats",
+      "practical_systems",
+      "modulation_variations"
+    ],
+    "technical_terms": [
+      "digital_modulation",
+      "spectral_efficiency",
+      "modulation_types"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how digital modulation types function, detailing their applications and relative spectral efficiencies. It highlights the limited number of modulation formats that serve as foundational elements in communication systems, establishing a relationship with concepts such as bit rate, symbol rate, and bandwidth requirements discussed in subsequent sections."
+  },
+  {
+    "chunk_id": "chunk_s4.1_001",
+    "page": 22,
+    "section": "4.1",
+    "section_title": "Nyquist or raised cosine filter",
+    "text": "4.1 Nyquist or raised cosine filter\nFigure 18 shows the impulse or time-domain\nresponse of a raised cosine filter, one class of\nNyquist filter. Nyquist filters have the property\nthat their impulse response rings at the symbol\nrate. The filter is chosen to ring, or have the\nimpulse response of the filter cross through zero,\nat the symbol clock frequency.\nThe time response of the filter goes through zero\nwith a period that exactly corresponds to the symbol\nspacing. Adjacent symbols do not interfere\nwith each other at the symbol times because the\nresponse equals zero at all symbol times except the\ncenter (desired) one. Nyquist filters heavily filter\nthe signal  without blurring the symbols together\nat the symbol times. This is important for transmitting\ninformation without errors caused by Inter-\nSymbol Interference. Note that Inter-Symbol\nInterference does exist at all times except the symbol\n(decision) times. Usually the filter is split, half\nbeing in the transmit path and half in the receiver\npath. In this case root Nyquist filters (commonly\ncalled root raised cosine) are used in each part, so\nthat their combined response is that of a Nyquist\nfilter.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "Nyquist_filter",
+      "raised_cosine_filter"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "Inter_Symbol_Interference",
+      "impulse_response",
+      "symbol_rate"
+    ],
+    "technical_terms": [
+      "Nyquist",
+      "raised_cosine",
+      "impulse_response",
+      "symbol_spacing",
+      "root_raised_cosine"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how the Nyquist filter, specifically the raised cosine filter, works in digital modulation. The Nyquist filter is characterized by its impulse response that rings at the symbol rate, ensuring that adjacent symbols do not interfere with each other at symbol times, which is crucial for minimizing Inter-Symbol Interference (ISI). This concept is related to filtering techniques discussed in Chapter 4, which aim to enhance spectral efficiency and reduce bandwidth while maintaining signal integrity."
+  },
+  {
+    "chunk_id": "chunk_s4.2_001",
+    "page": 23,
+    "section": "4.2",
+    "section_title": "Transmitter-receiver matched filters",
+    "text": "4.2  Transmitter-receiver matched filters\nSometimes filtering is desired at both the transmitter\nand receiver. Filtering in the transmitter\nreduces the adjacent-channel-power radiation of\nthe transmitter, and thus its potential for interfering\nwith other transmitters.\nFiltering at the receiver reduces the effects of\nbroadband noise and also interference from other\ntransmitters in nearby channels.\nTo get zero Inter-Symbol Interference (ISI), both\nfilters are designed until the combined result of\nthe filters and the rest of the system is a full Nyquist\nfilter. Potential differences can cause problems in\nmanufacturing because the transmitter and receiver\nare often manufactured by different companies.\nThe receiver may be a small hand-held model and\nthe transmitter may be a large cellular base station.\nIf the design is performed correctly the results\nare the best data rate, the most efficient radio, and\nreduced effects of interference and noise. This is\nwhy root-Nyquist filters are used in receivers and\ntransmitters as √ Nyquist x √ Nyquist = Nyquist.\nMatched filters are not used in Gaussian filtering.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "matched_filters",
+      "Inter_Symbol_Interference",
+      "Nyquist_filter"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "adjacent_channel_power",
+      "broadband_noise",
+      "root_Nyquist_filters"
+    ],
+    "technical_terms": [
+      "Inter_Symbol_Interference",
+      "Nyquist",
+      "matched_filters",
+      "Gaussian_filtering"
+    ],
+    "has_formula": true,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how transmitter-receiver matched filters function to minimize Inter-Symbol Interference (ISI) in digital communication systems. Matched filters are designed to ensure that the combined effect of the transmitter and receiver filters results in a full Nyquist filter, thereby optimizing data rates and reducing interference. This concept is closely related to Nyquist filtering techniques discussed in Section 4.1, highlighting the importance of filter design in enhancing spectral efficiency and signal integrity."
+  },
+  {
+    "chunk_id": "chunk_s4.3_001",
+    "page": 23,
+    "section": "4.3",
+    "section_title": "Gaussian filter",
+    "text": "4.3  Gaussian filter\nIn contrast, a GSM signal will have a small blurring\nof symbols on each of the four states because the\nGaussian filter used in GSM does not have zero\nInter-Symbol Interference. The phase states vary\nsomewhat causing a blurring of the symbols, as\nshown in Figure 17. Wireless system architects\nmust decide just how much of the Inter-Symbol\nInterference can be tolerated in a system and combine\nthat with noise and interference.\nGaussian filters are used in GSM because of their\nadvantages in carrier power, occupied bandwidth,\nand symbol-clock recovery. The Gaussian filter is\na Gaussian shape in both the time and frequency\ndomains, and it does not ring like the raised cosine\nfilters do. Its effects in the time domain are relatively\nshort and each symbol interacts significantly\n(or causes ISI) with only the preceding and succeeding\nsymbols. This reduces the tendency for\nparticular sequences of symbols to interact which\nmakes amplifiers easier to build and more efficient.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "Gaussian_filter",
+      "Inter_Symbol_Interference"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "GSM",
+      "carrier_power",
+      "symbol_clock_recovery"
+    ],
+    "technical_terms": [
+      "GSM",
+      "Gaussian_filter",
+      "Inter_Symbol_Interference",
+      "bandwidth",
+      "amplifiers"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how the Gaussian filter works in the context of Global System for Mobile Communications (GSM) signals, highlighting its impact on Inter-Symbol Interference (ISI). The Gaussian filter, characterized by its Gaussian shape in both time and frequency domains, does not ring like raised cosine filters, leading to a small blurring of symbols across states. This section also discusses the trade-offs between ISI tolerance, noise, and interference, and how these factors influence the design of amplifiers in digital communication systems."
+  },
+  {
+    "chunk_id": "chunk_s4.4_001",
+    "page": 24,
+    "section": "4.4",
+    "section_title": "Filter bandwidth parameter alpha",
+    "text": "4.4  Filter bandwidth parameter alpha\nThe sharpness of a raised cosine filter is described\nby alpha (α). Alpha gives a direct measure of\nthe occupied bandwidth of the system and is\ncalculated as\noccupied bandwidth = symbol rate X (1 + α).\nIf the filter had a perfect (brick wall) characteristic\nwith sharp transitions and an alpha of zero, the\noccupied bandwidth would be\nfor α = 0, occupied bandwidth = symbol rate X\n(1 + 0) = symbol rate.\nIn a perfect world, the occupied bandwidth would\nbe the same as the symbol rate, but this is not\npractical. An alpha of zero is impossible to implement.\nAlpha is sometimes called the “excess bandwidth\nfactor” as it indicates the amount of occupied\nbandwidth that will be required in excess of the\nideal occupied bandwidth (which would be the\nsame as the symbol rate).\nAt the other extreme, take a broader filter with an\nalpha of one, which is easier to implement. The\noccupied bandwidth will be\nfor α = 1, occupied bandwidth = symbol rate X\n(1 + 1) = 2 X symbol rate.\nAn alpha of one uses twice as much bandwidth as\nan alpha of zero. In practice, it is possible to implement\nan alpha below 0.2 and make good, compact,\npractical radios. Typical values range from 0.35 to\n0.5, though some video systems use an alpha as\nlow as 0.11. The corresponding term for a Gaussian\nfilter is BT (bandwidth time product). Occupied\nbandwidth cannot be stated in terms of BT because\na Gaussian filter’s frequency response does not go",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "raised_cosine_filter",
+      "occupied_bandwidth"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "excess_bandwidth_factor",
+      "Gaussian_filter",
+      "bandwidth_time_product"
+    ],
+    "technical_terms": [
+      "alpha",
+      "symbol_rate",
+      "occupied_bandwidth"
+    ],
+    "has_formula": true,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how the filter bandwidth parameter alpha (α) affects the occupied bandwidth of a raised cosine filter. Alpha is defined as the excess bandwidth factor, indicating the additional bandwidth required beyond the ideal occupied bandwidth, which would equal the symbol rate. Understanding alpha is crucial for optimizing spectral efficiency in digital modulation, as it relates to the performance of filtering techniques discussed in this chapter."
+  },
+  {
+    "chunk_id": "chunk_s4.4_002",
+    "page": 24,
+    "section": "4.4",
+    "section_title": "Filter bandwidth parameter alpha",
+    "text": "low as 0.11. The corresponding term for a Gaussian\nfilter is BT (bandwidth time product). Occupied\nbandwidth cannot be stated in terms of BT because\na Gaussian filter’s frequency response does not go\nidentically to zero, as does a raised cosine. Common\nvalues for BT are 0.3 to 0.5.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "Gaussian_filter",
+      "bandwidth_time_product"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "occupied_bandwidth",
+      "frequency_response",
+      "raised_cosine"
+    ],
+    "technical_terms": [
+      "BT",
+      "bandwidth",
+      "frequency_response"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how the filter bandwidth parameter alpha relates to Gaussian filters and the bandwidth-time product (BT). The bandwidth-time product is a critical measure in determining the occupied bandwidth of a Gaussian filter, which does not drop to zero like a raised cosine filter. Common values for BT range from 0.3 to 0.5, highlighting the differences in bandwidth characteristics between various filtering techniques discussed in this chapter."
+  },
+  {
+    "chunk_id": "chunk_s4.5_001",
+    "page": 25,
+    "section": "4.5",
+    "section_title": "Filter bandwidth effects",
+    "text": "4.5  Filter bandwidth effects\nDifferent filter bandwidths show different effects.\nFor example, look at a QPSK signal and examine\nhow different values of alpha effect the vector\ndiagram. If the radio has no transmitter filter as\nshown on the left of the graph, the transitions\nbetween states are instantaneous. No filtering\nmeans an alpha of infinity.\nTransmitting this signal would require infinite\nbandwidth. The center figure is an example of a\nsignal at an alpha of 0.75. The figure on the right\nshows the signal at an alpha of 0.375. The filters\nwith alphas of 0.75 and 0.375 smooth the transitions\nand narrow the frequency spectrum required.\nDifferent filter alphas also affect transmitted\npower. In the case of the unfiltered signal, with an\nalpha of infinity, the maximum or peak power of\nthe carrier is the same as the nominal power at the\nsymbol states. No extra power is required due to\nthe filtering.\nTake an example of a π/4 DQPSK signal as used in\nNADC (IS-54). If an alpha of 1.0 is used, the transitions\nbetween the states are more gradual than for\nan alpha of infinity. Less power is needed to handle\nthose transitions. Using an alpha of 0.5, the transmitted\nbandwidth decreases from 2 times the symbol\nrate to 1.5 times the symbol rate. This results\nin a 25% improvement in occupied bandwidth. The\nsmaller alpha takes more peak power because of\nthe overshoot in the filter’s step response. This\nproduces trajectories which loop beyond the outer\nlimits of the constellation.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "QPSK",
+      "filter_bandwidth"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "alpha",
+      "π/4_DQPSK",
+      "NADC"
+    ],
+    "technical_terms": [
+      "bandwidth",
+      "symbol_rate",
+      "transmitter_filter",
+      "peak_power",
+      "constellation"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how filter bandwidth affects the performance of Quadrature Phase Shift Keying (QPSK) signals. It discusses the impact of different alpha values on signal transitions and bandwidth requirements, illustrating the trade-offs between bandwidth efficiency and power consumption. Additionally, it relates these concepts to the broader context of filtering techniques covered in Chapter 4, emphasizing the balance between spectral efficiency and signal integrity."
+  },
+  {
+    "chunk_id": "chunk_s4.5_002",
+    "page": 25,
+    "section": "4.5",
+    "section_title": "Filter bandwidth effects",
+    "text": "smaller alpha takes more peak power because of\nthe overshoot in the filter’s step response. This\nproduces trajectories which loop beyond the outer\nlimits of the constellation.\nAt an alpha of 0.2, about the minimum of most\nradios today, there is a need for significant excess\npower beyond that needed to transmit the symbol\nvalues themselves. A typical value of excess power\nneeded at an alpha of 0.2 for QPSK with Nyquist\nfiltering would be approximately 5 dB. This is more\nthan three times as much peak power because of\nthe filter used to limit the occupied bandwidth.\nThese principles apply to QPSK, offset QPSK,\nDQPSK, and the varieties of QAM such as 16QAM,\n32QAM, 64QAM, and 256QAM. Not all signals will\nbehave in exactly the same way, and exceptions\ninclude FSK, MSK, and any others with constantenvelope\nmodulation. The power of these signals\nis not affected by the filter shape.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "QPSK",
+      "Nyquist_filtering"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "excess_power",
+      "constellation",
+      "bandwidth"
+    ],
+    "technical_terms": [
+      "QPSK",
+      "Nyquist_filtering",
+      "alpha",
+      "dB",
+      "DQPSK",
+      "QAM",
+      "16QAM",
+      "32QAM",
+      "64QAM",
+      "256QAM",
+      "FSK",
+      "MSK"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how filter bandwidth effects impact the power requirements for Quadrature Phase Shift Keying (QPSK) when using Nyquist filtering. It highlights that a smaller alpha value in the filter's step response leads to increased peak power due to overshoot, resulting in trajectories that exceed the constellation limits. The principles discussed apply to various modulation schemes, including Differential QPSK (DQPSK) and Quadrature Amplitude Modulation (QAM) formats such as 16QAM, 32QAM, 64QAM, and 256QAM, while noting that constant-envelope modulation signals like Frequency Shift Keying (FSK) and Minimum Shift Keying (MSK) are unaffected by filter shape."
+  },
+  {
+    "chunk_id": "chunk_s4.6_001",
+    "page": 26,
+    "section": "4.6",
+    "section_title": "Chebyshev equiripple FIR (finite impulse",
+    "text": "4.6  Chebyshev equiripple FIR (finite impulse\nrespone) filter\nA Chebyshev equiripple FIR (finite impulse response)\nfilter is used for baseband filtering in IS-95 CDMA.\nWith a channel spacing of 1.25 MHz and a symbol\nrate of 1.2288 MHz in IS-95 CDMA, it is vital to\nreduce leakage to adjacent RF channels. This is\naccomplished by using a filter with a very sharp\nshape factor using an alpha value of only 0.113. A\nFIR filter means that the filter’s impulse response\nexists for only a finite number of samples. Equiripple\nmeans that there is a “rippled” magnitude\nfrequency-respone envelope of equal maxima and\nminima in the pass- and stopbands. This FIR filter\nuses a much lower order than a Nyquist filter to\nimplement the required shape factor. The IS-95 FIR\nfilter does not have zero Inter Symbol Interference\n(ISI). However, ISI in CDMA is not as important as\nin other formats since the correlation of 64 chips\nat a time is used to make a symbol decision. This\n“coding gain” tends to average out the ISI and minimize\nits effect.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "Chebyshev_equiripple_FIR_filter",
+      "baseband_filtering"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "IS-95_CDMA",
+      "shape_factor",
+      "Inter_Symbol_Interference",
+      "coding_gain"
+    ],
+    "technical_terms": [
+      "FIR",
+      "impulse_response",
+      "alpha_value",
+      "rippled_magnitude_frequency_response",
+      "Nyquist_filter",
+      "ISI"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how the Chebyshev equiripple Finite Impulse Response (FIR) filter functions in baseband filtering for IS-95 Code Division Multiple Access (CDMA) systems. It highlights the importance of reducing leakage to adjacent radio frequency channels with a sharp shape factor and discusses the trade-offs regarding Inter Symbol Interference (ISI) in comparison to other filtering methods. The section also relates to the broader topic of filtering techniques discussed in Chapter 4, emphasizing the balance between spectral efficiency and signal integrity."
+  },
+  {
+    "chunk_id": "chunk_s4.7_001",
+    "page": 27,
+    "section": "4.7",
+    "section_title": "Spectral efficiency versus power",
+    "text": "4.7  Spectral efficiency versus power\nconsumption\nAs with any natural resource, it makes no sense\nto waste the RF spectrum by using channel bands\nthat are too wide. Therefore narrower filters are\nused to reduce the occupied bandwidth of the\ntransmission. Narrower filters with sufficient accuracy\nand repeatability are more difficult to build.\nSmaller values of alpha increase ISI because more\nsymbols can contribute. This tightens the requirements\non clock accuracy. These narrower filters\nalso result in more overshoot and therefore more\npeak carrier power. The power amplifier must then\naccommodate the higher peak power without distortion.\nThe bigger amplifier causes more heat and\nelectrical interference to be produced since the RF\ncurrent in the power amplifier will interfere with\nother circuits. Larger, heavier batteries will be\nrequired. The alternative is to have shorter talk\ntime and smaller batteries. Constant envelope\nmodulation, as used in GMSK, can use class-C\namplifiers which are the most efficient. In summary,\nspectral efficiency is highly desirable, but there are\npenalties in cost, size, weight, complexity, talk\ntime, and reliability.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "spectral_efficiency",
+      "power_consumption"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "narrow_filters",
+      "constant_envelope_modulation",
+      "class_C_amplifiers"
+    ],
+    "technical_terms": [
+      "RF_spectrum",
+      "occupied_bandwidth",
+      "ISI",
+      "clock_accuracy",
+      "peak_carrier_power",
+      "power_amplifier",
+      "electrical_interference",
+      "talk_time"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how spectral efficiency relates to power consumption in digital communication systems. It discusses the trade-offs involved in using narrower filters to reduce occupied bandwidth, which can lead to increased inter-symbol interference (ISI) and higher peak carrier power requirements. The relationship between spectral efficiency and power consumption highlights the complexities of designing efficient transmitters while balancing cost, size, and reliability, as mentioned in the broader context of filtering and digital modulation types."
+  },
+  {
+    "chunk_id": "chunk_s4_001",
+    "page": 22,
+    "section": "4",
+    "section_title": "Filtering",
+    "text": "4. Filtering\nFiltering allows the transmitted bandwidth to be\nsignificantly reduced without losing the content\nof the digital data. This improves the spectral efficiency\nof the signal.\nThere are many different varieties of filtering.\nThe most common are\n•  raised cosine\n•  square-root raised cosine\n•  Gaussian filters\nAny fast transition in a signal, whether it be amplitude,\nphase, or frequency, will require a wide occupied\nbandwidth. Any technique that helps to slow\ndown these transitions will narrow the occupied\nbandwidth. Filtering serves to smooth these transitions\n(in I and Q). Filtering reduces interference\nbecause it reduces the tendency of one signal or\none transmitter to interfere with another in a\nFrequency-Division-Multiple-Access (FDMA) system.\nOn the receiver end, reduced bandwidth improves\nsensitivity because more noise and interference\nare rejected.\nSome tradeoffs must be made. One is that some\ntypes of filtering cause the trajectory of the signal\n(the path of transitions between the states) to\novershoot in many cases. This overshoot can occur\nin certain types of filters such as Nyquist. This\novershoot path represents carrier power and phase.\nFor the carrier to take on these values it requires\nmore output power from the transmitter amplifiers.\nIt requires more power than would be necessary\nto transmit the actual symbol itself. Carrier\npower cannot be clipped or limited (to reduce or\neliminate the overshoot) without causing the spectrum",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "bandwidth_reduction",
+      "spectral_efficiency",
+      "filtering_techniques"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "raised_cosine",
+      "square_root_raised_cosine",
+      "Gaussian_filters",
+      "Frequency_Division_Multiple_Access",
+      "signal_overshoot"
+    ],
+    "technical_terms": [
+      "bandwidth",
+      "filtering",
+      "interference",
+      "carrier_power",
+      "transmitter_amplifiers"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how filtering techniques, such as raised cosine, square-root raised cosine, and Gaussian filters, work to significantly reduce transmitted bandwidth while improving spectral efficiency in digital communication systems. It discusses the trade-offs involved, including the potential for signal overshoot and inter-symbol interference (ISI), and highlights the relationship between filtering and the reduction of interference in Frequency-Division Multiple-Access (FDMA) systems. Additionally, it addresses the impact of filtering on receiver sensitivity by rejecting more noise and interference."
+  },
+  {
+    "chunk_id": "chunk_s4_002",
+    "page": 22,
+    "section": "4",
+    "section_title": "Filtering",
+    "text": "It requires more power than would be necessary\nto transmit the actual symbol itself. Carrier\npower cannot be clipped or limited (to reduce or\neliminate the overshoot) without causing the spectrum\nto spread out again. Since narrowing the\nspectral occupancy was the reason the filtering\nwas inserted in the first place, it becomes a very\nfine balancing act.\nOther tradeoffs are that filtering makes the radios\nmore complex and can make them larger, especially\nif performed in an analog fashion. Filtering can\nalso create Inter-Symbol Interference (ISI). This\noccurs when the signal is filtered enough so that\nthe symbols blur together and each symbol affects\nthose around it. This is determined by the timedomain\nresponse or impulse response of the filter.",
+    "chapter": 4,
+    "chapter_title": "Filtering",
+    "primary_concepts": [
+      "carrier_power",
+      "spectral_occupancy",
+      "inter_symbol_interference",
+      "impulse_response"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "filtering",
+      "analog_filtering",
+      "timedomain_response"
+    ],
+    "technical_terms": [
+      "carrier",
+      "overshoot",
+      "filtering",
+      "Inter-Symbol_Interference",
+      "impulse_response"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how filtering impacts carrier power and spectral occupancy in digital modulation systems. It highlights the trade-offs involved, such as increased complexity and potential for Inter-Symbol Interference (ISI), which occurs when symbols blur together due to the filter's impulse response. Understanding these relationships is crucial for optimizing signal transmission while maintaining efficiency and minimizing interference."
+  },
+  {
+    "chunk_id": "chunk_s5.1_001",
+    "page": 29,
+    "section": "5.1",
+    "section_title": "Power and frequency view",
+    "text": "5.1  Power and frequency view\nThere are many different ways of looking at a digitally\nmodulated signal. To examine how transmitters\nturn on and off, a power-versus-time measurement\nis very useful for examining the power level\nchanges involved in pulsed or bursted carriers. For\nexample, very fast power changes will result in frequency\nspreading or spectral regrowth. This is also\nknown as frequency “splatter.” Very slow power\nchanges waste valuable transmit time, as the transmitter\ncannot send data when it is not fully on.\nTurning on too slowly can also cause high bit error\nrates at the beginning of the burst. In addition,\npeak and average power levels must be well understood,\nsince asking for excessive power from an\namplifier can lead to compression or clipping.\nThese phenomena distort the modulated signal\nand usually lead to spectral regrowth as well.",
+    "chapter": 5,
+    "chapter_title": "Different Ways of Looking at a Digitally Modulated Signal",
+    "primary_concepts": [
+      "power_vs_time_measurement",
+      "spectral_regrowth"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "frequency_splatter",
+      "bit_error_rates",
+      "peak_power",
+      "average_power"
+    ],
+    "technical_terms": [
+      "pulsed_carriers",
+      "bursted_carriers",
+      "compression",
+      "clipping"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how power-versus-time measurements are crucial for understanding the operation of digitally modulated signals, particularly in pulsed or bursted carriers. It discusses the impact of fast and slow power changes on spectral regrowth, also known as frequency \"splatter,\" and highlights the importance of managing peak and average power levels to avoid distortion in the modulated signal. This concept is related to the overall performance of digital transmitters and receivers, as outlined in Chapter 7."
+  },
+  {
+    "chunk_id": "chunk_s5.2_001",
+    "page": 29,
+    "section": "5.2",
+    "section_title": "Constellation diagrams",
+    "text": "5.2  Constellation diagrams\nAs discussed, the rectangular I/Q diagram is a\npolar diagram of magnitude and phase. A twodimensional\ndiagram of the carrier magnitude and\nphase (a standard polar plot) can be represented\ndifferently by superimposing rectangular axes on\nthe same data and interpreting the carrier in terms\nof in-phase (I) and quadrature-phase (Q) components.\nIt would be possible to perform AM and PM\non a carrier at the same time and send data this\nway; it is easier for circuit design and signal processing\nto generate and detect a rectangular, linear\nset of values (one set for I and an independent set\nfor Q).\nThe example shown is a π/4 Differential Quadrature\nPhase Shift Keying (π/4 DQPSK) signal as described\nin the North American Digital Cellular (NADC)\nTDMA standard. This example is a 157-symbol\nDQPSK burst.\nThe polar diagram shows several symbols at a\ntime. That is, it shows the instantaneous value of\nthe carrier at any point on the continuous line\nbetween and including symbol times, represented\nas I/Q or magnitude/phase values.\nThe constellation diagram shows a repetitive\n“snapshot” of that same burst, with values shown\nonly at the decision points. The constellation diagram\ndisplays phase errors, as well as amplitude\nerrors, at the decision points. The transitions\nbetween the decision points affects transmitted\nbandwidth. This display shows the path the carrier\nis taking but does not explicitly show errors at the\ndecision points. Constellation diagrams provide",
+    "chapter": 5,
+    "chapter_title": "Different Ways of Looking at a Digitally Modulated Signal",
+    "primary_concepts": [
+      "constellation_diagrams",
+      "differential_quadrature_phase_shift_keying"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "I/Q_components",
+      "phase_errors",
+      "amplitude_errors",
+      "symbol_times"
+    ],
+    "technical_terms": [
+      "DQPSK",
+      "carrier",
+      "bandwidth",
+      "polar_plot",
+      "decision_points"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how constellation diagrams work in the context of digitally modulated signals, specifically focusing on π/4 Differential Quadrature Phase Shift Keying (π/4 DQPSK). It illustrates the relationship between the polar representation of carrier magnitude and phase and the rectangular I/Q components, highlighting how these diagrams can reveal phase and amplitude errors at decision points. Additionally, it connects to the broader discussion of signal characteristics and modulation types in the document."
+  },
+  {
+    "chunk_id": "chunk_s5.2_002",
+    "page": 29,
+    "section": "5.2",
+    "section_title": "Constellation diagrams",
+    "text": "between the decision points affects transmitted\nbandwidth. This display shows the path the carrier\nis taking but does not explicitly show errors at the\ndecision points. Constellation diagrams provide\ninsight into varying power levels, the effects of filtering,\nand phenomena such as Inter-Symbol\nInterference.\nThe relationship between constellation points and\nbits per symbol is\nM = 2^n, where M is the number of constellation points and n is the number of bits per symbol. Equivalently, n = log2(M).\nThis holds when transitions are allowed from any\nconstellation point to any other.",
+    "chapter": 5,
+    "chapter_title": "Different Ways of Looking at a Digitally Modulated Signal",
+    "primary_concepts": [
+      "constellation_diagrams",
+      "inter_symbol_interference",
+      "bits_per_symbol"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "transmitted_bandwidth",
+      "power_levels",
+      "filtering"
+    ],
+    "technical_terms": [
+      "carrier",
+      "bandwidth",
+      "constellation",
+      "symbol",
+      "M",
+      "n",
+      "log2"
+    ],
+    "has_formula": true,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how constellation diagrams work in the context of digitally modulated signals. Constellation diagrams illustrate the relationship between constellation points and bits per symbol, where the number of constellation points (M) is defined as M = 2^n, with n representing the number of bits per symbol. This concept is crucial for understanding inter-symbol interference and the effects of filtering on transmitted bandwidth, linking it to the broader discussions on signal characteristics in Chapter 2."
+  },
+  {
+    "chunk_id": "chunk_s5.3_001",
+    "page": 30,
+    "section": "5.3",
+    "section_title": "Eye diagrams",
+    "text": "5.3  Eye diagrams\nAnother way to view a digitally modulated signal is\nwith an eye diagram. Separate eye diagrams can be\ngenerated, one for the I-channel data and another\nfor the Q-channel data. Eye diagrams display I and\nQ magnitude versus time in an infinite persistence\nmode, with retraces. The I and Q transitions are\nshown separately and an “eye” (or eyes) is formed\nat the symbol decision times. QPSK has four distinct\nI/Q states, one in each quadrant. There are\nonly two levels for I and two levels for Q. This\nforms a single eye for each I and Q. Other schemes\nuse more levels and create more nodes in time\nthrough which the traces pass. The lower example\nis a 16QAM signal which has four levels forming\nthree distinct “eyes.” The eye is open at each\nsymbol. A “good” signal has wide open eyes with\ncompact crossover points.",
+    "chapter": 5,
+    "chapter_title": "Different Ways of Looking at a Digitally Modulated Signal",
+    "primary_concepts": [
+      "eye_diagram",
+      "QPSK",
+      "16QAM"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "I_channel",
+      "Q_channel",
+      "symbol_decision_times",
+      "I_Q_states"
+    ],
+    "technical_terms": [
+      "I",
+      "Q",
+      "magnitude",
+      "persistence_mode",
+      "retrace",
+      "levels",
+      "nodes",
+      "crossover_points"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how eye diagrams work in the context of digitally modulated signals, specifically for Quadrature Phase Shift Keying (QPSK) and 16 Quadrature Amplitude Modulation (16QAM). Eye diagrams visually represent the I (In-phase) and Q (Quadrature) channel data over time, illustrating the signal's quality and decision points. The relationship between eye diagrams and signal integrity is crucial, as wider open eyes indicate better signal quality, which is essential for understanding modulation techniques discussed in previous sections."
+  },
+  {
+    "chunk_id": "chunk_s5.4_001",
+    "page": 31,
+    "section": "5.4",
+    "section_title": "Trellis diagrams",
+    "text": "5.4  Trellis diagrams\nFigure 28 is called a “trellis” diagram, because\nit resembles a garden trellis. The trellis diagram\nshows time on the X-axis and phase on the Y-axis.\nThis allows the examination of the phase transitions\nwith different symbols. In this case it is for a\nGSM system. If a long series of binary ones were\nsent, the result would be a series of positive phase\ntransitions of, in the example of GSM, 90 degrees\nper symbol. If a long series of binary zeros were\nsent, there would be a constant declining phase of\n90 degrees per symbol. Typically there would be\nintermediate transmissions with random data. When\ntroubleshooting, trellis diagrams are useful in isolating\nmissing transitions, missing codes, or a blind\nspot in the I/Q modulator or mapping algorithm.",
+    "chapter": 5,
+    "chapter_title": "Different Ways of Looking at a Digitally Modulated Signal",
+    "primary_concepts": [
+      "trellis_diagram",
+      "phase_transitions"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "GSM",
+      "I/Q_modulator",
+      "mapping_algorithm"
+    ],
+    "technical_terms": [
+      "GSM",
+      "phase",
+      "binary",
+      "symbol"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how trellis diagrams work in the context of digitally modulated signals, specifically for a Global System for Mobile Communications (GSM) system. Trellis diagrams illustrate time on the X-axis and phase on the Y-axis, allowing for the examination of phase transitions associated with different symbols. This concept is related to troubleshooting techniques for isolating issues in the I/Q (In-phase and Quadrature) modulator or mapping algorithm, as discussed in previous sections."
+  },
+  {
+    "chunk_id": "chunk_s5_001",
+    "page": 28,
+    "section": "5",
+    "section_title": "Different Ways of Looking at a Digitally Modulated Signal Time",
+    "text": "5. Different Ways of Looking at a Digitally Modulated Signal Time\nand Frequency Domain View\nThere are a number of different ways to view a signal.\nThis  simplified example is an RF pager signal\nat a center frequency of 930.004 MHz. This pager\nuses two-level FSK and the carrier shifts back and\nforth between two frequencies that are 8 kHz apart\n(930.000 MHz and 930.008 MHz). This  frequency\nspacing is small in proportion to the center frequency\nof 930.004 MHz. This is shown in Figure\n24(a). The difference in period between a signal at\n930 MHz and one at 930 MHz plus 8 kHz is very\nsmall. Even with a high performance oscilloscope,\nusing the latest in high-speed digital techniques,\nthe change in period cannot be observed or measured.\nIn a pager receiver the signals are first downconverted\nto an IF or baseband frequency. In this\nexample, the 930.004 MHz FSK-modulated signal is\nmixed with another signal at 930.002 MHz. The\nFSK modulation causes the transmitted signal to\nswitch between 930.000 MHz and 930.008 MHz.\nThe result is a baseband signal that alternates\nbetween two frequencies, –2 kHz and +6 kHz.\nThe demodulated signal shifts between –2 kHz\nand +6 kHz. The difference can be easily detected.\nThis is sometimes referred to as “zoom” time or IF\ntime. To be more specific, it is a band-converted\nsignal at IF or baseband. IF time is important as\nit is how the signal looks in the IF portion of a\nreceiver. This is how the IF of the radio detects",
+    "chapter": 5,
+    "chapter_title": "Different Ways of Looking at a Digitally Modulated Signal Time",
+    "primary_concepts": [
+      "FSK_modulation",
+      "baseband_signal"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "RF_pager_signal",
+      "downconversion",
+      "IF_time"
+    ],
+    "technical_terms": [
+      "FSK",
+      "carrier",
+      "baseband",
+      "IF",
+      "frequency_spacing"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how a digitally modulated signal, specifically a two-level Frequency Shift Keying (FSK) signal, operates in both time and frequency domains. It describes the process of downconverting the signal to an Intermediate Frequency (IF) or baseband frequency, allowing for easier detection of the modulated information. Additionally, it highlights the importance of understanding baseband signals in the context of digital modulation and their resilience to interference in urban environments."
+  },
+  {
+    "chunk_id": "chunk_s5_002",
+    "page": 28,
+    "section": "5",
+    "section_title": "Different Ways of Looking at a Digitally Modulated Signal Time",
+    "text": "time. To be more specific, it is a band-converted\nsignal at IF or baseband. IF time is important as\nit is how the signal looks in the IF portion of a\nreceiver. This is how the IF of the radio detects\nthe different bits that are present. The frequency\ndomain representation is shown in Figure 24(c).\nMost pagers use a two-level, Frequency-Shift-Keying\n(FSK) scheme. FSK is used in this instance\nbecause it is less affected by multipath propagation,\nattenuation and interference, common in\nurban environments. It is possible to demodulate it\neven deep inside modern steel/concrete buildings,\nwhere attenuation, noise and interference would\notherwise make reliable demodulation difficult.",
+    "chapter": 5,
+    "chapter_title": "Different Ways of Looking at a Digitally Modulated Signal Time",
+    "primary_concepts": [
+      "frequency_shift_keying",
+      "multipath_propagation",
+      "attenuation",
+      "demodulation"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "urban_environments",
+      "signal_detection",
+      "IF_portion"
+    ],
+    "technical_terms": [
+      "FSK",
+      "frequency_shift_keying",
+      "IF",
+      "demodulate",
+      "interference"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Frequency Shift Keying (FSK) works in digitally modulated signals, particularly in the context of radio frequency (RF) pagers. It highlights the advantages of FSK in mitigating issues related to multipath propagation, attenuation, and interference, which are common in urban environments. Additionally, it discusses the importance of intermediate frequency (IF) time in the demodulation process, illustrating how signals are processed within a receiver to detect transmitted bits effectively."
+  },
+  {
+    "chunk_id": "chunk_s6.1_001",
+    "page": 32,
+    "section": "6.1",
+    "section_title": "Multiplexing—frequency",
+    "text": "6.1 Multiplexing—frequency\nFrequency Division Multiple Access (FDMA) splits\nthe available frequency band into smaller fixed frequency\nchannels. Each transmitter or receiver uses\na separate frequency. This technique has been used\nsince around 1900 and is still in use today. Transmitters\nare narrowband or frequency-limited. A\nnarrowband transmitter is used along with a receiver\nthat has a narrowband filter so that it can demodulate\nthe desired signal and reject unwanted signals,\nsuch as interfering signals from adjacent radios.",
+    "chapter": 6,
+    "chapter_title": "Sharing the Channel",
+    "primary_concepts": [
+      "Frequency_Division_Multiple_Access",
+      "narrowband_transmitter"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "fixed_frequency_channels",
+      "narrowband_filter",
+      "demodulate"
+    ],
+    "technical_terms": [
+      "FDMA",
+      "frequency",
+      "transmitter",
+      "receiver",
+      "interfering_signals"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how Frequency Division Multiple Access (FDMA) works by splitting the available frequency band into smaller fixed frequency channels, allowing each transmitter or receiver to operate on a separate frequency. It highlights the use of narrowband transmitters and receivers equipped with narrowband filters to demodulate desired signals while rejecting interference from adjacent radios. This concept is foundational for understanding multiplexing methods discussed in Chapter 6, which also includes time, code, and geographical multiplexing techniques."
+  },
+  {
+    "chunk_id": "chunk_s6.2_001",
+    "page": 32,
+    "section": "6.2",
+    "section_title": "Multiplexing—time",
+    "text": "6.2  Multiplexing—time\nTime-division multiplexing involves separating the\ntransmitters in time so that they can share the\nsame frequency. The simplest type is Time Division\nDuplex (TDD). This multiplexes the transmitter\nand receiver on the same frequency. TDD is used,\nfor example, in a simple two-way radio where a\nbutton is pressed to talk and released to listen.\nThis kind of time division duplex, however, is very\nslow. Modern digital radios like CT2 and DECT use\nTime Division Duplex but they multiplex hundreds\nof times per second. TDMA (Time Division Multiple\nAccess) multiplexes several transmitters or\nreceivers on the same frequency. TDMA is used in\nthe GSM digital cellular system and also in the US\nNADC-TDMA system.",
+    "chapter": 6,
+    "chapter_title": "Sharing the Channel",
+    "primary_concepts": [
+      "time_division_multiplexing",
+      "time_division_duplex"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "TDMA",
+      "GSM",
+      "NADC-TDMA",
+      "CT2",
+      "DECT"
+    ],
+    "technical_terms": [
+      "TDD",
+      "TDMA",
+      "time_division_duplex",
+      "frequency"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how time-division multiplexing works, allowing multiple transmitters to share the same frequency by separating their transmissions in time. It introduces Time Division Duplex (TDD), a basic form of time-division multiplexing used in two-way radios, and contrasts it with more advanced systems like Time Division Multiple Access (TDMA), which is utilized in GSM (Global System for Mobile Communications) digital cellular systems. Understanding time-division multiplexing is essential for grasping the broader concept of channel sharing discussed in Chapter 6."
+  },
+  {
+    "chunk_id": "chunk_s6.3_001",
+    "page": 33,
+    "section": "6.3",
+    "section_title": "Multiplexing—code",
+    "text": "6.3 Multiplexing—code\nCDMA is an access method where multiple users\nare permitted to transmit simultaneously on the\nsame frequency. Frequency division multiplexing\nis still performed but the channel is 1.23 MHz\nwide. In the case of US CDMA telephones, an additional\ntype of channelization is added, in the form\nof coding.\nIn CDMA systems, users timeshare a higher-rate\ndigital channel by overlaying a higher-rate digital\nsequence on their transmission. A different\nsequence is assigned to each terminal so that the\nsignals can be discerned from one another by\ncorrelating them with the overlaid sequence. This\nis based on codes that are shared between the\nbase and mobile stations. Because of the choice of\ncoding used, there is a limit of 64 code channels on\nthe forward link. The reverse link has no practical\nlimit to the number of codes available.",
+    "chapter": 6,
+    "chapter_title": "Sharing the Channel",
+    "primary_concepts": [
+      "CDMA",
+      "frequency_division_multiplexing"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "digital_channel",
+      "code_channels",
+      "forward_link",
+      "reverse_link"
+    ],
+    "technical_terms": [
+      "CDMA",
+      "frequency_division_multiplexing",
+      "digital_channel",
+      "code_channels",
+      "forward_link",
+      "reverse_link"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Code Division Multiple Access (CDMA) works as an access method that allows multiple users to transmit simultaneously on the same frequency. It describes the overlaying of higher-rate digital sequences for channelization, which is a complementary technique to Frequency Division Multiplexing (FDMA). Additionally, it highlights the relationship between CDMA and the coding methods shared between base and mobile stations, emphasizing the limitations and capabilities of code channels in digital communication systems."
+  },
+  {
+    "chunk_id": "chunk_s6.4_001",
+    "page": 33,
+    "section": "6.4",
+    "section_title": "Multiplexing—geography",
+    "text": "6.4 Multiplexing—geography\nAnother kind of multiplexing is geographical or\ncellular. If two transmitter/receiver pairs are far\nenough apart, they can operate on the same frequency\nand not interfere with each other. There\nare only a few kinds of systems that do not use\nsome sort of geographic multiplexing. Clear-channel\ninternational broadcast stations, amateur stations,\nand some military low frequency radios are about\nthe only systems that have no geographic boundaries\nand they broadcast around the world.",
+    "chapter": 6,
+    "chapter_title": "Sharing the Channel",
+    "primary_concepts": [
+      "geographical_multiplexing",
+      "transmitter_receiver_pairs"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "clear_channel_broadcast_stations",
+      "amateur_stations",
+      "military_low_frequency_radios"
+    ],
+    "technical_terms": [
+      "geographic_multiplexing",
+      "transmitter",
+      "receiver",
+      "frequency"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how geographical multiplexing works, allowing two transmitter/receiver pairs to operate on the same frequency without interference if they are sufficiently distanced apart. It highlights that most communication systems utilize some form of geographic multiplexing, contrasting with a few exceptions such as clear-channel international broadcast stations and amateur stations. Understanding geographical multiplexing is essential for grasping the broader concepts of channel sharing and multiplexing methods discussed in this chapter."
+  },
+  {
+    "chunk_id": "chunk_s6.5_001",
+    "page": 34,
+    "section": "6.5",
+    "section_title": "Combining multiplexing modes",
+    "text": "6.5 Combining multiplexing modes\nIn most of these common communications systems,\ndifferent forms of multiplexing are generally\ncombined. For example, GSM uses FDMA, TDMA,\nFDD, and geographic. DECT uses FDMA, TDD, and\ngeographic multiplexing. For a full listing see the\ntable in section ten.",
+    "chapter": 6,
+    "chapter_title": "Sharing the Channel",
+    "primary_concepts": [
+      "FDMA",
+      "TDMA",
+      "FDD",
+      "geographic_multiplexing"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "GSM",
+      "DECT",
+      "TDD"
+    ],
+    "technical_terms": [
+      "FDMA",
+      "TDMA",
+      "FDD",
+      "geographic",
+      "TDD"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how different forms of multiplexing are combined in common communications systems. For instance, GSM (Global System for Mobile Communications) utilizes Frequency Division Multiple Access (FDMA), Time Division Multiple Access (TDMA), Frequency Division Duplex (FDD), and geographic multiplexing, while DECT (Digital Enhanced Cordless Telephone) employs FDMA, Time Division Duplex (TDD), and geographic multiplexing. Understanding these combinations is essential for grasping the overall efficiency and functionality of digital communication systems."
+  },
+  {
+    "chunk_id": "chunk_s6.6_001",
+    "page": 34,
+    "section": "6.6",
+    "section_title": "Penetration versus efficiency",
+    "text": "6.6 Penetration versus efficiency\nPenetration means the ability of a signal to be\nused in environments where there is a lot of attenuation,\nnoise, or interference. One very common\nexample is the use of pagers versus cellular\nphones. In many cases, pagers can receive signals\neven if the user is inside a metal building or a\nsteel-reinforced concrete structure like a modern\nskyscraper. Most pagers use a two-level FSK signal\nwhere the frequency deviation is large and the\nmodulation rate (symbol rate) is quite slow. This\nmakes it easy for the receiver to detect and demodulate\nthe signal since the frequency difference is\nlarge (the symbol locations are widely separated)\nand these different frequencies persist for a long\ntime (a slow symbol rate).\nHowever, the factors causing good pager signal\npenetration also cause inefficient information\ntransmission. There are typically only two symbol\nlocations. They are widely separated (approximately\n8 kHz), and a small number of symbols (500 to\n1200) are sent each second. Compare this with a\ncellular system such as GSM which sends 270,833\nsymbols each second. This is not a big problem for\nthe pager since all it needs to receive is its unique\naddress and perhaps a short ASCII text message.\nA cellular phone signal, however, must transmit\nlive duplex voice. This requires a much higher bit\nrate and a much more efficient modulation technique.\nCellular phones use more complex modulation\nformats (such as π/4 DQPSK and 0.3 GMSK)",
+    "chapter": 6,
+    "chapter_title": "Sharing the Channel",
+    "primary_concepts": [
+      "penetration",
+      "efficiency"
+    ],
+    "content_type": "comparison",
+    "secondary_concepts": [
+      "FSK",
+      "GSM",
+      "ASCII_text"
+    ],
+    "technical_terms": [
+      "FSK",
+      "symbol_rate",
+      "duplex_voice",
+      "π/4_DQPSK",
+      "0.3_GMSK"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section COMPARES penetration with efficiency in signal transmission. Penetration refers to a signal's ability to function in environments with significant attenuation, noise, or interference, exemplified by pagers that can receive signals in challenging conditions. In contrast, efficiency relates to the rate of information transmission, highlighting the difference between the slower, less efficient Frequency Shift Keying (FSK) used in pagers and the more complex modulation techniques employed in cellular systems like GSM (Global System for Mobile Communications), which require higher bit rates for live voice transmission."
+  },
+  {
+    "chunk_id": "chunk_s6.6_002",
+    "page": 34,
+    "section": "6.6",
+    "section_title": "Penetration versus efficiency",
+    "text": "live duplex voice. This requires a much higher bit\nrate and a much more efficient modulation technique.\nCellular phones use more complex modulation\nformats (such as π/4 DQPSK and 0.3 GMSK)\nand faster symbol rates. Unfortunately, this greatly\nreduces penetration and one way to compensate is\nto use more power. More power brings in a host of\nother problems, as described previously.",
+    "chapter": 6,
+    "chapter_title": "Sharing the Channel",
+    "primary_concepts": [
+      "duplex_voice",
+      "modulation_technique"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "cellular_phones",
+      "symbol_rate",
+      "power_increase"
+    ],
+    "technical_terms": [
+      "DQPSK",
+      "GMSK",
+      "bit_rate",
+      "penetration"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how penetration and efficiency relate to live duplex voice communications in cellular systems. It discusses the need for higher bit rates and more efficient modulation techniques, such as π/4 Differential Quadrature Phase Shift Keying and 0.3 Gaussian Minimum Shift Keying, to enhance performance. Additionally, it highlights the trade-offs involved, including the challenges posed by increased power requirements, which are addressed in earlier sections on modulation techniques and channel sharing."
+  },
+  {
+    "chunk_id": "chunk_s6_001",
+    "page": 32,
+    "section": "6",
+    "section_title": "Sharing the Channel",
+    "text": "6. Sharing the Channel\nThe RF spectrum is a finite resource and is shared\nbetween users using multiplexing (sometimes\ncalled channelization). Multiplexing is used to\nseparate different users of the spectrum. This section\ncovers multiplexing frequency, time, code, and\ngeography. Most communications systems use a\ncombination of these multiplexing methods.",
+    "chapter": 6,
+    "chapter_title": "Sharing the Channel",
+    "primary_concepts": [
+      "RF_spectrum",
+      "multiplexing",
+      "channelization"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "frequency_multiplexing",
+      "time_multiplexing",
+      "code_multiplexing",
+      "geographic_multiplexing"
+    ],
+    "technical_terms": [
+      "RF_spectrum",
+      "multiplexing",
+      "channelization"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how the RF (Radio Frequency) spectrum is a finite resource that is shared among users through multiplexing, also known as channelization. It covers various multiplexing methods, including frequency, time, code, and geography, which are essential for separating different users in communication systems. Understanding these multiplexing techniques is crucial for grasping how digital modulation and transmission work in the context of efficient spectrum utilization."
+  },
+  {
+    "chunk_id": "chunk_s7.1_001",
+    "page": 35,
+    "section": "7.1",
+    "section_title": "A digital communications transmitter",
+    "text": "7.1 A digital communications transmitter\nFigure 33 is a simplified block diagram of a digital\ncommunications transmitter. It begins and ends\nwith an analog signal. The first step is to convert\na continuous analog signal to a discrete digital bit\nstream. This is called digitization.\nThe next step is to add voice coding for data compression.\nThen some channel coding is added.\nChannel coding encodes the data in such a way as\nto minimize the effects of noise and interference in\nthe communications channel. Channel coding adds\nextra bits to the input data stream and removes\nredundant ones. Those extra bits are used for error\ncorrection or sometimes to send training sequences\nfor identification or equalization. This can make\nsynchronization (or finding the symbol clock) easier\nfor the receiver. The symbol clock represents the\nfrequency and exact timing of the transmission of\nthe individual symbols. At the symbol clock transitions,\nthe transmitted carrier is at the correct I/Q\n(or magnitude/phase) value to represent a specific\nsymbol (a specific point in the constellation). Then\nthe values (I/Q or magnitude/phase) of the transmitted\ncarrier are changed to represent another\nsymbol. The interval between these two times is\nthe symbol clock period. The reciprocal of this is\nthe symbol clock frequency. The symbol clock\nphase is correct when the symbol clock is aligned\nwith the optimum instant(s) to detect the symbols.\nThe next step in the transmitter is filtering. Filtering",
+    "chapter": 7,
+    "chapter_title": "How Digital Transmitters and Receivers Work",
+    "primary_concepts": [
+      "digitization",
+      "channel_coding",
+      "symbol_clock"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "voice_coding",
+      "error_correction",
+      "data_compression"
+    ],
+    "technical_terms": [
+      "I/Q",
+      "magnitude/phase",
+      "symbol_clock_period",
+      "symbol_clock_frequency"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how a digital communications transmitter operates, detailing the process of digitization, which converts a continuous analog signal into a discrete digital bit stream. It also describes the role of channel coding in minimizing noise and interference, and the importance of the symbol clock in timing the transmission of individual symbols. The relationship between the transmitter's filtering process and bandwidth efficiency is highlighted, connecting to concepts discussed in later sections on digital modulation and signal characteristics."
+  },
+  {
+    "chunk_id": "chunk_s7.1_002",
+    "page": 35,
+    "section": "7.1",
+    "section_title": "A digital communications transmitter",
+    "text": "phase is correct when the symbol clock is aligned\nwith the optimum instant(s) to detect the symbols.\nThe next step in the transmitter is filtering. Filtering\nis essential for good bandwidth efficiency.\nWithout filtering, signals would have very fast\ntransitions between states and therefore very wide\nfrequency spectra—much wider than is needed for\nthe purpose of sending information. A single filter\nis shown for simplicity, but in reality there are\ntwo filters; one each for the I and Q channels. This\ncreates a compact and spectrally efficient signal\nthat can be placed on a carrier.\nThe output from the channel coder is then fed into\nthe modulator. Since there are independent I and\nQ components in the radio, half of the information\ncan be sent on I and the other half on Q. This is one\nreason digital radios work well with this type of\ndigital signal. The I and Q components are separate.\nThe rest of the transmitter looks similar to a\ntypical RF transmitter or microwave transmitter/\nreceiver pair. The signal is converted up to a higher\nintermediate frequency (IF), and then further upconverted\nto a higher radio frequency (RF). Any\nundesirable signals that were produced by the\nupconversion are then filtered out.",
+    "chapter": 7,
+    "chapter_title": "How Digital Transmitters and Receivers Work",
+    "primary_concepts": [
+      "I_and_Q_components",
+      "digital_communications_transmitter"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "bandwidth_efficiency",
+      "channel_coder",
+      "modulator"
+    ],
+    "technical_terms": [
+      "filtering",
+      "carrier",
+      "intermediate_frequency",
+      "radio_frequency"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how a digital communications transmitter operates, detailing the process of converting an analog signal into a discrete digital bit stream and the subsequent steps of voice coding, channel coding, and filtering. It highlights the importance of In-phase (I) and Quadrature (Q) components in transmitting information efficiently, as well as the role of filtering in maintaining bandwidth efficiency. Additionally, it connects to the overall functioning of digital radios and the subsequent upconversion to radio frequency (RF) signals."
+  },
+  {
+    "chunk_id": "chunk_s7.2_001",
+    "page": 36,
+    "section": "7.2",
+    "section_title": "A digital communications receiver",
+    "text": "7.2 A digital communications receiver\nThe receiver is similar to the transmitter but in\nreverse. It is more complex to design. The incoming\n(RF) signal is first downconverted to (IF) and\ndemodulated. The ability to demodulate the signal\nis hampered by factors including atmospheric\nnoise, competing signals, and multipath or fading.\nGenerally, demodulation involves the following\nstages:\n1. carrier frequency recovery (carrier lock)\n2. symbol clock recovery (symbol lock)\n3. signal decomposition to I and Q components\n4. determining I and Q values for each symbol\n(“slicing”)\n5. decoding and de-interleaving\n6. expansion to original bit stream\n7. digital-to-analog conversion, if required\nIn more and more systems, however, the signal\nstarts out digital and stays digital. It is never analog\nin the sense of a continuous analog signal like\naudio. The main difference between the transmitter\nand receiver is the issue of carrier and clock\n(or symbol) recovery.\nBoth the symbol-clock frequency and phase (or\ntiming) must be correct in the receiver in order to\ndemodulate the bits successfully and recover the\ntransmitted information. A symbol clock could be\nat the right frequency but at the wrong phase. If\nthe symbol clock was aligned with the transitions\nbetween symbols rather than the symbols themselves,\ndemodulation would be unsuccessful.\nSymbol clocks are usually fixed in frequency and\nthis frequency is accurately known by both the\ntransmitter and receiver. The difficulty is to get",
+    "chapter": 7,
+    "chapter_title": "How Digital Transmitters and Receivers Work",
+    "primary_concepts": [
+      "digital_communications_receiver",
+      "demodulation",
+      "symbol_clock_recovery"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "carrier_frequency_recovery",
+      "signal_decomposition",
+      "I_and_Q_components"
+    ],
+    "technical_terms": [
+      "RF",
+      "IF",
+      "demodulation",
+      "carrier",
+      "symbol_clock",
+      "I",
+      "Q"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how a digital communications receiver operates, detailing the process of demodulation which includes stages such as carrier frequency recovery, symbol clock recovery, and signal decomposition into In-phase and Quadrature components. It highlights the importance of accurate symbol clock frequency and phase for successful demodulation, linking it to the earlier discussion on digital communications transmitters and the role of symbol clocks in both transmitting and receiving information."
+  },
+  {
+    "chunk_id": "chunk_s7.2_002",
+    "page": 36,
+    "section": "7.2",
+    "section_title": "A digital communications receiver",
+    "text": "demodulation would be unsuccessful.\nSymbol clocks are usually fixed in frequency and\nthis frequency is accurately known by both the\ntransmitter and receiver. The difficulty is to get\nthem both aligned in phase or timing. There are a\nvariety of techniques and most systems employ two\nor more. If the signal amplitude varies during modulation,\na receiver can measure the variations. The\ntransmitter can send a specific synchronization\nsignal or a predetermined bit sequence such as\n10101010101010 to “train” the receiver’s clock. In\nsystems with a pulsed carrier, the symbol clock can\nbe aligned with the power turn-on of the carrier.\nIn the transmitter, it is known where the RF carrier\nand digital data clock are because they are being\ngenerated inside the transmitter itself. In the\nreceiver there is not this luxury. The receiver can\napproximate where the carrier is but has no phase\nor timing symbol clock information. A difficult task\nin receiver design is to create carrier and symbolclock\nrecovery algorithms. That task can be made\neasier by the channel coding performed in the\ntransmitter.",
+    "chapter": 7,
+    "chapter_title": "How Digital Transmitters and Receivers Work",
+    "primary_concepts": [
+      "symbol_clock_recovery",
+      "carrier_recovery"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "synchronization_signal",
+      "channel_coding",
+      "pulsed_carrier"
+    ],
+    "technical_terms": [
+      "RF_carrier",
+      "digital_data_clock",
+      "synchronization_signal",
+      "bit_sequence"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how a digital communications receiver operates, focusing on the challenges of symbol clock recovery and carrier recovery. The working principle of the receiver involves demodulating the incoming radio frequency signal and aligning the symbol clock with the transmitter's clock, which is facilitated by channel coding techniques. Understanding these concepts is crucial for grasping the overall functionality of digital transmitters and receivers as discussed in the preceding section."
+  },
+  {
+    "chunk_id": "chunk_s7_001",
+    "page": 35,
+    "section": "7",
+    "section_title": "How Digital Transmitters and Receivers Work",
+    "text": "7. How Digital Transmitters and Receivers Work",
+    "chapter": 7,
+    "chapter_title": "How Digital Transmitters and Receivers Work",
+    "primary_concepts": [
+      "digital_transmitters",
+      "digital_receivers"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "signal_processing",
+      "data_encoding",
+      "modulation_techniques"
+    ],
+    "technical_terms": [
+      "digital_transmitter",
+      "digital_receiver",
+      "modulation",
+      "encoding"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how digital transmitters and receivers work, detailing the processes involved in converting analog signals to digital formats and vice versa. It covers the digitization process, voice coding, channel coding, and the importance of filtering for bandwidth efficiency. Additionally, it highlights the relationship between the transmitter and receiver, emphasizing their complementary roles in digital communication systems."
+  },
+  {
+    "chunk_id": "chunk_s8.1.1_001",
+    "page": 37,
+    "section": "8.1.1",
+    "section_title": "Adjacent channel power",
+    "text": "8.1.1 Adjacent channel power\nAdjacent channel power is a measure of interference\ncreated by one user that effects other users in nearby\nchannels. This test quantifies the energy of a\ndigitally modulated RF signal that spills from the\nintended communication channel into an adjacent\nchannel. The measurement result is the ratio (in\ndB) of the power measured in the adjacent channel\nto the total transmitted power. A similar measurement\nis alternate channel power which looks at the\nsame ratio two channels away from the intended\ncommunication channel.\nFor pulsed systems (such as TDMA), power measurements\nhave a time component and may have a\nfrequency component, also. Burst power profile\n(power versus time) or turn-on and turn-off times\nmay be measured. Another measurement is average\npower when the carrier is on or averaged over\nmany on/off cycles.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "adjacent_channel_power",
+      "pulsed_systems"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "TDMA",
+      "burst_power_profile",
+      "average_power"
+    ],
+    "technical_terms": [
+      "RF_signal",
+      "dB",
+      "total_transmitted_power"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how adjacent channel power measures the interference created by one user affecting other users in nearby channels. Adjacent channel power is defined as the ratio (in decibels) of the power measured in the adjacent channel to the total transmitted power, and it is particularly relevant in pulsed systems such as Time Division Multiple Access (TDMA). This measurement relates to other concepts in the document, including power measurements and occupied bandwidth, as it helps assess the impact of digital modulation on communication channels."
+  },
+  {
+    "chunk_id": "chunk_s8.10_001",
+    "page": 43,
+    "section": "8.10",
+    "section_title": "Error spectrum (EVM versus frequency)",
+    "text": "8.10 Error spectrum (EVM versus frequency)\nThe error spectrum is calculated from the Fast\nFourier Transform (FFT) of the EVM waveform\nand results in a frequency-domain display that can\nshow details not visible in the time domain. In\nmost digital systems, nonuniform noise distribution\nor discrete signal peaks indicate the presence\nof externally coupled interference.\nFor more detail on EVM measurements, see\nAgilent product note 89400-14, “Using Error-\nVector-Magnitude Measurements to Analyze and\nTroubleshoot Vector-Modulated Signals,” literature\nnumber 5965-2898E.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "error_vector_magnitude",
+      "fast_fourier_transform"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "frequency_domain_display",
+      "nonuniform_noise_distribution",
+      "externally_coupled_interference"
+    ],
+    "technical_terms": [
+      "EVM",
+      "FFT",
+      "Agilent",
+      "literature_number"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how the error spectrum, derived from the Fast Fourier Transform (FFT) of the Error Vector Magnitude (EVM) waveform, provides a frequency-domain display that reveals details obscured in the time domain. It highlights the significance of nonuniform noise distribution and discrete signal peaks, which indicate externally coupled interference in digital systems. For further insights on EVM measurements, refer to Agilent product note 89400-14, which discusses the analysis and troubleshooting of vector-modulated signals."
+  },
+  {
+    "chunk_id": "chunk_s8.1_001",
+    "page": 37,
+    "section": "8.1",
+    "section_title": "Power measurements",
+    "text": "8.1 Power measurements\nPower measurements include carrier power and\nassociated measurements of gain of amplifiers and\ninsertion loss of filters and attenuators. Signals\nused in digital modulation are noise-like. Bandpower\nmeasurements (power integrated over a\ncertain band of frequencies) or power spectral\ndensity (PSD) measurements are often made. PSD\nmeasurements normalize power to a certain bandwidth,\nusually 1 Hz.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "power_measurements",
+      "power_spectral_density"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "carrier_power",
+      "gain_of_amplifiers",
+      "insertion_loss"
+    ],
+    "technical_terms": [
+      "bandpower",
+      "power_spectral_density",
+      "PSD",
+      "bandwidth"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how power measurements are conducted in digital radio frequency communications systems, focusing on carrier power, amplifier gain, and filter insertion loss. Power spectral density (PSD) measurements, which normalize power to a specific bandwidth, are also discussed, highlighting their importance in analyzing noise-like signals used in digital modulation. Understanding power measurements is crucial for evaluating signal quality and ensuring efficient communication, as outlined in the broader context of measurements on digital RF communications systems."
+  },
+  {
+    "chunk_id": "chunk_s8.2.1_001",
+    "page": 38,
+    "section": "8.2.1",
+    "section_title": "Occupied bandwidth",
+    "text": "8.2.1 Occupied bandwidth\nOccupied bandwidth (BW) is a measure of how\nmuch frequency spectrum is covered by the signal\nin question. The units are in Hz, and measurement\nof occupied BW generally implies a power percent\nage or ratio. Typically, a portion of the total power\nin a signal to be measured is specified. A common\npercentage used is 99%. A measurement of power\nversus frequency (such as integrated band power)\nis used to add up the power to reach the specified\npercentage. For example, one would say “99% of\nthe power in this signal is contained in a bandwidth\nof 30 kHz.” One could also say “The occupied\nbandwidth of this signal is 30 kHz” if the desired\npower ratio of 99% was known.\nTypical occupied bandwidth numbers vary widely,\ndepending on symbol rate and filtering. The figure\nis about 30 kHz for the NADC π/4 DQPSK signal\nand about 350 kHz for a GSM 0.3 GMSK signal. For\ndigital video signals occupied bandwidth is typically\n6 to 8 MHz.\nSimple frequency-counter-measurement techniques\nare often not accurate or sufficient to measure\ncenter frequency. A carrier “centroid” can be calculated\nwhich is the center of the distribution of\nfrequency versus PSD for a modulated signal.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "occupied_bandwidth",
+      "power_percentage"
+    ],
+    "content_type": "definition",
+    "secondary_concepts": [
+      "NADC",
+      "DQPSK",
+      "GSM",
+      "GMSK",
+      "digital_video_signals"
+    ],
+    "technical_terms": [
+      "occupied_bandwidth",
+      "Hz",
+      "power",
+      "symbol_rate",
+      "filtering",
+      "centroid",
+      "PSD"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section DEFINES occupied bandwidth (BW) as a measure of how much frequency spectrum is covered by a signal, typically expressed in Hertz (Hz) and associated with a specified power percentage, commonly 99%. Occupied bandwidth is crucial for ensuring compliance with allocated frequency ranges and relates to other measurements such as adjacent channel power and overall signal quality in digital RF communications systems. Understanding occupied bandwidth is essential for analyzing the efficiency and performance of various digital modulation techniques discussed in this document."
+  },
+  {
+    "chunk_id": "chunk_s8.2_001",
+    "page": 38,
+    "section": "8.2",
+    "section_title": "Frequency measurements",
+    "text": "8.2 Frequency measurements\nFrequency measurements are often more complex\nin digital systems since factors other than pure\ntones must be considered. Occupied bandwidth is\nan important measurement. It ensures that operators\nare staying within the bandwidth that they\nhave been allocated. Adjacent channel power is\nalso used to detect the effects one user has on\nother users in nearby channels.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "occupied_bandwidth",
+      "adjacent_channel_power"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "digital_systems",
+      "frequency_measurements",
+      "user_interference"
+    ],
+    "technical_terms": [
+      "occupied_bandwidth",
+      "adjacent_channel_power"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how frequency measurements are conducted in digital systems, highlighting the importance of occupied bandwidth and adjacent channel power. Occupied bandwidth is defined as the range of frequencies that a signal occupies, ensuring compliance with allocated bandwidth, while adjacent channel power measures the interference effects one user has on nearby channels. These concepts are crucial for analyzing signal quality and maintaining efficient communication in digital RF (Radio Frequency) systems."
+  },
+  {
+    "chunk_id": "chunk_s8.3_001",
+    "page": 39,
+    "section": "8.3",
+    "section_title": "Timing measurements",
+    "text": "8.3 Timing measurements\nTiming measurements are made most often in\npulsed or burst systems. Measurements include\npulse repetition intervals, on-time, off-time, duty\ncycle, and time between bit errors. Turn-on and\nturn-off times also involve power measurements.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "pulse_repetition_intervals",
+      "duty_cycle",
+      "turn_on_time",
+      "turn_off_time"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "on_time",
+      "off_time",
+      "time_between_bit_errors"
+    ],
+    "technical_terms": [
+      "duty_cycle",
+      "turn_on_time",
+      "turn_off_time",
+      "pulse_repetition_intervals",
+      "time_between_bit_errors"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how timing measurements are crucial in pulsed or burst systems, focusing on key parameters such as pulse repetition intervals, duty cycle, and turn-on and turn-off times. Understanding these measurements is essential for analyzing the performance of digital RF communications systems, particularly in relation to power measurements and modulation accuracy discussed in previous sections."
+  },
+  {
+    "chunk_id": "chunk_s8.4_001",
+    "page": 39,
+    "section": "8.4",
+    "section_title": "Modulation accuracy",
+    "text": "8.4 Modulation accuracy\nModulation accuracy measurements involve measuring\nhow close either the constellation states or\nthe signal trajectory is relative to a reference\n(ideal) signal trajectory. The received signal is\ndemodulated and compared with a reference signal.\nThe main signal is subtracted and what is left\nis the difference or residual. Modulation accuracy\nis a residual measurement.\nModulation accuracy measurements usually involve\nprecision demodulation of a signal and comparison\nof this demodulated signal with a (mathematically\ngenerated) ideal or “reference” signal. The difference\nbetween the two is the modulation error, and\nit can be expressed in a variety of ways including\nError Vector Magnitude (EVM), magnitude error,\nphase error, I-error, and Q-error. The reference\nsignal is subtracted from the demodulated signal,\nleaving a residual error signal. Residual measurements\nsuch as this are very powerful for troubleshooting.\nOnce the reference signal has been\nsubtracted, it is easier to see small errors that may\nhave been swamped or obscured by the modulation\nitself. The error signal itself can be examined in\nmany ways; in the time domain or (since it is a\nvector quantity) in terms of its I/Q or magnitude/\nphase components.\nA frequency transformation can also be performed\nand the spectral composition of the error signal\nalone can be viewed.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "modulation_accuracy",
+      "error_vector_magnitude"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "demodulation",
+      "residual_error",
+      "frequency_transformation"
+    ],
+    "technical_terms": [
+      "EVM",
+      "I-error",
+      "Q-error",
+      "magnitude_error",
+      "phase_error"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how modulation accuracy works by measuring the closeness of the received signal's constellation states or trajectory to an ideal reference signal. Modulation accuracy is defined as the residual difference after subtracting the reference signal from the demodulated signal, which can be expressed in various forms including Error Vector Magnitude (EVM). This concept is crucial for troubleshooting in digital RF communications systems, as it relates to the overall signal quality and performance metrics discussed in previous sections."
+  },
+  {
+    "chunk_id": "chunk_s8.5_001",
+    "page": 39,
+    "section": "8.5",
+    "section_title": "Understanding EVM (error vector magnitude)",
+    "text": "8.5 Understanding EVM (error vector magnitude)\nRecall first the basics of vector modulation: Digital\nbits are transferred onto an RF carrier by varying\nthe carrier’s magnitude and phase. At each symbolclock\ntransition, the carrier occupies any one of\nseveral unique locations on the I versus Q plane.\nEach location encodes a specific data symbol,\nwhich consists of one or more data bits. A constellation\ndiagram shows the valid locations (i.e., the\nmagnitude and phase relative to the carrier) for all\npermitted symbols of which there must be 2n, given\nn bits transmitted per symbol. To demodulate the\nincoming data, the exact magnitude and phase of\nthe received signal for each clock transition must\nbe accurately determined.\nThe layout of the constellation diagram and its\nideal symbol locations is determined generically by\nthe modulation format chosen (BPSK, 16QAM, π/4\nDQPSK, etc.). The trajectory taken by the signal\nfrom one symbol location to another is a function\nof the specific system implementation, but is readily\ncalculated nonetheless.\nAt any moment, the signal’s magnitude and phase\ncan be measured. These values define the actual or\n“measured” phasor. At the same time, a corresponding\nideal or “reference” phasor can be calculated,\ngiven knowledge of the transmitted data stream,\nthe symbol-clock timing, baseband filtering parameters,\netc. The differences between these two\nphasors form the basis for the EVM measurements.\nFigure 38 defines EVM and several related terms.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "error_vector_magnitude",
+      "constellation_diagram",
+      "phasor"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "modulation_format",
+      "symbol_clock",
+      "baseband_filtering"
+    ],
+    "technical_terms": [
+      "EVM",
+      "BPSK",
+      "16QAM",
+      "π/4_DQPSK",
+      "RF_carrier",
+      "I_Q_plane"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Error Vector Magnitude (EVM) works in the context of digital modulation. EVM is defined as the difference between the actual phasor of a received signal and the ideal phasor calculated based on the transmitted data stream. Understanding EVM is crucial for analyzing the performance of modulation formats such as Binary Phase Shift Keying (BPSK) and Quadrature Amplitude Modulation (QAM), as it directly relates to the accuracy of demodulation and the quality of the transmitted signal."
+  },
+  {
+    "chunk_id": "chunk_s8.5_002",
+    "page": 39,
+    "section": "8.5",
+    "section_title": "Understanding EVM (error vector magnitude)",
+    "text": "the symbol-clock timing, baseband filtering parameters,\netc. The differences between these two\nphasors form the basis for the EVM measurements.\nFigure 38 defines EVM and several related terms.\nAs shown, EVM is the scalar distance between the\ntwo phasor end points, i.e., it is the magnitude of\nthe difference vector. Expressed another way, it is\nthe residual noise and distortion remaining after an\nideal version of the signal has been stripped away.\nIn the NADC-TDMA (IS-54) standard, EVM is\ndefined as a percentage of the signal voltage at\nthe symbols. In the π/4 DQPSK modulation format,\nthese symbols all have the same voltage level,\nthough this is not true of all formats. IS-54 is\ncurrently the only standard that explicitly defines\nEVM, so EVM could be defined differently for\nother modulation formats.\nIn a format such as 64QAM, for example, the symbols\nrepresent a variety of voltage levels. EVM\ncould be defined by the average voltage level of all\nthe symbols (a value close to the average signal\nlevel) or by the voltage of the outermost (highest\nvoltage) four symbols. While the error vector has a\nphase value associated with it, this angle generally\nturns out to be random because it is a function of\nboth the error itself (which may or may not be random)\nand the position of the data symbol on the\nconstellation (which, for all practical purposes, is\nrandom). A more useful angle is measured between\nthe actual and ideal phasors (I/Q phase error),",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "EVM",
+      "NADC-TDMA",
+      "DQPSK"
+    ],
+    "content_type": "definition",
+    "secondary_concepts": [
+      "64QAM",
+      "phasor",
+      "constellation"
+    ],
+    "technical_terms": [
+      "EVM",
+      "NADC-TDMA",
+      "IS-54",
+      "DQPSK",
+      "64QAM",
+      "I/Q_phase_error"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section DEFINES Error Vector Magnitude (EVM) as the scalar distance between two phasor endpoints, representing the residual noise and distortion after an ideal signal has been removed. EVM is particularly relevant in the context of the North American Digital Cellular Time Division Multiple Access (NADC-TDMA) standard and Differential Quadrature Phase Shift Keying (DQPSK) modulation format, where it is expressed as a percentage of the signal voltage at the symbols. Understanding EVM is crucial for analyzing modulation accuracy and signal quality in digital RF communications systems."
+  },
+  {
+    "chunk_id": "chunk_s8.5_003",
+    "page": 39,
+    "section": "8.5",
+    "section_title": "Understanding EVM (error vector magnitude)",
+    "text": "and the position of the data symbol on the\nconstellation (which, for all practical purposes, is\nrandom). A more useful angle is measured between\nthe actual and ideal phasors (I/Q phase error),\nwhich contains information useful in troubleshooting\nsignal problems. Likewise, I-Q magnitude error\nshows the magnitude difference between the actual\nand ideal signals. EVM, as specified in the standard,\nis the root-mean-square (RMS) value of the error\nvalues at the instant of the symbol-clock transition.\nTrajectory errors between symbols are ignored.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "I/Q_phase_error",
+      "I-Q_magnitude_error",
+      "EVM"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "phasors",
+      "symbol-clock_transition",
+      "trajectory_errors"
+    ],
+    "technical_terms": [
+      "RMS",
+      "EVM",
+      "I/Q",
+      "phasor"
+    ],
+    "has_formula": true,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Error Vector Magnitude (EVM) works in the context of digital RF communications systems. EVM is defined as the root-mean-square (RMS) value of the error values at the instant of the symbol-clock transition, providing insights into I/Q (In-phase/Quadrature) phase error and I-Q magnitude error. Understanding EVM is crucial for troubleshooting signal problems and relates to the overall signal quality measurements discussed in Section 8."
+  },
+  {
+    "chunk_id": "chunk_s8.6_001",
+    "page": 40,
+    "section": "8.6",
+    "section_title": "Troubleshooting with error vector",
+    "text": "8.6 Troubleshooting with error vector\nmeasurements\nMeasurements of error vector magnitude and related\nquantities can, when properly applied, provide\nmuch insight into the quality of a digitally modulated\nsignal. They can also pinpoint the causes for\nany problems uncovered by identifying exactly\nthe type of degradation present in a signal and\neven help identify their sources. For more detail\non using error-vector-magnitude measurements to\nanalyze and troubleshoot vector-modulated signals,\nsee Agilent Technologies product note 89400-14.\nThe literature number is 5965-2898E.\nEVM measurements are growing rapidly in acceptance,\nhaving already been written into such important\nsystem standards as NADC and PHS, and they\nare poised to appear in several upcoming standards\nincluding those for digital video transmission.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "error_vector_magnitude",
+      "vector_modulated_signals"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "NADC",
+      "PHS",
+      "digital_video_transmission"
+    ],
+    "technical_terms": [
+      "EVM",
+      "error_vector_magnitude",
+      "Agilent_Technologies",
+      "product_note",
+      "literature_number"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how error vector magnitude (EVM) measurements work in troubleshooting digitally modulated signals. EVM provides insight into signal quality and helps identify degradation sources, making it a crucial tool in analyzing vector-modulated signals. For further details on EVM applications, refer to Agilent Technologies product note 89400-14, which is relevant to the measurements discussed in Section 8."
+  },
+  {
+    "chunk_id": "chunk_s8.7_001",
+    "page": 41,
+    "section": "8.7",
+    "section_title": "Magnitude versus phase error",
+    "text": "8.7 Magnitude versus phase error\nDifferent error mechanisms affect signals in different\nways: in magnitude only, phase only, or both\nsimultaneously. Knowing the relative amounts of\neach type of error can quickly confirm or rule out\ncertain types of problems. Thus, the first diagnostic\nstep is to resolve EVM into its magnitude and\nphase error components (see Figure 38) and compare\ntheir relative sizes.\nWhen the average phase error (in degrees) is substantially\nlarger than the average magnitude error\n(in percent), some sort of unwanted phase modulation\nis the dominant error mode. This could be\ncaused by noise, spurious or cross-coupling problems\nin the frequency reference, phase-locked loops, or\nother frequency-generating stages. Residual AM is\nevidenced by magnitude errors that are significantly\nlarger than the phase angle errors.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "EVM",
+      "magnitude_error",
+      "phase_error"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "phase_modulation",
+      "residual_AM",
+      "phase_locked_loops"
+    ],
+    "technical_terms": [
+      "EVM",
+      "phase_error",
+      "magnitude_error",
+      "phase_modulation",
+      "residual_AM"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how magnitude and phase errors affect digitally modulated signals, particularly in the context of Error Vector Magnitude (EVM) analysis. It highlights the diagnostic importance of resolving EVM into its magnitude and phase error components to identify dominant error modes, such as unwanted phase modulation or residual amplitude modulation. Understanding these relationships is crucial for troubleshooting issues in digital RF communications systems, as discussed in the broader context of measurements in Chapter 8."
+  },
+  {
+    "chunk_id": "chunk_s8.8_001",
+    "page": 41,
+    "section": "8.8",
+    "section_title": "I/Q phase error versus time",
+    "text": "8.8 I/Q phase error versus time\nPhase error is the instantaneous angle difference\nbetween the measured signal and the ideal reference\nsignal. When viewed as a function of time (or\nsymbol), it shows the modulating waveform of any\nresidual or interfering PM signal. Sinewaves or\nother regular waveforms indicate an interfering\nsignal. Uniform noise is a sign of some form of\nphase noise (random jitter, residual PM/FM, etc.).\nA perfect signal will have a uniform constellation\nthat is perfectly symmetric about the origin. I/Q\nimbalance is indicated when the constellation is\nnot “square,” i.e., when the Q-axis height does not\nequal the I-axis width. Quadrature error is seen in\nany “tilt” to the constellation. Quadrature error is\ncaused when the phase relationship between the\nI and Q vectors is not exactly 90 degrees.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "I/Q_phase_error",
+      "quadrature_error"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "phase_noise",
+      "I/Q_imbalance",
+      "constellation"
+    ],
+    "technical_terms": [
+      "phase_error",
+      "PM_signal",
+      "FM_signal",
+      "jitter"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how I/Q (In-phase and Quadrature) phase error works over time, detailing the instantaneous angle difference between the measured signal and the ideal reference signal. It highlights the implications of phase error on signal quality, including the effects of interfering signals and I/Q imbalance, which can lead to quadrature error. Understanding I/Q phase error is crucial for analyzing modulation accuracy and improving digital RF communications systems, as discussed in previous sections on measurements and signal characteristics."
+  },
+  {
+    "chunk_id": "chunk_s8.9_001",
+    "page": 42,
+    "section": "8.9",
+    "section_title": "Error Vector Magnitude versus time",
+    "text": "8.9 Error Vector Magnitude versus time\nEVM is the difference between the input signal and\nthe internally generated ideal reference. When\nviewed as a function of symbol or time, errors may\nbe correlated to specific points on the input waveform,\nsuch as peaks or zero crossings. EVM is a\nscalar (magnitude-only) value. Error peaks occur\nring with signal peaks indicate compression or\nclipping. Error peaks that correlate to signal minima\nsuggest zero-crossing nonlinearities.\nAn example of zero-crossing nonlinearities is in a\npush-pull amplifier, where the positive and negative\nhalves of the signal are handled by separate\ntransistors. It can be quite a challenge (especially\nin high-power amplifiers) to precisely bias and\nstabilize the amplifiers such that one set is turning\noff exactly as the other set is turning on, with no\ndiscontinuities. The critical moment is zero crossing,\na well-known effect in analog design. It is also\nknown as zero-crossing errors, distortion, or nonlinearities.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "Error_Vector_Magnitude",
+      "zero_crossing_nonlinearities"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "push_pull_amplifier",
+      "signal_peaks",
+      "signal_minima"
+    ],
+    "technical_terms": [
+      "EVM",
+      "compression",
+      "clipping",
+      "distortion"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how Error Vector Magnitude (EVM) works in relation to time, highlighting its role as the difference between the input signal and the ideal reference signal. It discusses how errors can be correlated to specific points on the input waveform, such as peaks or zero crossings, and relates these errors to potential issues like compression, clipping, and zero-crossing nonlinearities in amplifiers. Understanding EVM is crucial for assessing modulation accuracy and signal quality in digital RF communications systems."
+  },
+  {
+    "chunk_id": "chunk_s8_001",
+    "page": 37,
+    "section": "8",
+    "section_title": "Measurements on Digital RF Communications Systems",
+    "text": "8. Measurements on Digital RF Communications Systems\nComplex tradeoffs in frequency, phase, timing,\nand modulation are made for interference-free,\nmultiple-user communications systems. It is necessary\nto accurately measure parameters in digital\nRF communications systems to make the right\ntradeoffs. Measurements include analyzing the modulator\nand demodulator, characterizing the transmitted\nsignal quality, locating causes of high\nBit-Error-Rate, and investigating new modulation\ntypes. Measurements on digital RF communications\nsystems generally fall into four categories: power,\nfrequency, timing, and modulation accuracy.",
+    "chapter": 8,
+    "chapter_title": "Measurements on Digital RF Communications Systems",
+    "primary_concepts": [
+      "digital_RF_communications",
+      "Bit_Error_Rate",
+      "modulator_demodulator",
+      "signal_quality"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "frequency",
+      "timing",
+      "modulation_accuracy",
+      "interference_free_communications",
+      "multiple_user_systems"
+    ],
+    "technical_terms": [
+      "RF",
+      "Bit_Error_Rate",
+      "modulator",
+      "demodulator",
+      "signal_quality"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS how measurements on digital Radio Frequency (RF) communications systems are essential for ensuring interference-free, multiple-user communications. It discusses the importance of accurately measuring parameters such as the modulator and demodulator performance, signal quality, and Bit Error Rate (BER). The section categorizes these measurements into four main types: power, frequency, timing, and modulation accuracy, highlighting their relationships to overall system performance and reliability."
+  },
+  {
+    "chunk_id": "chunk_s9_001",
+    "page": 43,
+    "section": "9",
+    "section_title": "Summary",
+    "text": "9. Summary\nCommunication system design requires the simultaneous\nconservation of bandwidth, power, and\ncost. In the past, it was possible to make a radio\nlow cost by sacrificing parameters such as power\nand bandwidth efficiency.\nThis application note has presented the building\nblocks of any communications system. With these\nconcepts, you will be able to understand how\ncommunications systems work, and make more\ninformed decisions regarding the tradeoffs\nrequired to optimize your system.",
+    "chapter": 9,
+    "chapter_title": "Summary",
+    "primary_concepts": [
+      "communication_system_design",
+      "bandwidth_conservation",
+      "power_efficiency"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "cost_optimization",
+      "tradeoffs",
+      "building_blocks"
+    ],
+    "technical_terms": [
+      "bandwidth",
+      "power",
+      "cost"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how communication system design requires the simultaneous conservation of bandwidth, power, and cost. It highlights the trade-offs necessary for optimizing systems, connecting to earlier discussions on digital modulation types and their efficiencies. Understanding these foundational concepts enables informed decision-making regarding the balance of power and bandwidth efficiency in communications systems."
+  },
+  {
+    "chunk_id": "chunk_sintro_001",
+    "page": 1,
+    "section": "intro",
+    "section_title": "Introduction",
+    "text": "Agilent\nDigital Modulation in\nCommunications Systems —\nAn Introduction\nApplication Note 1298\nIntroduction\nThis application note introduces the concepts of\ndigital modulation used in many communications\nsystems today. Emphasis is placed on explaining\nthe tradeoffs that are made to optimize efficiencies\nin system design.\nMost communications systems fall into one of three\ncategories: bandwidth efficient, power efficient, or\ncost efficient. Bandwidth efficiency describes the\nability of a modulation scheme to accommodate\ndata within a limited bandwidth. Power efficiency\ndescribes the ability of the system to reliably send\ninformation at the lowest practical power level.\nIn most systems, there is a high priority on bandwidth\nefficiency. The parameter to be optimized\ndepends on the demands of the particular system,\nas can be seen in the following two examples.\nFor designers of digital terrestrial microwave\nradios, their highest priority is good bandwidth\nefficiency with low bit-error-rate. They have plenty\nof power available and are not concerned with\npower efficiency. They are not especially concerned\nwith receiver cost or complexity because\nthey do not have to build large numbers of them.\nOn the other hand, designers of hand-held cellular\nphones put a high priority on power efficiency\nbecause these phones need to run on a battery.\nCost is also a high priority because cellular phones\nmust be low-cost to encourage more users. Accordingly,\nthese systems sacrifice some bandwidth",
+    "chapter": 0,
+    "chapter_title": "Introduction",
+    "primary_concepts": [
+      "bandwidth_efficiency",
+      "power_efficiency",
+      "cost_efficiency"
+    ],
+    "content_type": "explanation",
+    "secondary_concepts": [
+      "digital_modulation",
+      "bit_error_rate",
+      "terrestrial_microwave_radios",
+      "hand_held_cellular_phones"
+    ],
+    "technical_terms": [
+      "bandwidth",
+      "power",
+      "bit_error_rate",
+      "cellular_phones"
+    ],
+    "has_formula": false,
+    "has_example": true,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS how digital modulation concepts are applied in communications systems, focusing on the tradeoffs between bandwidth efficiency, power efficiency, and cost efficiency. Bandwidth efficiency refers to a modulation scheme's ability to transmit data within a limited bandwidth, while power efficiency indicates the system's capability to send information reliably at minimal power levels. The section highlights the importance of these efficiencies in system design and their interdependencies, as seen in the examples of digital terrestrial microwave radios and hand-held cellular phones."
+  },
+  {
+    "chunk_id": "chunk_sintro_002",
+    "page": 1,
+    "section": "intro",
+    "section_title": "Introduction",
+    "text": "because these phones need to run on a battery.\nCost is also a high priority because cellular phones\nmust be low-cost to encourage more users. Accordingly,\nthese systems sacrifice some bandwidth\nefficiency to get power and cost efficiency.\nEvery time one of these efficiency parameters\n(bandwidth, power, or cost) is increased, another\none decreases, becomes more complex, or does not\nperform well in a poor environment. Cost is a dominant\nsystem priority. Low-cost radios will always\nbe in demand. In the past, it was possible to make\na radio low-cost by sacrificing power and bandwidth\nefficiency. This is no longer possible. The\nradio spectrum is very valuable and operators who\ndo not use the spectrum efficiently could lose their\nexisting licenses or lose out in the competition for\nnew ones. These are the tradeoffs that must be\nconsidered  in digital RF communications design.\nThis application note covers\n• the reasons for the move to digital modulation;\n• how information is modulated onto in-phase ( I)\nand quadrature (Q) signals;\n• different types of digital modulation;\n• filtering techniques to conserve bandwidth;\n• ways of looking at digitally modulated signals;\n• multiplexing techniques used to share the\ntransmission channel;\n• how a digital transmitter and receiver work;\n• measurements on digital RF communications\nsystems;\n• an overview table with key specifications for\nthe major digital communications systems; and\n• a glossary of terms used in digital RF communications.",
+    "chapter": 0,
+    "chapter_title": "Introduction",
+    "primary_concepts": [
+      "digital_modulation",
+      "bandwidth_efficiency",
+      "cost_efficiency"
+    ],
+    "content_type": "background",
+    "secondary_concepts": [
+      "in_phase_signals",
+      "quadrature_signals",
+      "filtering_techniques",
+      "multiplexing_techniques"
+    ],
+    "technical_terms": [
+      "RF",
+      "bandwidth",
+      "digital_modulation",
+      "transmission_channel",
+      "digital_transmitter",
+      "digital_receiver"
+    ],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "intermediate",
+    "contextualized_content": "This section EXPLAINS the tradeoffs in digital modulation design, focusing on bandwidth efficiency, power efficiency, and cost efficiency. It highlights how increasing one efficiency parameter often leads to a decrease in another, emphasizing the importance of optimizing these factors in digital radio frequency communications. Additionally, it outlines the key topics covered in the application note, including modulation techniques, filtering methods, and the functioning of digital transmitters and receivers."
+  },
+  {
+    "chunk_id": "chunk_sintro_003",
+    "page": 1,
+    "section": "intro",
+    "section_title": "Introduction",
+    "text": "systems;\n• an overview table with key specifications for\nthe major digital communications systems; and\n• a glossary of terms used in digital RF communications.\nThese concepts form the building blocks of any\ncommunications system. If you understand the\nbuilding blocks, then you will be able to understand\nhow any communications system, present\nor future, works.",
+    "chapter": 0,
+    "chapter_title": "Introduction",
+    "primary_concepts": [
+      "digital_communications_systems"
+    ],
+    "content_type": "background",
+    "secondary_concepts": [
+      "glossary_of_terms",
+      "key_specifications"
+    ],
+    "technical_terms": [],
+    "has_formula": false,
+    "has_example": false,
+    "difficulty": "beginner",
+    "contextualized_content": "This section EXPLAINS the foundational concepts of digital communications systems, which are essential for understanding the operation of various communication technologies. It highlights the importance of grasping these building blocks to comprehend how both current and future communications systems function. Additionally, it sets the stage for exploring topics such as digital modulation, filtering techniques, and multiplexing methods discussed in subsequent chapters."
+  }
+]

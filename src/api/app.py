@@ -37,7 +37,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.tools.quiz_storage import QuizStorage
 from src.tools.submission_manager import SubmissionManager
-from query import ScienceQASystem, QuestionRetriever, IntentClassifier, SimpleAgent
+from query import ScienceQASystem
 from src.tools.session_manager import SessionManager
 from src.tools.chat_history_manager import ChatHistoryManager
 from src.tools.evaluation_storage import EvaluationStorage
@@ -154,21 +154,8 @@ def preprocess_markdown(content: str) -> str:
     return content
 
 # ========== INIT RAG COMPONENTS (SINGLETON) ==========
-try:
-    intent_classifier = IntentClassifier(openai_client)
-    # retriever = QuestionRetriever(
-    #     openai_client, 
-    #     "database/qdrant_storage", 
-    #     "KHTN_QA"
-    # )
-    retriever = "initialized"
-    print("✅ Shared RAG components initialized")
-except Exception as e:
-    print(f"⚠️ Failed to init RAG components: {e}")
-    import traceback
-    traceback.print_exc()
-    intent_classifier = None
-    retriever = None
+# Agent is created per-request with student_id via ScienceQASystem
+print("✅ RAG components ready (loaded on first request)")
 
 # ==================== HEALTH CHECK ====================
 @app.get("/")
@@ -532,32 +519,20 @@ def create_session(
                 print(f"   ✨ Created new session: {session['id']} - {session['name']}")
             
             # NOW create agent with session's student_id
-            if not openai_client or not intent_classifier:
-                raise HTTPException(
-                    status_code=503,
-                    detail="RAG components not initialized"
-                )
-            
             try:
-                agent = SimpleAgent(
-                    openai_client,
-                    intent_classifier,
-                    retriever,
-                    session['student_id']
-                )
+                agent = ScienceQASystem(student_id=session['student_id'])
                 print(f"   ✅ Agent initialized")
             except Exception as e:
                 print(f"   ❌ Agent init error: {e}")
-                import traceback
-                traceback.print_exc()
                 raise HTTPException(
                     status_code=503,
                     detail=f"Failed to initialize agent: {str(e)}"
                 )
-            
+
             # Process first message and get response
-            response = agent.query(first_message, conversation_history=[])
-            
+            result = agent.query(first_message, conversation_history=[])
+            response_text = result["response"]
+
             # Save messages to session
             try:
                 # Save user message
@@ -566,12 +541,12 @@ def create_session(
                     role="user",
                     content=first_message
                 )
-                
+
                 # Save assistant response
                 chat_history_manager.save_message(
                     session_id=session['id'],
                     role="assistant",
-                    content=response
+                    content=response_text
                 )
                 
                 # Update message count
@@ -589,7 +564,7 @@ def create_session(
             return {
                 "success": True,
                 "session": session,
-                "response": response,
+                "response": response_text,
                 "has_first_message": True,
                 "reused_session": existing_session_id is not None
             }
@@ -1340,37 +1315,12 @@ async def rag_query(
         
         # ========== INITIALIZE RAG SYSTEM WITH STUDENT_ID ==========
         session_student_id = session.get('student_id')
-        
-        # Check if shared components available
-        if not openai_client or not intent_classifier:
-            raise HTTPException(
-                status_code=503,
-                detail="RAG components not initialized"
-            )
 
-        # Create lightweight agent instance with fresh retriever
-        agent = None
-        qdrant_client = None
         try:
-
-            # Create fresh retriever
-            fresh_retriever = QuestionRetriever(
-                openai_client,
-                "database/qdrant_storage",  # Pass client directly
-                "KHTN_QA"
-            )
-            
-            agent = SimpleAgent(
-                openai_client,
-                intent_classifier,
-                fresh_retriever,  # Use fresh retriever
-                session_student_id
-            )
+            agent = ScienceQASystem(student_id=session_student_id)
             print(f"   ✅ Agent initialized for student: {session_student_id}")
         except Exception as e:
             print(f"   ❌ RAG init error: {e}")
-            import traceback
-            traceback.print_exc()
             raise HTTPException(
                 status_code=503,
                 detail=f"Failed to initialize RAG system: {str(e)}"
