@@ -1,5 +1,0 @@
-2026-03-21 16:06:03,517 - INFO - Use pytorch device_name: cpu
-2026-03-21 16:06:03,518 - INFO - Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
-2026-03-21 16:06:13,821 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2026-03-21 16:06:15,922 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2026-03-21 16:06:25,465 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
