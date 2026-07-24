@@ -243,17 +243,17 @@ class QuestionRetriever:
                 )
             
             # Search
-            results = self.qdrant_client.search(
+            response = self.qdrant_client.query_points(
                 collection_name=self.collection_name,
-                query_vector=query_vector,
+                query=query_vector,
                 query_filter=search_filter,
                 limit=top_k,
                 with_payload=True
             )
-            
+
             # Format results (giữ nguyên)
             formatted_results = []
-            for result in results:
+            for result in response.points:
                 formatted_results.append({
                     "question": result.payload.get("question", ""),
                     "options": result.payload.get("options", {}),
@@ -1279,7 +1279,7 @@ Nộp bài: 1-A,2-B,3-C,4-D,5-A,6-B,7-C,8-D,9-A,10-B
                 )
                 
                 # ========== FALLBACK IF SCORE TOO LOW ==========
-                if not results or results[0]['score'] < 0.8:
+                if not results or results[0]['score'] < 0.75:
                     print(f"   ✗ Score too low → FALLBACK TO CHAT")
                     
                     messages = [

@@ -7,6 +7,7 @@ Cost: ~$0.0003/request (rẻ nhất!)
 
 import os
 import subprocess
+import sys
 import tempfile
 import hashlib
 import time
@@ -144,7 +145,7 @@ plt.close()
             try:
                 # Execute code
                 result = subprocess.run(
-                    ["python", str(code_file)],
+                    [sys.executable, str(code_file)],
                     cwd=tmpdir,
                     capture_output=True,
                     text=True,
